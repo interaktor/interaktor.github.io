@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"LEASE","artist":"","cover":"","url":""}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        Thu Jul 16
+    </span>
+
+    <div class="post-meta">
+        2026-07-16
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="今天我来说一下我之前在学习JS上遇到的一个问题">今天我来说一下我之前在学习JS上遇到的一个问题</h2>
+<h3 id="1-首先是获取元素，分成了两大块，一块是tab栏，另一块是tab栏的内容">1.首先是获取元素，分成了两大块，一块是tab栏，另一块是tab栏的内容</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">var lis = document.querySelector(<span class="hljs-string">&#x27;.list&#x27;</span>).querySelectorAll(<span class="hljs-string">&#x27;li&#x27;</span>);<br>var items = document.querySelectorAll(<span class="hljs-string">&#x27;.item&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="2-开始循环绑定。我们先给所有的li设置一个索引号-自定义属性">2.开始循环绑定。我们先给所有的li设置一个索引号(自定义属性)</h3>
+<p>在给所有li绑定onclick，接下来我们就开始操作<br>
+我们一步一步来，当点击任意一个li后，我们先要用到排他思想，就是先「清除所有，再设定自己」用for循环就可以，然后tab栏部分就完成了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">for</span> (var i = 0; i &lt; lis.length; i++) &#123;<br>           //开始的时候就给所有li设定索引号（自定义属性）<br>           lis[i].setAttribute(<span class="hljs-string">&#x27;index&#x27;</span>, i)<br>           lis[i].onclick = <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>               //1.上面的list我们要用到排他思想，点击一个时就套用current这个类，其他全取消<br>               //这里我们先把所有li的给清除掉，然后单独再给点击的那一个li设定<br>               <span class="hljs-keyword">for</span> (var i = 0; i &lt; lis.length; i++) &#123;<br>                   lis[i].className = <span class="hljs-string">&#x27;&#x27;</span><br>               &#125;<br>               this.className = <span class="hljs-string">&#x27;current&#x27;</span><br>           &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-最后来到内容模块，我们要实现的操作是当上面的tab栏点击哪一个，下面就要显示对应的内容板块">3.最后来到内容模块，我们要实现的操作是当上面的tab栏点击哪一个，下面就要显示对应的内容板块</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//2.下面内容模块（这里我们点击哪一个就获取哪个的index，然后显示对应的div）<br>               var index = this.getAttribute(<span class="hljs-string">&#x27;index&#x27;</span>);<br>               //这里也要用排他思想先全部清空，然后单独设定内容<br>               <span class="hljs-keyword">for</span> (var j = 0; j &lt; items.length; j++) &#123;<br>                   items[j].style.display = <span class="hljs-string">&#x27;none&#x27;</span><br>               &#125;<br>               items[index].style.display = <span class="hljs-string">&#x27;block&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>这里要注意，tab栏模块和内容模块要相匹配，它们之间的顺序要一一对应<br>
+然后获得我们当前点击的这个li的自定义属性的值<br>
+再用到排他思想，先清空所有内容<br>
+最后一步很关键，我们要让items的index，也就是它返回来的这个索引号，让这个索引号的items让它显示出来</p>
+<h4 id="完整代码如下：">完整代码如下：</h4>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">&lt;body&gt;<br>    &lt;div class=<span class="hljs-string">&quot;table&quot;</span>&gt;<br>        &lt;div class=<span class="hljs-string">&quot;list&quot;</span>&gt;<br>            &lt;ul&gt;<br>                &lt;li class=<span class="hljs-string">&quot;current&quot;</span>&gt;商品介绍&lt;/li&gt;<br>                &lt;li&gt;规格与包装&lt;/li&gt;<br>                &lt;li&gt;售后保障&lt;/li&gt;<br>                &lt;li&gt;商品评价（999+）&lt;/li&gt;<br>                &lt;li&gt;手机社区&lt;/li&gt;<br>            &lt;/ul&gt;<br>        &lt;/div&gt;<br>        &lt;div class=<span class="hljs-string">&quot;content&quot;</span>&gt;<br>            &lt;div class=<span class="hljs-string">&quot;item&quot;</span> style=<span class="hljs-string">&quot;display: block;&quot;</span>&gt;<br>                store<br>            &lt;/div&gt;<br>            &lt;div class=<span class="hljs-string">&quot;item&quot;</span>&gt;<br>                packet<br>            &lt;/div&gt;<br>            &lt;div class=<span class="hljs-string">&quot;item&quot;</span>&gt;<br>                protect<br>            &lt;/div&gt;<br>            &lt;div class=<span class="hljs-string">&quot;item&quot;</span>&gt;<br>                comment<br>            &lt;/div&gt;<br>            &lt;div class=<span class="hljs-string">&quot;item&quot;</span>&gt;<br>                unity<br>            &lt;/div&gt;<br>        &lt;/div&gt;<br>    &lt;/div&gt;<br>    &lt;script&gt;<br><br>        //获取元素<br>        var lis = document.querySelector(<span class="hljs-string">&#x27;.list&#x27;</span>).querySelectorAll(<span class="hljs-string">&#x27;li&#x27;</span>);<br>        var items = document.querySelectorAll(<span class="hljs-string">&#x27;.item&#x27;</span>)<br>        //for循环绑定事件<br>        <span class="hljs-keyword">for</span> (var i = 0; i &lt; lis.length; i++) &#123;<br>            //开始的时候就给所有li设定索引号（自定义属性）<br>            lis[i].setAttribute(<span class="hljs-string">&#x27;index&#x27;</span>, i)<br>            lis[i].onclick = <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>                //1.上面的list我们要用到排他思想，点击一个时就套用current这个类，其他全取消<br>                //这里我们先把所有li的给清除掉，然后单独再给点击的那一个li设定<br>                <span class="hljs-keyword">for</span> (var i = 0; i &lt; lis.length; i++) &#123;<br>                    lis[i].className = <span class="hljs-string">&#x27;&#x27;</span><br>                &#125;<br>                this.className = <span class="hljs-string">&#x27;current&#x27;</span><br><br>                //2.下面内容模块（这里我们点击哪一个就获取哪个的index，然后显示对应的div）<br>                var index = this.getAttribute(<span class="hljs-string">&#x27;index&#x27;</span>);<br>                //这里也要用排他思想先全部清空，然后单独设定内容<br>                <span class="hljs-keyword">for</span> (var j = 0; j &lt; items.length; j++) &#123;<br>                    items[j].style.display = <span class="hljs-string">&#x27;none&#x27;</span><br>                &#125;<br>                items[index].style.display = <span class="hljs-string">&#x27;block&#x27;</span>;<br><br>            &#125;<br><br>        &#125;<br>    &lt;/script&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="效果展示图片">效果展示图片</h4>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
