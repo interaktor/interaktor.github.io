@@ -32,7 +32,7 @@
     <nav class="button-bar">
         <ul class="nav-links">
             <li>
-                <a href="/" class="button link-home active">
+                <a href="/" class="button link-home ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
                         <span>Home</span>
@@ -132,73 +132,34 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="post-list">
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    for...in循环的理解
-            </span>
-            <div class="post-meta">
-                2026-07-17
-            </div>
-            <div class="post-excerpt">
-                DOM 動態生成表格的「核心密碼」
-今天把雙重循環和對象數組徹底盤通了，代碼註釋我已經在 VS Code 裡寫得連未來的我都能看懂。這裡只記錄兩個最硬核的“靈魂考點”，防止以後翻車：
-1. 關於內層 for…in 循環裡的 k
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        for...in循环的理解
+    </span>
 
-k 類似於普通循環的 i，但它的次數不靠數數，而是【對象裡有幾個...
-            </div>
-            <a href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
+    <div class="post-meta">
+        2026-07-17
         
-        <div class="post-info">
-            <span class="post-title">
-                    Tab栏切换的疑惑点
-            </span>
-            <div class="post-meta">
-                2026-07-16
-            </div>
-            <div class="post-excerpt">
-                今天我来说一下我之前在学习JS上遇到的一个问题
-1.首先是获取元素，分成了两大块，一块是tab栏，另一块是tab栏的内容
-var lis = document.querySelector(&#x27;.list&#x27;).querySelectorAll(&#x27;li&#x27;);v...
-            </div>
-            <a href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    Hello World
-            </span>
-            <div class="post-meta">
-                2026-07-15
-            </div>
-            <div class="post-excerpt">
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
-            </div>
-            <a href="/2026/07/15/hello-world/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-</section>
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
 
-<nav class="page-nav">
-    <span class="page-number current">1</span>
-</nav>
+    <div class="post-content">
+        <h1>DOM 動態生成表格的「核心密碼」</h1>
+<p>今天把雙重循環和對象數組徹底盤通了，代碼註釋我已經在 VS Code 裡寫得連未來的我都能看懂。這裡只記錄兩個最硬核的“靈魂考點”，防止以後翻車：</p>
+<h2 id="1-關於內層-for…in-循環裡的-k">1. 關於內層 for…in 循環裡的 <code>k</code></h2>
+<ul>
+<li><code>k</code> 類似於普通循環的 <code>i</code>，但它的次數不靠數數，而是【對象裡有幾個屬性，它就雷打不動循環幾次】。</li>
+<li>剛創建結構時，大括號裡雖然沒寫 <code>k</code>，但它默默轉了 3 圈，幫我精準建出了 3 個 <code>td</code>！</li>
+</ul>
+<h2 id="2-關於-dates-i-k-為什麼能拿值？">2. 關於 <code>dates[i][k]</code> 為什麼能拿值？</h2>
+<ul>
+<li>單獨寫 <code>k</code> 只是拿到了屬性名字符串（如 ‘name’）。</li>
+<li>加上外殼變成 <code>dates[i][k]</code>，就是利用中括號語法當鑰匙，動態去對象盒子裡把具體的值（如 ‘魏瓔珞’）給抓出來！</li>
+</ul>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
