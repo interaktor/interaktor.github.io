@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,70 +132,28 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-15
-            </span>
-            <a class="archive-title" href="/2026/07/15/hello-world/">
-                Hello World
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        事件委托复习
+    </span>
 
-<nav class="page-nav">
-    <span class="page-number current">1</span>
-</nav>
+    <div class="post-meta">
+        2026-07-18
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h3 id="今天学了事件委托我这里把先所有的东西都讲一下，我不理解的地方。">今天学了事件委托我这里把先所有的东西都讲一下，我不理解的地方。</h3>
+<p>第一点就是有一个父元素，它里面有许多子元素。<br>
+然后呢，我们想要的是点击子元素触发弹窗。如果按我以前的做法，就是给每一个子元素绑定一个点击事件，但我们先拟定点击事件有100个，也就是有100个子元素。<br>
+这样的话，性能效率会大大降低，而且我们还要用for循环来绑定它。这个时候，我们就可以用到事件委托，也就是我们在我们只给父元素设定事件。因为有冒泡这个东西，所以当我们点击子元素的时候，它会从下到上的依次冒泡。<br>
+我们的子元素虽然没有设定任何内容，但我们点击子元素后，它会往上冒泡，就会到达父元素，因为我们给父元素设定了点击事件，它会弹出提示框。当我们点击子元素的时候，冒泡就会从下到上先看子元素，它并没有任何东西，然后就往上，父元素它有一个点击事件，它就会弹出负元素的内容框。<br>
+我们点击任意一个子元素，它都会弹出父元素的弹窗，这就是事件委托，我们这里子元素有很多，我们点击这100个子元素的任意一个，它都会往上冒泡，然后找到它的父元素，依次往上去找到</p>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
