@@ -134,11 +134,13 @@
                 <main id="pjax-container">
                     <div class="card post-full">
     <span class="post-title article-title">
-        
+        发送短信案例整理
     </span>
 
     <div class="post-meta">
-        2026-07-23
+        2026-07-22
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
             
     </div>
 
@@ -153,9 +155,11 @@
 <h3 id="3-关于btn-disable-false最后写在了哪里">3.关于btn.disable = false最后写在了哪里</h3>
 <p>这句话我最后跟着老师写在了当time=0的那块代码区，很简单，就是当时间为0时把按钮的禁用给解除，按钮的时间也就不用单独写一个时间了，它只需要跟随time就好，当time为0时，它就顺便解除</p>
 <h3 id="4-为什么点击后会等一会才开始倒计时">4.为什么点击后会等一会才开始倒计时</h3>
-<p>因为我们的setInterval的回调时间是1000毫秒，也就是1秒，当点击按钮时，会等待一秒才开始，想要解决也很简单，在btn.addEventListener在最上面添加一个</p>
+<p>因为我们的setInterval的回调时间是1000毫秒，也就是1秒，当点击按钮时，会等待一秒才开始，想要解决也很简单，在else最前面添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">btn.disabled = <span class="hljs-literal">true</span>;<br>btn.innerHTML = <span class="hljs-string">&#x27;請等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再試&#x27;</span>; // 點擊瞬間立刻更新文字！<br>djs--; // 預先扣除 1 秒<br></code></pre></td></tr></table></figure>
+<p>上面是Gemini给我找到的一个小bug，特别感谢:）</p>
 <h3 id="5-完整JS代码展示">5.完整JS代码展示</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//1.获取元素<br>var input = document.querySelector(<span class="hljs-string">&#x27;input&#x27;</span>);<br>var btn = document.querySelector(<span class="hljs-string">&#x27;button&#x27;</span>);<br>var djs = 3;<br>var loading = null;<br>//2.当按钮按下<br>btn.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>    //这里是一个判断条件，如果为空或者超出号码范围，就提示用户修改<br>    <span class="hljs-keyword">if</span> (input.value == <span class="hljs-string">&#x27;&#x27;</span> || input.value.length &lt; 11 || input.value.length &gt; 11) &#123;<br>        alert(<span class="hljs-string">&#x27;请输入正确号码再试&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        //满足条件后会先把按钮禁用，然后在setInterval里面判断<br>        btn.disabled = <span class="hljs-literal">true</span>;<br>        loading = setInterval(<span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>            //如果倒计时秒数为0的话，就清除这个setInterval, 然后把按钮给复原，把倒计时也复原<br>            <span class="hljs-keyword">if</span> (djs == 0) &#123;<br>                clearInterval(loading)<br>                btn.innerHTML = <span class="hljs-string">&#x27;获取验证码&#x27;</span>;<br>                btn.disabled = <span class="hljs-literal">false</span>;<br>                djs = 3;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                //秒数还没等于0时，就一直改变btn里面「倒计时」的文字<br>                btn.innerHTML = <span class="hljs-string">&#x27;请等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再试&#x27;</span>;<br>                djs--<br>            &#125;<br>        &#125;, 1000) //当按下按钮时，会等1秒才倒计时就是因为这个<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//1.获取元素<br>var input = document.querySelector(<span class="hljs-string">&#x27;input&#x27;</span>);<br>var btn = document.querySelector(<span class="hljs-string">&#x27;button&#x27;</span>);<br>var djs = 3;<br>var loading = null;<br>//2.当按钮按下<br>btn.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>    //这里是一个判断条件，如果为空或者超出号码范围，就提示用户修改<br>    <span class="hljs-keyword">if</span> (input.value == <span class="hljs-string">&#x27;&#x27;</span> || input.value.length &lt; 11 || input.value.length &gt; 11) &#123;<br>        alert(<span class="hljs-string">&#x27;请输入正确号码再试&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        //满足条件后会先把按钮禁用，然后在setInterval里面判断<br>        btn.disabled = <span class="hljs-literal">true</span>;<br>        loading = setInterval(<span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>            //如果倒计时秒数为0的话，就清除这个setInterval, 然后把按钮给复原，把倒计时也复原<br>            <span class="hljs-keyword">if</span> (djs == 0) &#123;<br>                clearInterval(loading)<br>                btn.innerHTML = <span class="hljs-string">&#x27;获取验证码&#x27;</span>;<br>                btn.disabled = <span class="hljs-literal">false</span>;<br>                djs = 3;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                //秒数还没等于0时，就一直改变btn里面「倒计时」的文字<br>                btn.innerHTML = <span class="hljs-string">&#x27;请等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再试&#x27;</span>;<br>                djs--<br>            &#125;<br>        &#125;, 1000) <br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
     </div>
 </div>
                 </main>
