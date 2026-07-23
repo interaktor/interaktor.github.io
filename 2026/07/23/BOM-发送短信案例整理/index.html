@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,81 +132,32 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
+                    <div class="card post-full">
+    <span class="post-title article-title">
         
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-23
-            </span>
-            <a class="archive-title" href="/2026/07/23/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/">
-                Untitled
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-15
-            </span>
-            <a class="archive-title" href="/2026/07/15/hello-world/">
-                Hello World
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+    </span>
 
-<nav class="page-nav">
-    <span class="page-number current">1</span>
-</nav>
+    <div class="post-meta">
+        2026-07-23
+            
+    </div>
+
+    <div class="post-content">
+        <p>讲一下昨天的一个小案例，就是发送短信验证码的一个小案例，我95%都是我自己做出来的，接下来我来说一下<br>
+剩下5%的问题所在</p>
+<h3 id="1-多出来的setTimeout">1.多出来的setTimeout</h3>
+<p>昨天的代码其实只用setInterval就可以直接做出来，但是我在写的时候觉得要弄一个时间倒计时才可以<br>
+所有多写了一个setTimeout导致步骤多余了，这里面写的也只是一个btn.disable = false，60000 这完全是不用的</p>
+<h3 id="2-忘记添加时间复原">2.忘记添加时间复原</h3>
+<p>昨天的代码到最后到解决的一个问题就是，当我点击了按钮后，时间到了但是呢，当再次点击的时候，按钮只是被禁用了一下，就立马恢复了，后面是看老师的讲解才知道的，当time=0时就把btn的文字和倒计时的时间全部再重置一下就好了</p>
+<h3 id="3-关于btn-disable-false最后写在了哪里">3.关于btn.disable = false最后写在了哪里</h3>
+<p>这句话我最后跟着老师写在了当time=0的那块代码区，很简单，就是当时间为0时把按钮的禁用给解除，按钮的时间也就不用单独写一个时间了，它只需要跟随time就好，当time为0时，它就顺便解除</p>
+<h3 id="4-为什么点击后会等一会才开始倒计时">4.为什么点击后会等一会才开始倒计时</h3>
+<p>因为我们的setInterval的回调时间是1000毫秒，也就是1秒，当点击按钮时，会等待一秒才开始，想要解决也很简单，在btn.addEventListener在最上面添加一个</p>
+<h3 id="5-完整JS代码展示">5.完整JS代码展示</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//1.获取元素<br>var input = document.querySelector(<span class="hljs-string">&#x27;input&#x27;</span>);<br>var btn = document.querySelector(<span class="hljs-string">&#x27;button&#x27;</span>);<br>var djs = 3;<br>var loading = null;<br>//2.当按钮按下<br>btn.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>    //这里是一个判断条件，如果为空或者超出号码范围，就提示用户修改<br>    <span class="hljs-keyword">if</span> (input.value == <span class="hljs-string">&#x27;&#x27;</span> || input.value.length &lt; 11 || input.value.length &gt; 11) &#123;<br>        alert(<span class="hljs-string">&#x27;请输入正确号码再试&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        //满足条件后会先把按钮禁用，然后在setInterval里面判断<br>        btn.disabled = <span class="hljs-literal">true</span>;<br>        loading = setInterval(<span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>            //如果倒计时秒数为0的话，就清除这个setInterval, 然后把按钮给复原，把倒计时也复原<br>            <span class="hljs-keyword">if</span> (djs == 0) &#123;<br>                clearInterval(loading)<br>                btn.innerHTML = <span class="hljs-string">&#x27;获取验证码&#x27;</span>;<br>                btn.disabled = <span class="hljs-literal">false</span>;<br>                djs = 3;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                //秒数还没等于0时，就一直改变btn里面「倒计时」的文字<br>                btn.innerHTML = <span class="hljs-string">&#x27;请等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再试&#x27;</span>;<br>                djs--<br>            &#125;<br>        &#125;, 1000) //当按下按钮时，会等1秒才倒计时就是因为这个<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
