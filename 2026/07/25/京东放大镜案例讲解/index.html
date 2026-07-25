@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        京东放大镜案例超详细讲解
+    </span>
+
+    <div class="post-meta">
+        2026-07-25
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h3 id="1-事件给谁？">1.事件给谁？</h3>
+<p>首先我们有两个选择<br><br>
+<strong>1.事件给图片</strong><br><br>
+如果我们把事件给到了图片，第一次就会有一些问题，如此把鼠标放在Mask上，Mask和大图都消失了，这是因为事件在Mask上只有鼠标在Mask上的时候才会触发，一旦鼠标离开Maks那么就不起作用了<br><br>
+<strong>2.事件给盒子（图片的父元素）</strong><br><br>
+把事件给到盒子的话，鼠标无论是在Mask上还是在图片或者大图上，Maks和大图都可以正常显示，这是因为Mask和图片还有大图，它们都属于盒子的子元素，只要在父元素的范围内，鼠标在哪些都可以正常显示</p>
+<h3 id="2-怎么让Mask跟随鼠标，并且鼠标在maks的中心呢？">2.怎么让Mask跟随鼠标，并且鼠标在maks的中心呢？</h3>
+<p><strong>1.先让鼠标的范围定在盒子里</strong><br><br>
+公式：鼠标距离文档最左侧的数组 - 盒子距离文档最左侧的数组 = 鼠标距离盒子最左侧的数组<br>
+上面的公式就可以得到鼠标在盒子内的坐标，它会以盒子的最左上为0，0来进行移动<br><br>
+<strong>2.把Mask和鼠标进行绑定</strong><br><br>
+在移动鼠标的时候，Maks也有跟随移动，那么就是Mask的移动是和鼠标一样的，把鼠标移动的坐标赋给Mask，这样当鼠标移动的时候，Mask也会跟随移动了<br><br>
+<strong>3.把鼠标的位置转移到Mask的最中心</strong><br><br>
+我们鼠标这个时候的坐标还是在Mask的最左上角，移动起来是不连贯的，需要把鼠标的位置移动到中心，这样移动起来就会很顺畅。<br><br>
+要让Mask往下移动一半，往右移动一半的距离，可以在把鼠标在盒子内的坐标那里，先减去「Mask总宽度的一半」</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">// 获取鼠标在盒子内的数组<br>var MouseX = Mouse.pageX - Box.offsetLeft;<br>var MouseY = Mouse.pageY - Box.offsetTop;<br>// Mask的坐标就是鼠标的坐标，这里我们要把鼠标的位置移动到Mask的中心，需要减去Mask总高宽的一半<br>// 这里的一半可以直接写数字，但是我更推荐写动态的，也就是获取Mask的高宽再除以2，这样后面Mask高宽改了鼠<br>// 标也还是会在Mask的最中心位置<br>MaskX = MouseX - (Mask.offsetWidth / 2)<br>MaskY = MouseY - (Mask.offsetHeight / 2)<br></code></pre></td></tr></table></figure>
+<p>在原基础上减去高度一半就让鼠标在中心了，这里还有一个我测试的方法，是Mask在CSS中添加translate(-50%,-50%)，这样也可以实现鼠标在中心位置，且它们的效果都是一样的</p>
+<h3 id="3-Mask的范围怎么算出来？怎么让它限制在图片里（父盒子）？">3.Mask的范围怎么算出来？怎么让它限制在图片里（父盒子）？</h3>
+<p>Mask的坐标在第二点就算出来了，我们要知道它的范围是多少，然后把它限制在盒子内<br><br>
+1.我们要算出Mask的范围，就不能看鼠标，要看Mask在盒子中还有多少可以移动的空间，可以设想Mask现在贴在盒子的最左边，然后我们看还有多少剩余「空间」，这个剩余的空间就是X的最大值范围，最左边就是X的最小范围<br><br>
+2.现在我们知道了范围，那该怎么计算呢？可移动范围就是盒子的总宽度(400) - Mask的总宽度(300) 这样得到的值和上面口算的值都是一样的，也就是100，现在在上面的代码基础上再进行添加判断</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">if</span>(MaskX &lt;= 0) &#123;<br>    MaskX = 0<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(MaskX &gt;= 100) //这里的100可以写成动态的，也就是：盒子宽 - Mask宽 = 100<br><span class="hljs-keyword">if</span>(MaskY &lt;=0) &#123;<br>    MaskY = 0<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(MaskY &gt;= 100)// 注意！在这里的案例高和度是一样的，可以理解为都是正方形（也就是盒子和Mask的xy算出值都是相同的），等比例后数组是一样的，如果高度不一样就需要再次进行单独算一下Y的最大移动范围：盒子高 - Mask高<br></code></pre></td></tr></table></figure>
+<p>上面的代码就可以实现把Mask限制在父盒子的范围，鼠标就无法将Mask超出这个限制的范围</p>
+<h3 id="4-大图片是怎么移动的？">4.大图片是怎么移动的？</h3>
+<p>首先我们大图也是盒子中的一个子元素，只不过用了定位将它放在了盒子的右侧<br><br>
+<strong>1.先弄清楚大图有哪些</strong><br><br>
+大图分别有 图片本身 + 显示图片的区域 ，这里图片本身肯定是要比显示的区域要大的，我们先把显示区域内的图片overflow:hidden让这些先隐藏，然后就来到了移动Mask，大图会跟着移动的事件了<br><br>
+<strong>2.大图的移动距离和Mask一样吗？</strong><br><br>
+首先肯定是不一样的，因为盒子里的那张图片明显是要多大图小的，我们这里的想法是，例如：小图移动1米，大图移动2米，这样就相当于等比例移动了，那我们怎么算出它们之间的比例相差多少呢，要用到一个很重要的公式<br></p>
+<p>$\frac{\text{Mask移动距离}}{\text{Mask最大移动距离}} = \frac{\text{大图移动距离}}{\text{大图最大移动距离}}$</p>
+<p>上面的公式我们需要得到「大图移动距离」这就需要计算上面已知的数组<br><br>
+也就是：Mask移动距离 * 大图最大移动距离 / Mask最大移动距离 = 大图移动距离<br><br>
+Mask移动距离：其实就是MaskX 可以理解为跟鼠标距离盒子最左侧是一样的，只不过增加了把鼠标移动到中心而已<br><br>
+这样理解下来，大图移动距离其实很容易理解了，它们都相似<br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//Mask移动距离有了，Mask最大移动距离就是100也有了，大图最大移动距离是可以直接算出来了，就差大图移动距离<br>//1.算出大图最大移动距离<br>var img_boxMax = Box_bigImg.offsetWidth - bigImg.offsetWidth //这里因为可视区域和大图都是正方形，所有只需要Width就可以得到最大移动距离了，如果两者大小不一样则需要单独给Height算值<br>//2.算出Mask的最大移动距离<br>var MaskMax = Box.offsetWidth - Mask.offsetWidth<br>//3.获得「大图移动距离」<br>var bigImgX = MaskX * img_boxMax / MaskMax;<br>var bigImgY = MaskY * img_boxMax / MaskMax;<br></code></pre></td></tr></table></figure>
+<p>这样我们就得到了大图移动距离，现在我们给大图加上position，然后就可以移动Mask，大图也就会跟着等比例移动了<br>
+最后把移动距离赋值给大图本身就可以了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">bigImg = bigImgX + <span class="hljs-string">&#x27;px&#x27;</span>;<br>bigImg = bigImgY = <span class="hljs-string">&#x27;px&#x27;</span>;<br></code></pre></td></tr></table></figure>
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
