@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        
+    </span>
+
+    <div class="post-meta">
+        2026-07-29
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="关于PC端特效的一些小知识点-复习">关于PC端特效的一些小知识点+复习</h2>
+<h2 id="缓动动画公式解析">缓动动画公式解析</h2>
+<p>我们可以让动画有一般二种效果<br><br>
+<strong>1.匀速动画</strong>：这种动画就是速度一直都是一样的，也就是（当前物体位置 + 固定值）就可以实现的动画<br><br>
+<strong>2.缓动动画</strong>：缓动动画它的速度是从高到低，就是刚开始是走10步，然后是走9步，再到走8步，依次变小，这里我们要用一个公式「(目标位置 - 物体当前位置) / 步长数 」<br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">步长数：它的作用是决定动画的“平滑度”和“快慢节奏”<br>数值越小‌（如 2-5）：每一步迈得越大，动画越快，减速效果不明显，甚至显得突兀。<br>‌数值越大‌（如 20-50）：每一步迈得越小，动画越慢，减速过程越细腻平滑，但到达目标所需的时间越长。<br></code></pre></td></tr></table></figure>
+<p>(1)这里要注意，假设我们要去500px的目标，但是我们物体最终到达的是490多，而且步长数越大，这个数就越小<br>
+这时，我们需要解决一个小数的问题，因为每次除都会有残留小数，需要把这个公式取整，需要用到Math.ceil()<br>
+Math.ceil((目标位置 - 物体当前位置) / 步长数 )这样无论步长是多少，最终都是500的位置<br><br>
+(2)如果我们有倒退呢？假设有一个回到300px位置的按钮，我们上面的公式可以正常回去，但是又会出现一个新的问题，那就是倒退回去的值是在310多，和上一个问题一样了，这是因为我们ceil是往大了取，我们倒退的话，就会往大的值方向去取，导致到最后出现小数时（如：-8.1和-9）它会取8.1，但是我们是往后走，你取8.1就是往前的方向了，这就完全不对了，这里我们要用到Math.floor()， 我们不必分开写，只需要一个判断<br></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">var 移动值 = (目标位置 - 物体当前位置) / 步长数）<br>移动值 &gt; 0 ? Math.ceil(移动值) : Math.floor(移动值)<br>这样不管是往前还是往后，都可以精准到达位置<br></code></pre></td></tr></table></figure>
+<h2 id="obj-timer-对象加属性讲解">obj.timer 对象加属性讲解</h2>
+<p>首先我们要obj.timer里面的obj和timer分别是什么，它们代表什么意思<br><br>
+<strong>1.obj</strong><br><br>
+这里的obj可以理解为一个对象</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">它是这样来的<br>var obj = document.querySelector(<span class="hljs-string">&#x27;div&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<p>也就是这个div就是obj<br><br>
+<strong>2.timer又是什么呢？</strong><br><br>
+这里timer其实是obj的一个属性，为什么是属性呢，这是因为我们在JS获取的元素它都算是一个「对象」，所以我们这名话相当于是 对象.属性 这个属性的名称可以随便写，它可以进行赋值等操作，和对象里面的属性是一个意思</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">obj.timer = <span class="hljs-function"><span class="hljs-title">function</span></span>() &#123;&#125;;<br>obj.timer = 1023;<br>obj.timer = <span class="hljs-string">&#x27;1023&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<p>它可以是一个函数，也可以是一个字符串或者数组，它在动画里面可以起到节省空间的作用，具体看JS动画效果里面的代码，总之它就和普通的对象里面的属性是差不多的，作用也有很多</p>
+<h2 id="三大系列offset-client-scroll-各自用法">三大系列offset client scroll 各自用法</h2>
+<p><strong>1.offset:</strong> 返回自身包括padding，边框、内容区的宽度，offset系列经常用于获得元素位置<br><br>
+<strong>2.client:</strong> 返回自身包括padding，内容区的宽度，不含边框，client经常用于获取元素大小<br><br>
+<strong>3.scroll:</strong> 返回自身实际的宽度，不含边框，scroll经常用于获取滚动距离<br><br>
+<strong>总结</strong>：上面三个返回的值都是不带单位的，注意！页面滚动的距离通过 window.pagexoffset</p>
+<h2 id="Animate-obj-target-callback-里面的回调函数">Animate(obj,target,callback)里面的回调函数</h2>
+<p>先介绍一下前面两个，obj是要执行动画的对象，target是目标位置是多少<br>
+然后来到callback这里没有代码，不是很能详细讲解，大概说一下<br>
+callback在这里的作用就是回调函数，也就是当前面两个都执行完了时候，它才会开始执行，它通常可以用到前两个结束后让对象改变颜色，方向等等之类的，这个callback通常是一个函数，下面看一下代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">function</span> Animate(obj,target,callback) &#123;<br>    <br>    <span class="hljs-keyword">if</span>(obj.offsetLeft &gt;= target) &#123;<br>        console.log(<span class="hljs-string">&#x27;大于了500&#x27;</span>)<br>        //把callback放在函数执行完最后的地方，如果是多个对象调用这个函数，那么记得加<span class="hljs-keyword">if</span>判断，因为不是所有对象都需要这个callback<br>        //如果有callback这个参数，那么就执行，没有则不管<br>        <span class="hljs-keyword">if</span>(callback) &#123;<br>            callback()<br>        &#125;<br>        <br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        obj.style.left = obj.offsetLeft + 100 + <span class="hljs-string">&#x27;px&#x27;</span><br>    &#125;<br>&#125;<br>Animate(div,500,<span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>    console.log(<span class="hljs-string">&#x27;im callback&#x27;</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
