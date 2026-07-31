@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        轮播图案例讲解+疑点
+    </span>
+
+    <div class="post-meta">
+        2026-07-29
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="1-为什么移动是ul而不是图片本身呢？">1.为什么移动是ul而不是图片本身呢？</h2>
+<p>这是因为如果移动图片本身的话，我们要考虑很多点，首先就是第一张图片往左移动了，那第二张呢？那就还需要给第二张加移动，还有第三张呢？所以说给图片本身是不现实的，我们只需要给到ul因为所有图片都在ul里面，而且用了float它们都在一排，当ul往 -x 方向走的时候，后面的图片就一起过来了，只要移动的图片它的大小和box一样大，就实现了ul往左走，下一个图片就跑到了上一个图片的位置，这就是为什么，给ul而不是给它的子元素li or img</p>
+<h2 id="3-小圆圈怎样精准与图片匹配呢？当我按下第二个小圆圈，图片就会到第二张去">3.小圆圈怎样精准与图片匹配呢？当我按下第二个小圆圈，图片就会到第二张去</h2>
+<p>小圆圈与图片匹配要先用排他思想解决点击问题，然后我们给每个出生的ol的li也就是小圆圈，添加一个「自定义属性」这样每个小圆圈都有一个编号了，有了之后，我们要计算ul移动的距离，也就是我们点哪一个圆圈，它就跳转到对应的图片，这里要用到一个算法，就是当前圆圈的索引号 * focus的宽度(可以理解为图片的宽度)，结果就是我们想要的位置<br>
+原理是：第0个索引号乘上720px = 0  第1个索引号乘上720px = 720px 那么位置为0px就是我们默认的那张图片，位置是720px的就是第二张图片的位置，1440px就是第三张图片的位置，依次类推</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//在创建li的那里就把索引号设定好<br>//这里只获取当前点击的li的索引号的值<br>var index = this.getAttribute(<span class="hljs-string">&#x27;index&#x27;</span>)<br>//调用动画函数 obj,target,callback<br>Animate(ul, - index * focus.offsetWidth)<br></code></pre></td></tr></table></figure>
+<p>这里记得要添加负号，因为ul是往左走的，图上是从右边过来。这样我们点击4个圆圈的任意一个，都可以跳转至对应的图片，主要是记住那个算法，多试几遍就很好理解的</p>
+<h2 id="4-无缝滚动是怎么实现的？">4.无缝滚动是怎么实现的？</h2>
+<p>无缝滚动的核心就是在最后一张图片后面添加一张「假·第0张图片」，这个假图片，不要在html中添加，这样的话就会多一个小圆圈，因为我们设定了有几张图片就会几个小圆圈的动态写法，我们要在检测完图片数量后的代码区域，clone一个第0张图片，具体思路看下面代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//确保自己在检测区域下面写这个<br>var Fakefirst = ul.children[0].cloneNode(<span class="hljs-literal">true</span>);<br>//clone好后我们再把它添加在ul的后面，因为前面检测只有4张图片，到这里虽然多了一张，但是它检测不到了，所以小圆圈还是只有4个<br>ul.appendChild(Fakefirst);<br></code></pre></td></tr></table></figure>
+<p>写好了之后，我们的假图片就变成最后一个了，这个是应对后面箭头点击时的顺畅度问题，我们现在点击小圆圈是不会触发这个的，在写到箭头方向那里会使用到假图片</p>
+<h2 id="5-写cloneNode时遇到了一个问题？">5.写cloneNode时遇到了一个问题？</h2>
+<p>我在写var Fakefirst = ul.children[0].cloneNode(true);这一段代码，遇到了一个很奇怪的问题，我一开始在控制台看到了一个代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">const &#123; cloneElement &#125; = require(<span class="hljs-string">&quot;react&quot;</span>); <br></code></pre></td></tr></table></figure>
+<p>我一开始以为这个代码会类似html里面自带的js代码一样，它们都是自带的代码，后面排查了一会，始终没有找到问题所在，最后实在没找到，去问了ai，它让把上面这个代码删除掉，我回到vscode才发现，突然在顶部多出了一行这代码，这把它删除了，js也就正常执行，我后面测试了一下，似乎是我写到cloneElement的时候，它就突然出现的，我问了一下ai，它是这样说的</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">‌报错原因‌：浏览器不支持 <span class="hljs-built_in">require</span>。<br>‌最快解决‌：如果你是写普通网页，‌删除第一行‌ <span class="hljs-keyword">const</span> &#123; cloneElement &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;react&quot;</span>); 即可。<br>‌后续注意‌：确保你定义了 <span class="hljs-title class_">Animate</span> 函数，否则点击时会报新的错误。<br></code></pre></td></tr></table></figure>
+<p>总之这个问题解决好了，且暂时不需要去深度理解它，目前知道浏览器不支持即可</p>
+<h2 id="6-左右箭头的区别">6.左右箭头的区别</h2>
+<p>在这里左右箭头的区别其实不大，它们主要是数组相反，右箭头要判断图片是否到了假图，然后进行判断，而左箭头要判断图片是否超过了第一张(默认)，进行相应的判断，总的来说它们的主要区别就是相反和判断图片位置的不同</p>
+<h2 id="7-左右箭头和小圆圈的关系怎么处理？">7.左右箭头和小圆圈的关系怎么处理？</h2>
+<p>它们的主要逻辑是，当我们点击左或者右箭头时，给箭头 和 圆圈 分别添加num和circle的变量，值都为0，原理是当我们点击一下箭头</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">var num =0;<br>var circle = 0;<br>//点击箭头时<br>num++<br>Animate(ul,-num * focus.offsetWidth)<br>//这里和点击圆圈移动一样，只不过是num和focus.offsetWidth相乘，不是index<br><br><br>//我们在创建ol的li时，我们就把获取当前点击的li的索引号index，给num，这样num的值，也就会受到点击小圆圈的影响了<br>//（这里的num和circle是全局变量，在它之前调用也是可以的）<br>num = index;<br>//在num = index的下面直接添加<br>circle = num;<br>//这样我们箭头值发生变化时，把变化也给到circle<br><br><br>//当动画执行完后，我们把将circle++，也就是num变化了circle也要和num一起++<br>circle++<br>//这里有一个判断，分左右箭头<br><span class="hljs-keyword">if</span>(circle == ol.children.length) &#123; //ol的children是4时，当它到第四张时（假图片）它就会很快跑到真第一图片上<br>    circle = 0 //当它到第四张的时候，把小圆圈的显示调整到第一个上面<br>&#125;<br><span class="hljs-keyword">if</span>(circle &lt; 0) &#123; //注意是小于0，我们现在是0，但并不等于，当它小于0时，就让跑到第三张图片那里<br>    circle = ol.children.length - 1 //当它小于第一张时，我们把小圆圈的显示调整到第三张图片上<br>&#125;<br>//上面判断完后，下面要接一个排他思想，因为左右都一样，所以我把他封装成一个函数了<br> <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">circleClean</span></span>() &#123;<br>        //排他思想，先清除其他小圆圈的current<br>        <span class="hljs-keyword">for</span> (var i = 0; i &lt; ol.children.length; i++) &#123;<br>            ol.children[i].className = <span class="hljs-string">&#x27;&#x27;</span>;<br>        &#125;<br>        //留下当前的小圆圈的current<br>        ol.children[circle].className = <span class="hljs-string">&#x27;current&#x27;</span>;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<p><strong>(一)如果num和index没有绑定，我们点击小圆圈移动完图片，再点击箭头移动时，图片就不会正常到下一张，因为在箭头那里看来，我还在第一张图片，但是我们已经通过小圆圈到第三张图片，这就是为什么我们要把箭头和小圆圈进行绑定</strong><br><br>
+<strong>(二)如果circle和num没有绑定，当我们点击箭头移动时，下面的小圆圈还是在第一个上面，但图片已经到下一张了，我们让circle的值和num一样，然后使用排他思想，先清除所有的小圆圈的current，然后给我们circle值的那一个单独添加current，「这个circle的值和num是一样的」</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ 每次我们num++了后，circle也会++，<br>$ 然后我们num又和index是同步的，又然后我们circle和num也是同步的<br>也就是num和circle都是同步index的，circle是间接同步的。num先同步index，然后circle再同步num<br></code></pre></td></tr></table></figure>
+<h2 id="这个案例的大概流程是怎样">这个案例的大概流程是怎样</h2>
+<p><strong>(1)先设计好html和css部分</strong><br><br>
+html = 盒子 + 图片 + 左右箭头 + 下方小圆圈<br><br>
+css = 盒子与图片大小一致，箭头和圆圈加浮动，图片有多个所以用ul包起来，给ul添加好浮动让图片都在一行(如果后面的图片在下面，给ul加宽度即可)<br><br>
+<strong>(2)鼠标进入时显示箭头</strong><br><br>
+给focus(盒子)添加click，鼠标进入时显示，移出时隐藏<br><br>
+<strong>(3)设置小圆圈的数量（动态）</strong><br><br>
+有多少个图片，就设定多少个小圆圈，使用for循环生成小圆圈，生成出来的数量与图片相同<br><br>
+<strong>(4)点击小圆圈显示对应的图片</strong><br><br>
+创建小圆圈时添加「自定义属性」，圆圈是4个，图片也是4个，当点击第1个圆圈时不动，点击第二个时ul往左移动(-x)，第三个继续往左。得出公式<br><br>
+第1个小圆圈(索引号为0) * 盒子的大小(700px) = 0 意思就是点击第1个圆圈，移动0px<br><br>
+第2个小圆圈(索引号为1) * 盒子的大小(700px) = 700 点击第二个小圆圈时，移动700px的距离，刚才是整个图片的大小<br><br>
+这里需要注意，点击小圆圈时，要用到排他思想，不然每点一个圆圈就会显示一个，只能显示一个<br><br>
+由上得出圆圈和图片的移动公式<br><br>
+<strong>(5)右箭头与图片移动的设定</strong><br><br>
+实现：点击右箭头 -&gt; 图片往左走 -&gt; 小圆圈跟着变化<br><br>
+声明一个变量num计算用户点击箭头的次数，每点击一次就++，默认为0。点击一下，值变成1<br><br>
+1 * 盒子的大小(700px) = 700px  这样就实现了箭头点击，图片移动的公式<br><br>
+<strong>(6)无缝切换</strong><br><br>
+clone一张第1个图片在ul的最后，然后进行判断，当num到达最后一个假第1时，把ul的位置清除并把num也清除，这样ul回到了真第1张图，num计数器归零</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">if</span>(num == 图片的数量) &#123;<br>    ul.style.left = 0;<br>    num = 0;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>(7)箭头与圆圈之间绑定</strong><br><br>
+目前箭头点击后，图片虽然到达了下一张，但是圆圈还在原地，这是因为圆圈和箭头并没有进行同步和绑定<br><br>
+在设定一个变量 circle 来控制圆圈的同步，用户每点击一次箭头，num++后circle也要自增<br><br>
+circle自增之后，添加排他，清除所有圆圈的current，只设定：圆圈[circle].className = 'current’这样箭头点击时，圆圈也会跟着移动<br>
+<strong>(8)num、circle、index之间的关联</strong><br><br>
+num = 箭头的控制变量<br><br>
+circle = 圆圈变量（与箭头变量相关）<br><br>
+index = 圆圈的索引号名称<br><br>
+需要把上面三个一起联合一起，也就是上面其中一个移动了，剩下两个都会受到影响<br><br>
+在「获取当前点击小圆圈的自定义属性的值」那里添加 num = index、circle = num因为num和circle是全局变量，不受位置的影响<br><br>
+(！)num的值受index影响，在前面用户点击小圆圈时，会获取当前小圆圈的值，把这个值给num，用户点击到达对应图片后，num的值也会跟着变化，就不会出现，箭头和回头各自点各自的情况了<br><br>
+(！)circle的值受num影响是因为，它和num是相连的原理，它只是在num++时，图片到达下一个，它就是让下面的小圆圈也跟着显示下一个，因为在上面「点击小圆圈显示对应的图片」用到了「排他思想」点击任意一个圆圈时，它都会清除所有的current，保留点击的current，这里也一样，每次num移动时，circle也会进行「排他思想」，只显示和circle的值对应的那一个小圆圈，两者不会出问题，点击圆圈那里有排他，点击箭头那里也有排他，两者使用时，都会把另一个「圆圈的current」值给清除掉<br></p>
+<h2 id="有什么可以优化的地方？">有什么可以优化的地方？</h2>
+<p>目前可以优化的地方就是把左右箭头都相同的「清除current」代码封装成一个函数，让它们调用即可，这样可以节省代码空间，整体更好看</p>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
