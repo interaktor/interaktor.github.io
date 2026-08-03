@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,136 +132,32 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-03
-            </span>
-            <a class="archive-title" href="/2026/08/03/%E8%8A%82%E6%B5%81%E9%98%80%EF%BC%88%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%A1%88%E4%BE%8B%EF%BC%89/">
-                轮播图案例讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-02
-            </span>
-            <a class="archive-title" href="/2026/08/02/%E7%AD%8B%E6%96%97%E4%BA%91%E6%A1%88%E4%BE%8B%E9%97%AE%E9%A2%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-31
-            </span>
-            <a class="archive-title" href="/2026/07/31/%E8%BD%AE%E6%92%AD%E5%9B%BE%E5%9B%B0%E6%83%91%E7%82%B9/">
-                轮播图案例讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-29
-            </span>
-            <a class="archive-title" href="/2026/07/29/PC%E7%AB%AF%E7%89%B9%E6%95%88%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
-                关于PC端特效的一些小知识点+复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-25
-            </span>
-            <a class="archive-title" href="/2026/07/25/%E4%BA%AC%E4%B8%9C%E6%94%BE%E5%A4%A7%E9%95%9C%E6%A1%88%E4%BE%8B%E8%AE%B2%E8%A7%A3/">
-                京东放大镜案例超详细讲解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-24
-            </span>
-            <a class="archive-title" href="/2026/07/24/%E6%8B%96%E5%8A%A8%E6%A8%A1%E6%80%81%E6%A1%86/">
-                拖动模态框的BUG
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-22
-            </span>
-            <a class="archive-title" href="/2026/07/22/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/">
-                发送短信案例整理
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        事件委托复习
+    </span>
 
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2026/page/2/">2</a><a class="extend next" rel="next" href="/archives/2026/page/2/">&gt;</a>
-</nav>
+    <div class="post-meta">
+        2026-08-02
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="cloud和li的层级问题">cloud和li的层级问题</h2>
+<p>问题：鼠标添加mouseenter正确滑动，但是添加了mouseleave筋斗云过来的时候，碰到了鼠标，鼠标就判定没有在li(文字)上面了，筋斗云就一直往左往右，鬼畜bug<br></p>
+<p>解决：首先我们去看一下cloud(筋斗支)和li(文字)的层级，cloud肯定是有position的，因为它必须有这个才能移动，但是li不一定有，这就导致了li的层级比cloud低，也就会触发筋斗云一碰到鼠标，li就判断没有在它上面了，就会导致这个问题，下方代码解决</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">li &#123;<br>	// 方法一 //<br>	//一般来说添加relative即可解决问题<br>	position:relative;<br>&#125;<br>.cloud &#123;<br>	 // 方法二 //<br>	 //在cloud里面添加c3代码<br>	 pointer-events:none;<br>	 //意思是当鼠标在这个对象上面时，事件为none，不起作用<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>原理是absolute和relative它们的层级都是一样的，这里是因为HTML中我的li在cloud的后方，后面的优先，所以li的层级就会把cloud给盖掉</p>
+<p>添加pointer-events:none是新方法，给元素添加这个后，有鼠标在它上方，它不会理添加了这个属性的元素，相当透明化了</p>
+<p><strong>二编：经过再次测试，要么加relative要么加pointer，筋斗云始终在li的上方</strong></p>
+<h2 id="current解决云朵默认位置">current解决云朵默认位置</h2>
+<p>我们筋斗云的初始位置是在一个li上面，我们已经解决了鼠标在li上方时，筋斗云跑到li的上方，鼠标离开就回到第一个li，但我们需要一个新的事件，当鼠标点击当前li时，筋斗云把默认位置改为当前点击的li(可以添加点击后文字颜色的变化)，当鼠标在其它li上面时，一离开也会回到我点击的li的上方</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//设定一个节流阀 名为current 值默认为0<br>var current = 0<br>//当鼠标经过li时的代码<br>Animate(cloud, this.offsetLeft)<br>//当鼠标离开后的默认位置<br>Animate(cloud,current)<br>//当鼠标点击li的时候<br>current = this.offsetLeft<br>cloud.style.left = current<br>//当鼠标点击后，把当前点击的li的距离左侧的位置给current，然后把cloud的left值改为current，这样cloud它的默认left值就会随着鼠标点击更改了<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>

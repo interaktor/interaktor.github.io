@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,136 +132,27 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-03
-            </span>
-            <a class="archive-title" href="/2026/08/03/%E8%8A%82%E6%B5%81%E9%98%80%EF%BC%88%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%A1%88%E4%BE%8B%EF%BC%89/">
-                轮播图案例讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-02
-            </span>
-            <a class="archive-title" href="/2026/08/02/%E7%AD%8B%E6%96%97%E4%BA%91%E6%A1%88%E4%BE%8B%E9%97%AE%E9%A2%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-31
-            </span>
-            <a class="archive-title" href="/2026/07/31/%E8%BD%AE%E6%92%AD%E5%9B%BE%E5%9B%B0%E6%83%91%E7%82%B9/">
-                轮播图案例讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-29
-            </span>
-            <a class="archive-title" href="/2026/07/29/PC%E7%AB%AF%E7%89%B9%E6%95%88%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
-                关于PC端特效的一些小知识点+复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-25
-            </span>
-            <a class="archive-title" href="/2026/07/25/%E4%BA%AC%E4%B8%9C%E6%94%BE%E5%A4%A7%E9%95%9C%E6%A1%88%E4%BE%8B%E8%AE%B2%E8%A7%A3/">
-                京东放大镜案例超详细讲解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-24
-            </span>
-            <a class="archive-title" href="/2026/07/24/%E6%8B%96%E5%8A%A8%E6%A8%A1%E6%80%81%E6%A1%86/">
-                拖动模态框的BUG
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-22
-            </span>
-            <a class="archive-title" href="/2026/07/22/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/">
-                发送短信案例整理
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        轮播图案例讲解+疑点
+    </span>
 
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2026/page/2/">2</a><a class="extend next" rel="next" href="/archives/2026/page/2/">&gt;</a>
-</nav>
+    <div class="post-meta">
+        2026-08-03
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="节流阀（轮播图案例）">节流阀（轮播图案例）</h2>
+<p>这里主要讲一下节流阀的原理是怎么实现的，主要用到轮播图里的左/右箭头</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">right.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                flag = <span class="hljs-literal">false</span>;<br>                //箭头判断<br>                <span class="hljs-keyword">if</span> (num &gt; ul.children.length - 2) &#123;<br>                    num = 0<br>                    ul.style.left = 0;<br>                &#125;<br><br>                num++<br>                console.log(<span class="hljs-string">&#x27;箭头&#x27;</span> + num);<br>                Animate(ul, - num * box.offsetWidth, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;);<br>                circle++<br><br>                // 圆圈判断<br>                <span class="hljs-keyword">if</span> (circle &gt; ol.children.length - 1) &#123;<br>                    circle = 0<br>                &#125;<br>                console.log(<span class="hljs-string">&#x27;圆圈&#x27;</span> + circle);<br>                circleClean()<br><br>            &#125;<br><br><br>        &#125;)<br>        //9.左箭头点击，图片移动<br>        left .addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                flag = <span class="hljs-literal">false</span>;<br>                //箭头判断<br>                <span class="hljs-keyword">if</span> (num == 0) &#123;<br>                    num = ul.children.length - 1<br>                    ul.style.left = -num * box.offsetWidth + <span class="hljs-string">&#x27;px&#x27;</span>;<br>                &#125;<br><br><br>                num--<br>                Animate(ul, -num * box.offsetWidth, <span class="hljs-function"><span class="hljs-title">function</span></span> () &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;);<br>                console.log(circle);<br><br>                circle--<br><br>                // 圆圈判断<br>                <span class="hljs-keyword">if</span> (circle &lt; 0) &#123;<br>                    circle = ol.children.length - 1;<br>                &#125;<br><br><br>                circleClean()<br>            &#125;<br></code></pre></td></tr></table></figure>
+<p>首先声明一个全局变量flag作为节流阀，然后我们在动画执行完后才能执行下一个动画，也就是在click外层直接套一个判断，判断没通过，直接不执行所有代码</p>
+<figure class="highlight sqf"><table><tr><td class="code"><pre><code class="hljs sqf">(<span class="hljs-number">1</span>)<span class="hljs-built_in">flag</span>默认为<span class="hljs-literal">true</span>，当我们点击的时候，<span class="hljs-built_in">flag</span>变为<span class="hljs-literal">false</span>，此时它没法执行左箭头或者右箭头。当动画结束后，才会执行<span class="hljs-built_in">Animate</span>的回调函数<span class="hljs-built_in">flag</span>这时候才会变成<span class="hljs-literal">true</span>，因为加了判断条件，<span class="hljs-built_in">flag</span>为<span class="hljs-literal">true</span>的时候才能进入左/右箭头的代码<br>(<span class="hljs-number">2</span>)也就是当我们进入<span class="hljs-keyword">if</span>的一瞬间，先把<span class="hljs-built_in">flag</span>改为<span class="hljs-literal">false</span>，让其他箭头没法进入代码(<span class="hljs-built_in">flag</span>为<span class="hljs-literal">true</span>才能进入click里面的所有代码)，等动画执行完毕后才会执行回调函数，这个时候<span class="hljs-built_in">flag</span>再改为<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
