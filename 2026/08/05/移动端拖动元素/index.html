@@ -32,7 +32,7 @@
     <nav class="button-bar">
         <ul class="nav-links">
             <li>
-                <a href="/" class="button link-home active">
+                <a href="/" class="button link-home ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
                         <span>Home</span>
@@ -132,51 +132,33 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="post-list">
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    Tab栏切换的疑惑点
-            </span>
-            <div class="post-meta">
-                2026-07-16
-            </div>
-            <div class="post-excerpt">
-                今天我来说一下我之前在学习JS上遇到的一个问题
-1.首先是获取元素，分成了两大块，一块是tab栏，另一块是tab栏的内容
-var lis = document.querySelector(&#x27;.list&#x27;).querySelectorAll(&#x27;li&#x27;);v...
-            </div>
-            <a href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    Hello World
-            </span>
-            <div class="post-meta">
-                2026-07-15
-            </div>
-            <div class="post-excerpt">
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
-            </div>
-            <a href="/2026/07/15/hello-world/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        移动端拖动元素案例
+    </span>
 
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/">&lt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-</nav>
+    <div class="post-meta">
+        2026-08-05
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="获得手指和盒子的初始坐标">获得手指和盒子的初始坐标</h2>
+<p>我们想要让鼠标拖动盒子，首先就要获取「手指初始的位置」和「盒子初始的位置」，这两个用全局变量给它们存储起来，因为后面有多少函数都要使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//所有的变量都是全局的，所以我们需要在函数外声明<br>//因为它们都是存储的数值，我们用0先代替<br>var touchX = 0;<br>var touchY = 0;<br>var boxX = 0;<br>var boxY = 0;<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//怎么获取手指初始位置<br>//手指初始位置可以通过触摸事件对象targetTouches获得到<br>//targetTouches正在触摸元素的手指个数（列表）<br>//加上pageX/Y，也就是获得当前点击的手指，位于页面的x和y的坐标<br>touchX = e.targetTouches[0].pageX<br>touchY = e.targetTouches[0].pageY<br>//因为这里是touchstart，也就是点击的一瞬间获取的位置，那就是初始位置<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//获得盒子初始位置<br>//盒子的初始位置很简单，只需要offset即可<br>boxX = div.offsetLeft;<br>boxY = div.offsetTop;<br></code></pre></td></tr></table></figure>
+<h2 id="计算手指的移动距离">计算手指的移动距离</h2>
+<p>这里似乎回到了模态框，也需要计算移动距离，只不过这里是手指的。当手指点击后，会获得一个手指初始值，手指拖动时会持续获得当前手指值，如此我们就获得了最重要的两个数值，「手指初始值」和「手指当前值」大减小</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//手指移动距离就是「touchmove里触摸事件对象」减去「touchstart里的触摸事件对象」<br>//这里是touchmove会获得手指拖动时获得的坐标，它是可以持续获得的<br>var moveX = e.targetTouches[0].pageX - touchX;<br>var moveY = e.targetTouches[0].pageY - touchY;<br></code></pre></td></tr></table></figure>
+<h2 id="移动盒子">移动盒子</h2>
+<p>上面已经获得了手指的移动距离，那我们手指移动其实就是盒子移动，我们把「手指的移动距离」赋值给盒子，这样就可以实现手指移动的时候，盒子就会跟着一起移动了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//我们已经得到手指的移动距离了，也就是手指在页面上移动位置。<br>手指一直移动的坐标 - 手指初始(第一次点击的位置)坐标，就可以得到我们手指在页面上时刻移动的动态坐标<br>这个坐标就好比鼠标一样，可以持续获得它，把这个坐标赋给盒子也好其它东西也好，它们都可以像手指一样去自由的移动<br><br>//移动盒子记得加上它原本的位置，不然它每次移动完都会回到初始位置，因为我们在全局变量时，给的都是0<br>也就是每次点击div它的位置都会变成0，因为touchstart每次点击都会获取它的当前位置<br>它的当前位置没有改变，一直都是0，所以不加原本位置的话，它每次点击都会跑到0这个坐标上去<br><br>div.style.left = boxX + moveX + <span class="hljs-string">&#x27;px&#x27;</span>;<br>div.style.top = boxY + moveY + <span class="hljs-string">&#x27;px&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
