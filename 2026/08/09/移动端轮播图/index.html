@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        移动端轮播图讲解+疑点
+    </span>
+
+    <div class="post-meta">
+        2026-08-09
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="js里的transition和css里面的效果为什么不一样">js里的transition和css里面的效果为什么不一样</h2>
+<p>1.transition写在js的话，它每次执行都在行内样式表生成，也就是它会在元素的行内生成一个样式表，它的层级是最大的，在其它地方的调用都没法覆盖它<br></p>
+<p>2.transition写在css的话，如果在css，一开始是没有问题的，但是到了transitionend之后它会取消过渡效果，这个时候transition:none会直接在元素内生成一个style，它的层级是最大的，到了后面计时器自动播放的时候，由于行内已经有一个transition:none了，css里面的transition:all 1s;就会被覆盖掉，所以在css里面写的话，过渡效果是没有的，就是因为层级的原因，行内样式表层级比css更高</p>
+<h2 id="移动端圆圈跟随图片写法">移动端圆圈跟随图片写法</h2>
+<p>圆圈跟随图片在移动端并不像PC端那样麻烦，它的实现更为简单方便</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//首先我们要获取一个ol，这样可以得到下面的圆圈<br>var ol  = document.querySelector(<span class="hljs-string">&#x27;ol&#x27;</span>);<br>//然后这边有二个方法，一个需要<span class="hljs-keyword">for</span>，一个并不需要<br>//方法一：<br><span class="hljs-keyword">for</span>(var i =0; i &lt; ol.children.length; i++) &#123;<br>		ol.children[i].classList.remove(<span class="hljs-string">&#x27;current&#x27;</span>);<br>&#125;<br>ol.children[index].classList.add(<span class="hljs-string">&#x27;current&#x27;</span>);<br>//方法二：<br>ol.querySelector(<span class="hljs-string">&#x27;li.current&#x27;</span>).classList.remove(<span class="hljs-string">&#x27;current&#x27;</span>);<br>ol.children[index].classList.add(<span class="hljs-string">&#x27;current&#x27;</span>);<br>//第一个方法和排它是一样的，主要说一下第二个方法<br>//首先我们获取ol里面的子元素，这个子元素是带current的，用classList方法将它移动，然后把当前index那一个li添加classList为current<br></code></pre></td></tr></table></figure>
+<h2 id="关于右滑没反应和touch-action的作用">关于右滑没反应和touch-action的作用</h2>
+<p>在判断左右滑动的时候，遇到了一个问题，往左滑动没有问题是正常的，但是往右滑动就会直接卡住，没有判断也没有回弹，这就让我有些疑惑了，我查了一下，也在对比代码跟老师有什么不同的地方，发现是一样的，所以我就去网上找其他方法看看能不能解决，然后就在ai的帮助下找到一个属性</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">touch-action:pan-y它的意思是「仅允许纵向滑动手势，横向滑动全部交给JS管理」<br></code></pre></td></tr></table></figure>
+<p>为什么之前没法滑动，就是因为浏览器默认滑动把我JS右滑的事件给占用了，有touch- action后就可以脱离浏览器默认控制了，用户可以在JS自定义逻辑</p>
+<h2 id="移动端特效的制作流程">移动端特效的制作流程</h2>
+<p>**前置工作：**把移动端布局弄好，让所有图片在一行显示，并不占用下面的位置，不要忘了圆圈的样式，这里重点说一下ul和li的关系以及它们怎么布局<br></p>
+<p>假设屏幕大小是100px，首先一张图片和ul是一样大的，因为屏幕要看到一整个图片，如果有5个图片，那就相当于要5个ul<br></p>
+<p>这个时候我们可以把ul的总宽度调整为500%，就样就是5个屏幕的宽度了，然后布置li<br></p>
+<p>这里需要注意的是，li的大小是跟随父的，也就是ul，也就是每个li的大小都是500%，所以这里要写20%，为什么是20%，ul不是500%吗？不应该是每个li都是100%吗？<br></p>
+<p>这里我们要注意在li看来，父级元素的宽就是自己的全部，按照这个逻辑，一个li如果是50%宽，那么它的宽度就是250px，因为父的总宽度是500px，也就是子元素的宽度都是按照父的总宽度来进行的，要切换成子元素的视角，如果为20%，5个20%加起来就是100%，这个100%就是把父的500%全用上了<br></p>
+<p><strong>1.获取元素，我们要获取最开始需要的元素</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//获取核心框架（ul，ol，li都在这里面）它的大小与图片相同<br>var focus = document.querySelector(<span class="hljs-string">&#x27;.focus&#x27;</span>);<br>//获取ul元素，它里面包含li(也就是图片)<br>var ul = document.querySelector(<span class="hljs-string">&#x27;ul&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<p><strong>2.提前拿到focus的宽度（var focus_width = focus.offsetWidth;）方便后继使用</strong></p>
+<p><strong>3.让图片先移动起来（设置定时器）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//记得给定时器一个变量（名称）<br>//设定一个变量来记录图片的移动<br>var index = 0;<br>var timer = setInterval(<span class="hljs-function"><span class="hljs-title">function</span></span> ()&#123;<br>	//每次图片移动都让index++来记录顺序<br>	index++;<br>	//图片往下一张是ul往左，所以要带负号，移动距离就是focus的宽度，focus的宽度和图片是一样的，可以理解为移动了一个图片的位置<br>	//-index就是当前图片和PC端相同，一开始是0对应的是第0张图片，每次移动index会增加，图片也会对应到下一张去<br>	var translatex = -index * w; //这里把图片移动的公式装进一个变量里面方便调用<br>	//添加过渡效果，让图片移动更流畅好看<br>	ul.style.transition = <span class="hljs-string">&#x27;all 1s&#x27;</span>;<br>	//直接用transform来进行移动，不需要动画函数<br>	ul.style.transform = <span class="hljs-string">&#x27;translateX(&#x27;</span>+translatex+<span class="hljs-string">&#x27;px)&#x27;</span><br>&#125;,2000)<br></code></pre></td></tr></table></figure>
+<p>这样上面的代码就可以让图片依次移动了，但目前不会停止<br></p>
+<p><strong>4.判断图片位置并跳转到对应假图</strong></p>
+<p>现在要用到一个新的事件对象「transitionend」如其名，是过渡效果结束后才会执行的，我们要在这里来判断图片到达对应位置，并给它们添加假图来进行跳转</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//谁移动我们就把事件对象给谁<br>ul.addEventListener(<span class="hljs-string">&#x27;transitionend&#x27;</span>,<span class="hljs-function"><span class="hljs-title">function</span></span>()&#123;<br>	//我们一共是三个图片，现在我们分别需要把第一张复制到最后(假一)，第三张复制到第一张前面(假三)，这样一共就是五张图片了<br>	//这里因为把第三张复制到了第一张前面，所以中心就到假三去了，我们在ul的css里面添加margin-left：-100%，让图片中心往右走一个图片的距离就可以了<br>	<br>	//如果index到了假一，我们就让index为0，并且让图片飞速到达第0张上面<br>	<span class="hljs-keyword">if</span>(index &gt;=3) &#123;<br>		index = 0;<br>		var translatex = -index * w; //让当前为0的index乘上宽度<br>		//然后我们让当前为0的index移动图片<br>		//注意！这里我们不要加过渡效果，因为我们的目的是让图片光速移动加第0张上面，所以不用过渡<br>		ul.style.transition = <span class="hljs-string">&#x27;none&#x27;</span>;<br>		ul.style.transform = <span class="hljs-string">&#x27;translateX(&#x27;</span>+translatex+<span class="hljs-string">&#x27;px)&#x27;</span>;<br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(index &lt; 0) &#123;<br>	//当index到了假三，也就是小于0（第0张图片）就让它跳转到真三（第二张图片）上去<br>	index = 2;<br>	var translatex = -index * w; //让当前为2的index乘上宽度<br>	//这里还是要瞬间移动，所以不要过渡效果<br>	ul.style.transition = <span class="hljs-string">&#x27;none&#x27;</span>;<br>	ul.style.transform = <span class="hljs-string">&#x27;translateX(&#x27;</span>+translatex+<span class="hljs-string">&#x27;px)&#x27;</span>;<br>&#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>这样我们就实现了，图片无限循环的效果的，当图片到达对应位置触发判断，就会一直循环播放<br></p>
+<p><strong>5.让圆圈跟随图片移动</strong></p>
+<p>在PC端特效里，让圆圈移动图片算是比较麻烦了，要让变量互相同步等，在移动端，则不需要这些，而且实现起来很简单（其实在上面有讲解，这里稍微说一下）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//首先要获取圆圈的父元素<br>var ol = document.querySelector(<span class="hljs-string">&#x27;ol&#x27;</span>);<br>//然后通过父元素获取子元素，这里只要带类的子元素也可以的<br>ol.querySelector(<span class="hljs-string">&#x27;.current&#x27;</span>).classList.remove(<span class="hljs-string">&#x27;current&#x27;</span>);<br>ol.children[index].classList.add(<span class="hljs-string">&#x27;current&#x27;</span>);<br>//上面的代码就是把ol里面带current的子元素，删除它的类<br>//然后添加当前index对应的那一个li，给它添加current即可<br>//注意！想要移动更好看，给li添加过渡即可<br></code></pre></td></tr></table></figure>
+<p><strong>6.手指左右滑动轮播图</strong><br></p>
+<p>上面的代码已经实现了自动播放，圆圈也会正常跟随，下面就来实现移动端的精髓，手指滑动的模块，要分别判断左右手指，还有用户滑动距离是多少，滑动距离到多少才能到上/下一张图片，没到达距离怎么回来</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//我们需要二个全局变量来获得「手指当前位置」和「手指开始位置」<br>//因为是横向，所以只需要用到x<br>var startX = 0;<br>var moveX = 0;<br>//来到移动端三大事件对象<br>ul.addEventListener(<span class="hljs-string">&#x27;touchstart&#x27;</span>,<span class="hljs-keyword">function</span>(e)&#123;<br>	//获取点击的手指的x位置<br>	startX = e.targetTouches[0].pageX;<br>	//当我们点击的时候，我们对应把自动播放给停止<br>	clearInterval(timer);<br>&#125;)<br>ul.addEventListener(<span class="hljs-string">&#x27;touchmove&#x27;</span>,<span class="hljs-keyword">function</span>(e)&#123;<br>	//计算手指移动距离<br>	//当前移动的位置，减去最开始点击的位置，只要在move就会一直减<br>	moveX = e.targetTouches[0].pageX - startX;<br>	//把移动的距离赋给ul，让ul和手指移动距离同步<br>	//盒子当前位置 + 手指移动距离 (盒子当前位置就是-index*w)<br>	var translatex = (-index * w) + moveX;<br>	滑动的时候记得取消过渡效果<br>	ul.style.transition = <span class="hljs-string">&#x27;none&#x27;</span>;<br>	//还是一样，让图片用transform动起来<br>	ul.style.transform = <span class="hljs-string">&#x27;translateX(&#x27;</span>+translatex+<span class="hljs-string">&#x27;px)&#x27;</span>;<br>&#125;)<br>ul.addEventListener(<span class="hljs-string">&#x27;touchend&#x27;</span>,<span class="hljs-keyword">function</span>(e)&#123;<br>	//当手指离开，我们要进行判断，用户移动的距离是多少<br>	//在浏览器打开调试并打开rules，就拿超过50px来算，就是用户拖动当前图片左/右到了50px，我们就让它跳转到上/下一张<br>	//这里还是需要判断，超过50，也就是moveX超过50，但是有一个问题，在计算位置那里，如果用户在图片偏右边点击然后往左拖动（左边的值 - 右边的值）也就是左边的值是要小些的，右的值是大的，小 - 大 得出来的值就是负的，这个负的值再怎么都不可能超过50px，此时我们要用了一个函数Math.abs()，在括号里面的值无论是正还是负，最后都会转化成正值，这样就解决了问题<br>	<span class="hljs-keyword">if</span>(Math.abs(moveX) &gt; 50) &#123;<br>		//在这里面还要比较，如果是moveX正的就是往上一张走的，如果是负的就是往下一张走的<br>		//这里面的moveX是没有Math.abs的，所以它们可以判断出来是不是正负值<br>		<span class="hljs-keyword">if</span>(moveX &gt; 0) &#123;<br>			index--; //往上一张走<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(moveX &lt; 0) &#123;<br>			index++; //往下一张走<br>		&#125;<br>		//上面的代码就解决了滑动，如果不能正常往左或者右滑动和判断，一般情况是浏览器默认滑动设定占用了JS滑动逻辑，找相应方法禁用即可<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		//这里还有一个判断是，如果用户滑动没有超过50px，就让它弹回<br>		var translatex = -index * w;<br>		//可以给弹回添加过渡效果<br>		ul.style.transition = <span class="hljs-string">&#x27;none&#x27;</span>;<br>		ul.style.transform = <span class="hljs-string">&#x27;translateX(&#x27;</span>+translatex+<span class="hljs-string">&#x27;px)&#x27;</span>;<br>	&#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><strong>7.细节添加和优化</strong><br></p>
+<p>上面的代码已经基本实现所有的基础功能，接下来是添加一些细节优化代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//在touchend最后添加，把moveX的值清空，防止下次数值混乱<br>moveX = 0;<br>//在touched最后让自动播放开启，因为我们点击那些是禁用了的<br>timer = setInterval(<span class="hljs-function"><span class="hljs-title">function</span></span> ()&#123;<br>	index++;<br>	var translatex = -index * w; <br>	ul.style.transition = <span class="hljs-string">&#x27;all 1s&#x27;</span>;<br>	ul.style.transform = <span class="hljs-string">&#x27;translateX(&#x27;</span>+translatex+<span class="hljs-string">&#x27;px)&#x27;</span><br>&#125;,2000)<br><br>//添加flag变量，flag默认为<span class="hljs-literal">false</span>，给touchmove内全部套用<span class="hljs-keyword">if</span>判断，如果用户有移动就在touchmove的最后把flag改为<span class="hljs-literal">true</span>，然后在touchend内全部套用<span class="hljs-keyword">if</span>判断，如果flag为<span class="hljs-literal">true</span>，也就是用户移动了，才进行touchend里面的逻辑，flag为<span class="hljs-literal">false</span>也就是用户可能只是点击了并没有移动，我们就不执行touchend<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
