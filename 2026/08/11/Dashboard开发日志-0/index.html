@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,81 +132,32 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-22
-            </span>
-            <a class="archive-title" href="/2026/07/22/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/">
-                发送短信案例整理
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-15
-            </span>
-            <a class="archive-title" href="/2026/07/15/hello-world/">
-                Hello World
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        Dashboard开发日志-0
+    </span>
 
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-</nav>
+    <div class="post-meta">
+        2026-08-11
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev/" rel="tag">JavaScript Study WebDev</a>
+            
+    </div>
+
+    <div class="post-content">
+        <p>这个日志主要说一下我开发中学习到的新方法</p>
+<h2 id="在-里面嵌入变量元素等">在``里面嵌入变量元素等</h2>
+<p>在使用「反斜号」中，里面可能需要插入一些变量等，这个时候如果你直接在里面写变量的话，是不会起作用的，因为在「反斜号」里面无法直接调用或者使用单双引号来调用，要用到一个JavaScript 样板字串</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//使用方法<br>var num = 3;<br>var content = `数字实时数据是<span class="hljs-variable">$&#123;num&#125;</span>`<br></code></pre></td></tr></table></figure>
+<h2 id="classList-contains检测">classList.contains检测</h2>
+<p>在现代开发中，如果还在使用className来进行判断元素，这方法是有风险且不推荐的，在最新的开发中你想要判断点击的元素是不是你想找的，我们可以用一个新的方法</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//旧方法className<br><span class="hljs-keyword">if</span>(e.target.className === <span class="hljs-string">&#x27;focus&#x27;</span>) &#123;<br>	//旧方法问题很多，不推荐使用了<br>&#125;<br>//新方法classList.contains()<br>box.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-keyword">function</span>(e)&#123;<br>	<span class="hljs-keyword">if</span>(e.target.classList.contains(<span class="hljs-string">&#x27;.focus&#x27;</span>)) &#123;<br>	//它可以找你当前点击的这个元素的类名是不是.focus如果是就返回<span class="hljs-literal">true</span>,不是则返回<span class="hljs-literal">false</span><br>	&#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h2 id="flex弹性布局学习">flex弹性布局学习</h2>
+<p>第一次学flex，之前并没有学过，今天大概讲一下自己学到的知识点</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">1.display:flex的作用是让HTML元素变成一个弹性容器，可以让里面的子元素自动排列，对齐和分配剩余空间<br><br>2.justify-content:space-between可以让元素分为两端对齐<br><br>3.align-items:center可以让元素动态垂直居中<br><br>4.flex-direction:column使该元素布局变成纵向的（row横向布局）<br><br>5.gap:10px它会让设定了flex里面的元素从缝隙之间开始算，给它们之间加一个10px的「空气墙」，增强版的margin<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>

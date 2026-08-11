@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,81 +132,32 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-22
-            </span>
-            <a class="archive-title" href="/2026/07/22/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/">
-                发送短信案例整理
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-15
-            </span>
-            <a class="archive-title" href="/2026/07/15/hello-world/">
-                Hello World
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        Dashboard点击事件和层级问题
+    </span>
 
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-</nav>
+    <div class="post-meta">
+        2026-08-11
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev/" rel="tag">JavaScript Study WebDev</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="为什么点击事件是给ul-content而不是del">为什么点击事件是给ul_content而不是del</h2>
+<p>1.在设定事件点击的时候，把事件给到了del，导致无法正常删除元素</p>
+<p>2.首先我发现获取元素时没有添加All，因为每次点击都会生成一个del，所有del是以伪数组形式存储的，它需要指定一个元素，所以我添加了for循环来解决，但是问题还是没有完全解决，在控制台界面仍会报错，显示<code>NotFoundError: Failed to execute 'removeChild' on</code>，我改变方向，往源头去找，我发现可以利用事件委托来进行删除，不需要把事件点击给del这个子元素，完全可以将事件给到其父父级元素<code>ul_content</code></p>
+<p>3.我把点击事件给<code>ul_content</code>后在里面不需要使用for循环也可以实现点击del删除li，利用事件冒泡和委托可以准确查找到del的父元素li，然后将对应的li删除</p>
+<p>4.一次遇到这类问题，可以优先使用事件委托来解决，找到该元素的父级，利用事件冒泡完成</p>
+<h2 id="为什么ul-content这个点击事件要在add的外面">为什么ul_content这个点击事件要在add的外面</h2>
+<p>1.在给ul_content设定事件时，点击del，仍会报错，无法正常删除</p>
+<p>2.我开始在控制台寻找问题所在，报错仍是<code>NotFoundError: Failed to execute 'removeChild' on</code>我开始找其它问题，我研究代码发现一个层级问题，我当前的<code>ul_content</code>点击事件在add这个添加事件里面，也就是我每次点击一次 add 按钮添加新任务，因为<code>ul_content</code>在add里面，所以就会给 <code>ul_content</code> <strong>多绑一次</strong> <code>click</code> 事件，当加了 2 个任务，<code>ul_content</code> 身上就有 2 个完全相同的监听器</p>
+<p>3.我把<code>ul_content</code>给放在了add的外面与add同级，这样就不会出现问题（因为ul是本来就在HTML布局里面的，所以不在Add里面，如果元素是通过另一个元素生成的，那么它就属于后存在元素，事件可以在该父事件里写）</p>
+<p>4.如果元素是本来就存在的可以分开写，如果元素是通过JS生成的，可以在生成它的那个父元素事件里面添加新事件，本次学习知道了如何区分事件的层级，是在一个事件里面，还是独立在外面，作为同级</p>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>

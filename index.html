@@ -138,6 +138,47 @@
         
         <div class="post-info">
             <span class="post-title">
+                    Dashboard点击事件和层级问题
+            </span>
+            <div class="post-meta">
+                2026-08-11
+            </div>
+            <div class="post-excerpt">
+                为什么点击事件是给ul_content而不是del
+1.在设定事件点击的时候，把事件给到了del，导致无法正常删除元素
+2.首先我发现获取元素时没有添加All，因为每次点击都会生成一个del，所有del是以伪数组形式存储的，它需要指定一个元素，所以我添加了for循环来解决，但是问题还是没有完全...
+            </div>
+            <a href="/2026/08/11/Dashboard%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB%E5%92%8C%E5%B1%82%E7%BA%A7%E9%97%AE%E9%A2%98/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    Dashboard开发日志-0
+            </span>
+            <div class="post-meta">
+                2026-08-11
+            </div>
+            <div class="post-excerpt">
+                这个日志主要说一下我开发中学习到的新方法
+在``里面嵌入变量元素等
+在使用「反斜号」中，里面可能需要插入一些变量等，这个时候如果你直接在里面写变量的话，是不会起作用的，因为在「反斜号」里面无法直接调用或者使用单双引号来调用，要用到一个JavaScript 样板字串
+//使用方法var num ...
+            </div>
+            <a href="/2026/08/11/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-0/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
                     移动端轮播图讲解+疑点
             </span>
             <div class="post-meta">
@@ -292,49 +333,6 @@ right.addEventListener(&#x27;click&#x27;, function () &#123;            if (flag
 offsetLeft 抓到的是什麼？ JS 的 offsetLeft 只認 CSS 的 left: 50%！所以它算出來的，依然是盒子「原本左上角」應該在的位置（即頁面 50% 寬度處）。但 CSS 的 transform 做了...
             </div>
             <a href="/2026/07/24/%E6%8B%96%E5%8A%A8%E6%A8%A1%E6%80%81%E6%A1%86/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    发送短信案例整理
-            </span>
-            <div class="post-meta">
-                2026-07-22
-            </div>
-            <div class="post-excerpt">
-                讲一下昨天的一个小案例，就是发送短信验证码的一个小案例，我95%都是我自己做出来的，接下来我来说一下
-剩下5%的问题所在
-1.多出来的setTimeout
-昨天的代码其实只用setInterval就可以直接做出来，但是我在写的时候觉得要弄一个时间倒计时才可以
-所有多写了一个setTimeout...
-            </div>
-            <a href="/2026/07/22/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    事件委托复习
-            </span>
-            <div class="post-meta">
-                2026-07-18
-            </div>
-            <div class="post-excerpt">
-                今天学了事件委托我这里把先所有的东西都讲一下，我不理解的地方。
-第一点就是有一个父元素，它里面有许多子元素。
-然后呢，我们想要的是点击子元素触发弹窗。如果按我以前的做法，就是给每一个子元素绑定一个点击事件，但我们先拟定点击事件有100个，也就是有100个子元素。
-这样的话，性能效率会大大降低，...
-            </div>
-            <a href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="button rm-link">
                 <span class="read-more">Read More...</span>
             </a>
         </div>
