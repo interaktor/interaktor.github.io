@@ -138,6 +138,45 @@
         
         <div class="post-info">
             <span class="post-title">
+                    Dashboard开发日志-1
+            </span>
+            <div class="post-meta">
+                2026-08-14
+            </div>
+            <div class="post-excerpt">
+                2026-8-13开发复盘
+问题排查：主要是在DOM获取时，拼写漏了一个s，(‘’.filters’)，在浏览器控制台调试的时候发现的
+核心概念：学会了给input:radio加上标识，也就是value，通过value来检测是哪一个input。学习了新的方法foreach()，专为数组列表打造...
+            </div>
+            <a href="/2026/08/14/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-01/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
+                    updateConut()和label标签
+            </span>
+            <div class="post-meta">
+                2026-08-13
+            </div>
+            <div class="post-excerpt">
+                核心统计函数：updateCount()
+想要在TodoList里面实现「active」「completed」这两个状态的计数系统的话，一般来说有两种选择，第一个就是声明一个变量，然后在增加，删除，选择时进行加减的操作，但是这样会有一个很致命的问题，就是在增加或减少时，你必须记得它的位置和逻辑...
+            </div>
+            <a href="/2026/08/13/updateCount()%E5%92%8Clabel%E6%A0%87%E7%AD%BE/" class="button rm-link">
+                <span class="read-more">Read More...</span>
+            </a>
+        </div>
+    </article>
+    
+    <article class="card post-item">
+        
+        <div class="post-info">
+            <span class="post-title">
                     Dashboard点击事件和层级问题
             </span>
             <div class="post-meta">
@@ -290,49 +329,6 @@ right.addEventListener(&#x27;click&#x27;, function () &#123;            if (flag
 2.缓动动画：缓动动画它的速度是从高到低，就是刚开始是走10步，然后是走9步，再到走8步，依次变小，这里我们要用一个公式「(目标位置 - 物体当前位...
             </div>
             <a href="/2026/07/29/PC%E7%AB%AF%E7%89%B9%E6%95%88%E7%A2%8E%E7%A2%8E%E5%BF%B5/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    京东放大镜案例超详细讲解
-            </span>
-            <div class="post-meta">
-                2026-07-25
-            </div>
-            <div class="post-excerpt">
-                1.事件给谁？
-首先我们有两个选择
-1.事件给图片
-如果我们把事件给到了图片，第一次就会有一些问题，如此把鼠标放在Mask上，Mask和大图都消失了，这是因为事件在Mask上只有鼠标在Mask上的时候才会触发，一旦鼠标离开Maks那么就不起作用了
-2.事件给盒子（图片的父元素）
-把事件给到盒子...
-            </div>
-            <a href="/2026/07/25/%E4%BA%AC%E4%B8%9C%E6%94%BE%E5%A4%A7%E9%95%9C%E6%A1%88%E4%BE%8B%E8%AE%B2%E8%A7%A3/" class="button rm-link">
-                <span class="read-more">Read More...</span>
-            </a>
-        </div>
-    </article>
-    
-    <article class="card post-item">
-        
-        <div class="post-info">
-            <span class="post-title">
-                    拖动模态框的BUG
-            </span>
-            <div class="post-meta">
-                2026-07-24
-            </div>
-            <div class="post-excerpt">
-                在案例拖动的模态框里，我遇到了诸多问题
-1.盒子距离最左侧的位置
-offsetLeft 抓到的是什麼？ JS 的 offsetLeft 只認 CSS 的 left: 50%！所以它算出來的，依然是盒子「原本左上角」應該在的位置（即頁面 50% 寬度處）。但 CSS 的 transform 做了...
-            </div>
-            <a href="/2026/07/24/%E6%8B%96%E5%8A%A8%E6%A8%A1%E6%80%81%E6%A1%86/" class="button rm-link">
                 <span class="read-more">Read More...</span>
             </a>
         </div>

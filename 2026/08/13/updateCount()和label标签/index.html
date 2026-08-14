@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,136 +132,28 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-14
-            </span>
-            <a class="archive-title" href="/2026/08/14/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-01/">
-                Dashboard开发日志-1
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-13
-            </span>
-            <a class="archive-title" href="/2026/08/13/updateCount()%E5%92%8Clabel%E6%A0%87%E7%AD%BE/">
-                updateConut()和label标签
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-11
-            </span>
-            <a class="archive-title" href="/2026/08/11/Dashboard%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB%E5%92%8C%E5%B1%82%E7%BA%A7%E9%97%AE%E9%A2%98/">
-                Dashboard点击事件和层级问题
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-11
-            </span>
-            <a class="archive-title" href="/2026/08/11/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-0/">
-                Dashboard开发日志-0
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-09
-            </span>
-            <a class="archive-title" href="/2026/08/09/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%BD%AE%E6%92%AD%E5%9B%BE/">
-                移动端轮播图讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-05
-            </span>
-            <a class="archive-title" href="/2026/08/05/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%8B%96%E5%8A%A8%E5%85%83%E7%B4%A0/">
-                移动端拖动元素案例
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-03
-            </span>
-            <a class="archive-title" href="/2026/08/03/%E8%8A%82%E6%B5%81%E9%98%80%EF%BC%88%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%A1%88%E4%BE%8B%EF%BC%89/">
-                节流阀（轮播图案例）
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                08-02
-            </span>
-            <a class="archive-title" href="/2026/08/02/%E7%AD%8B%E6%96%97%E4%BA%91%E6%A1%88%E4%BE%8B%E9%97%AE%E9%A2%98/">
-                筋斗云案例问题
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-31
-            </span>
-            <a class="archive-title" href="/2026/07/31/%E8%BD%AE%E6%92%AD%E5%9B%BE%E5%9B%B0%E6%83%91%E7%82%B9/">
-                PC端轮播图案例讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-29
-            </span>
-            <a class="archive-title" href="/2026/07/29/PC%E7%AB%AF%E7%89%B9%E6%95%88%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
-                关于PC端特效的一些小知识点+复习
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        updateConut()和label标签
+    </span>
 
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">&gt;</a>
-</nav>
+    <div class="post-meta">
+        2026-08-13
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev/" rel="tag">JavaScript Study WebDev</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="核心统计函数：updateCount">核心统计函数：updateCount()</h2>
+<p>想要在TodoList里面实现「active」「completed」这两个状态的计数系统的话，一般来说有两种选择，第一个就是声明一个变量，然后在增加，删除，选择时进行加减的操作，但是这样会有一个很致命的问题，就是在增加或减少时，你必须记得它的位置和逻辑，每添加一个你就要会思考一次，一旦增减变多，事件就会变得很乱，脑子也容易宕机<br>所以这里有一个新方法，就是在JS中创建一个函数，名称updateCount，原理就是每次有增减等操作时List会发生改变的时候，就让这个函数执行一次，函数内是动态获取的，每次执行都会获取最新的数量</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//updateCount函数讲解<br><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">updateCount</span></span>() &#123;<br>	//1.先获取所有的list<br>	var listAll = document.querySelectorAll(<span class="hljs-string">&#x27;li&#x27;</span>);<br>	//2.再获取所有带completed的list（带完成类名的list）<br>	var completed = document.querySelectorAll(<span class="hljs-string">&#x27;.completed&#x27;</span>);<br>	//3.算出当前没完成的list数量，注意！因为它是获取过来的是一个列表（有多个）我们要让它们相减，必须是数字相减才行，所以要让这两个元素的长度相减才正确，这样才是一个具体的数字，而不是模糊的概念！<br>	var active = listAll.length - completed.length;<br>	<br>	//4.把值实时给 active 和 completed <br>	//在这里如果你没有获取过active和completed，直接在querySelector()后面接innerHTML<br>	//如果你已经在函数外获取过active和completed，直接输入获取的名称接innerHTML即可<br>	active_conut.innerHTML = active;<br>	completed_conut.innerHTML = completed;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="HTML-label-标签的绑定机制">HTML <code>&lt;label&gt;</code> 标签的绑定机制</h2>
+<p>label这个标签在基础HTML中就学过的，它的原理是让两个元素「绑定」在一起，最常用的是让input和内容进行绑定，「当点击内容的时候，这个input也会触发，当前点击input，文字也可以进行相应的处理」，它可以让两个元素绑定之后，我们只需要处理其中一个关键的元素就可以控制另一个元素</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">&lt;label&gt;<br>	&lt;input <span class="hljs-built_in">type</span>=<span class="hljs-string">&#x27;checkbox&#x27;</span>&gt;<br>	&lt;p&gt;我是内容&lt;/p&gt;<br>&lt;/label&gt;<br><br>//1.用JS来处理，当我点击了当前input后，我就让旁边这个p，把它的样式之类的进行改变<br><span class="hljs-keyword">if</span>(e.target.tagName === <span class="hljs-string">&#x27;INPUT&#x27;</span>) &#123;<br>	//2.把这个p先拿过来，存在一个变量里<br>	<span class="hljs-built_in">let</span> current_p = e.target.nextElementSibling;<br>	//3.然后再判断，这里再判断我点击的这个input它的状态是什么，根据input的不同来写<br>	<span class="hljs-keyword">if</span>(e.target.checked == <span class="hljs-literal">true</span>) &#123;<br>	//4.如果当前input被选中或打开之类的，我们就让文字也跟随变化<br>		current_p.className = <span class="hljs-string">&#x27;lis style&#x27;</span>;<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>	//当前状态被取消之类的，我们就让文字回归默认状态<br>		current_className = <span class="hljs-string">&#x27;lis&#x27;</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
