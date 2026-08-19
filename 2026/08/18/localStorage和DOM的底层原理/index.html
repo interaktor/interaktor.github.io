@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        ToDoList（localStorage + DOM的底层逻辑）
+    </span>
+
+    <div class="post-meta">
+        2026-08-18
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev/" rel="tag">JavaScript Study WebDev</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="底层原理与JSON">底层原理与JSON</h2>
+<p>主要讲一下这个todolist这个项目，它必定会使用的一个东西，那就是localStorage（本地存储），这个相当的重要，因为在todo list中你想要让我添加的列表，刷新之后，还要保存的话，那就必须要用到这个，这个东西表面上就是存储list的数据之类的，但是这个它没那么简单，总得来说就是<strong>页面有多少功能，它就会多少步骤</strong>，如果页面简单那保存数据也简单，步骤也不多，如果页面有超过5种功能以上那这个本地存储就有点难做，更多的是复杂。这个本地存储折磨了我三天之久，今天才来总结它的原理以及我遇到的坑点，我下面的讲解都是以ToDoList为模板来进行讲解localStorage它是怎么用的？具体步骤是什么？我会一一解答<br></p>
+<p>1.JSON.stringify()它的作用是封包，因为localStorage只能识别文本内容，我们要存的东西一般都不是文本，而是数组之类的，所有要把我们的内容转化成localStorage可以认识的，也就是要用JSON.stringify(数据变量)，转化好的数据就可以让localStorage存储了<br></p>
+<p>2.JSON.parse()它的作用和上一个相反，是用来解包，它是把封装成文本的数据，重新转化成它的原始状态，里面是填封装的变量</p>
+<h2 id="新增（Create）">新增（Create）</h2>
+<p>首先来到新增，我来说一下原理，我们可以把本地存储和DOM分开来看一下，当我们点击了add_button之后，它会在页面上创建一个list(列表)，这个列表上面有两样数据，一个是content(内容)，另一个是none(状态)，我们本地存储要做的就是把刚创建好的list里面的con tent拿来存上，因为none(状态)，它不在add_button里面管理的，具体看代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//声明一个变量叫todos，来存储页面上list的对应内容和状态<br>var todos;<br>//提前判断，因为后面localStorage会有很多数据，用户每次点击添加list后，我们都要检查一下，之后有过数据吗<br><span class="hljs-keyword">if</span>(localStorage.getItem(<span class="hljs-string">&#x27;list&#x27;</span>)) &#123; //检查有没有叫list这个名称的localStorage，名称要统一<br>		//如果有我们就把旧数据来装进去<br>		todos = JSON.parse(localStorage.getItem(todos)); //有旧数据肯定是封装过，需要解包<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>		//如果是第一次创建数据，我们就给这个todos空变量装一个「格式」也就是数组<br>		todos = []<br>&#125;<br>//不管上面是有旧数据，还是第一次创建，它们能执行都是因为页面有创建新的list，它们才会触发<br>//所以在判断完之后，我们就装数据进去<br>//localStorage数据和DOM页面，它们每次创建位置是相同的，第一个页面list创建后，这个代码会把第一次list的内容给存到数组对象的第一个，以此类推，页面list的位置和数组对象里面的位置就是相同的<br>//push也就是放在数组的最后，后面创建的对象都会排到后面，和页面上的list相同<br>todos.push(&#123;text:input.value,completed:<span class="hljs-literal">false</span>&#125;);<br>//当我们把数据塞进localStorage之后，把这个修改的数组给打包封装起来<br>localStorage.setItem(<span class="hljs-string">&#x27;list&#x27;</span>,JSON.stringify(todos));<br></code></pre></td></tr></table></figure>
+<p>上面的代码是在add_button之间添加的，也就是你页面有新的东西或者说有修改删除之类的，你的本地存储就要在对应的上面进行修改，功能越多，本地存储就要干的越多，上面的代码完成了页面有新内容，然后把页面这个内容它的数据给存入localStorage</p>
+<h2 id="初始化渲染">初始化渲染</h2>
+<p>这个就是localStorage的核心部分了，原来的页面就是当我们刷新之后里面创建的DOM就会消失，初始化渲染就是让我们保存在localStorage里面的数据显示到页面上，每次刷新或者重新打开页面都会执行这个操作<br><strong>此代码因为是页面进行/刷新时就会执行的代码，所以要放在「代码上方」</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//首先判断本地存储有没有东西？如果有存数据在里面就执行，没有数据就不执行<br>//这里我们不用判断是文本还是数组，只要里面有数据就代表存了东西<br><span class="hljs-keyword">if</span>(localStorage.getItem(<span class="hljs-string">&#x27;list&#x27;</span>))&#123;<br>	//有数据我们就把数据拿出来，用一个临时变量来存这个数据<br>	var str = JSON.parse(localStorage.getItem(<span class="hljs-string">&#x27;list&#x27;</span>));<br>	//因为数组里面一般有多个对象，我们要用循环来执行每一个对象<br>	str.forEach(<span class="hljs-keyword">function</span>(item,i)&#123;<br>		//这里面就和add_button里面的代码一样，因为我们现在只有数据，没法实例化到页面上，所以需要骨架<br>		//然后修改一下里面的一些代码部分<br>		 var li = document.createElement(<span class="hljs-string">&#x27;li&#x27;</span>);<br>            li.classList.add(<span class="hljs-string">&#x27;list&#x27;</span>);<br>            li.innerHTML = `&lt;label&gt;<br>                        &lt;input class=<span class="hljs-string">&#x27;list_checkbox&#x27;</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-variable">$&#123;str[i].completed ? &#x27;checked&#x27;:&#x27;&#x27;&#125;</span>&gt;<br>                        &lt;span class=<span class="hljs-string">&#x27;list_content&#x27;</span>&gt;<span class="hljs-variable">$&#123;str[i].text&#125;</span>&lt;/span&gt;<br>                        &lt;/label&gt;<br>                        &lt;button class=<span class="hljs-string">&#x27;list_del&#x27;</span>&gt;del&lt;/button&gt;`<br>            ul.appendChilden(li);<br>    //这里要考虑到判断，也就是checkbox它的状态是<span class="hljs-literal">true</span>还是<span class="hljs-literal">false</span>，因为这个input:checkbox它会影响到list和list_content它们的状态，就和ul点击事件是一样的，如果checkbox的状态是<span class="hljs-literal">true</span>那么list和list_content它们也要添加上相应的完成类名，不然在后继的数值统计的时候它无法找到这个已经为<span class="hljs-literal">true</span>的checkbox，所以数值统计不会把它们算上，特别注意<br>    //提前在innerHTML里面就判断checkbox它的状态，然后再到这里去判断list和list_content，因为上面的checkbox判断完后才能知道是<span class="hljs-literal">true</span>还是<span class="hljs-literal">false</span>，这个时候才好判断list的状态，当然list_content也可以在innerHTML里面判断，但是并不方便，这里可以一起给它们判断好<br>    var list_content = li.querySelector(<span class="hljs-string">&#x27;.list_content&#x27;</span>) //因为页面上还没有list_content,所以不能用document<br>    <span class="hljs-keyword">if</span>(str[i].completed) &#123;<br>    	//如果checkbox它的状态为<span class="hljs-literal">true</span>，我们就让list 和 list_content加上相同的completed类名<br>    	li.classList.add(<span class="hljs-string">&#x27;completed&#x27;</span>);<br>    	list_content.classList.add(<span class="hljs-string">&#x27;list_completed&#x27;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>    	//如果checkbox它的状态为<span class="hljs-literal">false</span>，就把list 和 list_content的类名给去掉，这里的判断和ul里面是一样<br>    	li.classList.remove(<span class="hljs-string">&#x27;completed&#x27;</span>);<br>    	list_content.classList.removde(<span class="hljs-string">&#x27;list_completed&#x27;</span>);<br>    &#125;<br>    //最后把这个li添加到页面上<br>    ul.appendChilden(li)<br>	&#125;)<br>	<br>	//注意一下在foreach循环中，每次循环都会给当前的变量创建一个独立的内存空间，10次循环就会开辟10个空间，它们不会互相影响，所		以不用担心重名和数据查找会不会找到一样的问题<br>&#125; <br><br><br></code></pre></td></tr></table></figure>
+<h2 id="状态修改">状态修改</h2>
+<p>来到状态修改和上面的初始化判断有关联，当我们点击了checkbox，这里就会修改数组对象里面的数据，因为代码是从上往下执行的，我们能够点击这个checkbox那么就代表，我们已经有这个list列表了，list存在这个checkbox才会有，这个localStorage它要保存的东西的位置就是在创建、修改、删除的里面添加，其实就是重复一遍之前的创建、修改、删除操作，地方也是在这里<br></p>
+<p>checkbox的状态修改就在ul里面，我们的localStorage代码也要在里面添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//ul事件<br>    ul.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (e) &#123;<br>      	...<br>        &#125;<br>        <span class="hljs-keyword">if</span> (e.target.classList.contains(<span class="hljs-string">&#x27;list_checkbox&#x27;</span>)) &#123;<br>            //获取list_content<br>            var currentList_content = e.target.nextElementSibling;<br>            //获取list<br>            var currentList = e.target.parentNode.parentNode;<br>            <span class="hljs-keyword">if</span> (e.target.checked === <span class="hljs-literal">true</span>) &#123;<br>                currentList_content.classList.add(<span class="hljs-string">&#x27;list_completed&#x27;</span>);<br>                currentList.classList.add(<span class="hljs-string">&#x27;completed&#x27;</span>);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                currentList_content.classList.remove(<span class="hljs-string">&#x27;list_completed&#x27;</span>);<br>                currentList.classList.remove(<span class="hljs-string">&#x27;completed&#x27;</span>);<br>            &#125;<br>            <br>								//在这里我们要存储当前的点击状态，因为这个位置是已经判断好了，我们可以直接拿到<span class="hljs-literal">true</span>或者<span class="hljs-literal">false</span><br>								//1.获取页面中所有的list<br>								var Fake_List = document.querySelectorAll(<span class="hljs-string">&#x27;.list&#x27;</span>);<br>								//2.拿到所有的list后，我们要把它转化成真数据，目前是伪数组的形式，不能使用真数据的方法<br>								//使用Array.from把伪数组转化成真数组<br>								var True_List = Array.from(Fake_List); <br>								//3.找到当前点击的那一个checkbox的list，在<span class="hljs-keyword">if</span>那里有currentList已经获取了当前点击的list，拿过来用就是<br>								//indexOf(currentList)在True_List里面打currentList排第几个？也就是它的位置，会返回对应索引号<br>								var index = True_List.indexOf(currentList);<br>								//4.拿到当前点击的数据后，就可以修改数组里面的对象了<br>								var data = JSON.parse(localStorage.getItem(<span class="hljs-string">&#x27;list&#x27;</span>));<br>								//位置就是当前点击的那一个的位置，因为数组和DOM的位置是相同的<br>								data[index].completed = e.target.checked;<br>								//修改好数据后，就可以重新打包回去，名称不变，内容重新覆盖<br>								localStorage.setItem(<span class="hljs-string">&#x27;list&#x27;</span>,JSON.stringify(data));<br>								<br>            listConut();<br>            filters();<br>        &#125;<br>    &#125;)<br></code></pre></td></tr></table></figure>
+<h2 id="删除数据">删除数据</h2>
+<p>欢迎来到最后的删除，这里其实和修改completed是差不多的，只不过有一个细节需要注意，我们也需要获取所有的list和当前点击的list，但是删除的原代码是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><br>    <span class="hljs-keyword">if</span> (e.target.classList.contains(<span class="hljs-string">&#x27;list_del&#x27;</span>)) &#123;<br>        ul.removeChild(e.target.parentNode);	<br>        //？它这里就会删除实体，那数据怎么删除？<br>        listConut();<br>        filters();<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>因为我们要检索所有的list，这里它已经把它删除了，我们点击检测的时候，也不可能找到这个已经被删除掉的list(列表)，所以很简单的方法就是把这个**ul.removeChild(e.target.parentNode);**给它排到最后删除，也就是我们先删除localStorage的数据，然后再删除DOM的实体</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//ul事件<br>    ul.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (e) &#123;<br>        //使用事件委托来进行删除操作<br>        <span class="hljs-keyword">if</span> (e.target.classList.contains(<span class="hljs-string">&#x27;list_del&#x27;</span>)) &#123;<br>        <br>       			//1.和修改一样，获取所有的list 和 当前点击的del的list<br>       			var All_List = document.querySelectorAll(<span class="hljs-string">&#x27;.list&#x27;</span>);<br>       			var currentList = e.target.parentNode;<br>       			//2.然后在锁定当前点击的button它的list在所有list里面是第几个<br>       			var index = Array.from(All_List).indexOf(currentList);<br>       			//3.删除当前点击的button的list(父元素)<br>       			var data = JSON.parse(localStorage(<span class="hljs-string">&#x27;list&#x27;</span>));<br>       			//删除要用splice，因为我们是删除数组里面的对象，而不是修改对象里面的属性，所以是以数组的形式来删除<br>       			//从index(点击的那一个)开始，删除一个，也就是开始那一个<br>       			data.splice(index,1);<br>       			//最后在重新封装回去<br>       			localStorage.setItem(<span class="hljs-string">&#x27;list&#x27;</span>,JSON.stringify(data));<br>       			//记得删除DOM的list<br>       			ul.removeChild(e.target.parentNode);<br>       			<br>       			<br>       			//假设有10个list，当用户点击了第三个，那么这里会先获取所有list，然后再获取你点击的button它的list，查找你当前点的那一个list它在所有的list里面是第几个，这里是第三个，然后就会先删除localStorage里面第三个list，保存，最后因为点击的是页面上的第三个，它也会删除DOM页面上第三个list，这样数据就是同步的了<br>       			<br>            <br>            listConut();<br>            filters();<br>        &#125;<br>        <span class="hljs-keyword">if</span> (e.target.classList.contains(<span class="hljs-string">&#x27;list_checkbox&#x27;</span>)) &#123;<br>            ...<br>        &#125;<br>    &#125;)<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
