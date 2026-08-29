@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="/archives" class="button active">
+                <a href="/archives" class="button ">
                     <span class="nav-text">
                         <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
                     </span>
@@ -132,125 +132,46 @@
 </script>
                 </aside>
                 <main id="pjax-container">
-                    <section class="archive-container">
-    
-    
-        
-        
-            
-                
-                    <div class="card year-group">
-                        <div class="year-header">
-                            2026
-                        </div>
-                        <div class="archive-list">
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-31
-            </span>
-            <a class="archive-title" href="/2026/07/31/%E8%BD%AE%E6%92%AD%E5%9B%BE%E5%9B%B0%E6%83%91%E7%82%B9/">
-                PC端轮播图案例讲解+疑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-29
-            </span>
-            <a class="archive-title" href="/2026/07/29/PC%E7%AB%AF%E7%89%B9%E6%95%88%E7%A2%8E%E7%A2%8E%E5%BF%B5/">
-                关于PC端特效的一些小知识点+复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-25
-            </span>
-            <a class="archive-title" href="/2026/07/25/%E4%BA%AC%E4%B8%9C%E6%94%BE%E5%A4%A7%E9%95%9C%E6%A1%88%E4%BE%8B%E8%AE%B2%E8%A7%A3/">
-                京东放大镜案例超详细讲解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-24
-            </span>
-            <a class="archive-title" href="/2026/07/24/%E6%8B%96%E5%8A%A8%E6%A8%A1%E6%80%81%E6%A1%86/">
-                拖动模态框的BUG
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-22
-            </span>
-            <a class="archive-title" href="/2026/07/22/BOM-%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1%E6%A1%88%E4%BE%8B%E6%95%B4%E7%90%86/">
-                发送短信案例整理
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-18
-            </span>
-            <a class="archive-title" href="/2026/07/18/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">
-                事件委托复习
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-17
-            </span>
-            <a class="archive-title" href="/2026/07/17/for...in%E5%BE%AA%E7%8E%AF%E7%9A%84%E7%90%86%E8%A7%A3/">
-                for...in循环的理解
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-16
-            </span>
-            <a class="archive-title" href="/2026/07/16/Tab%E6%A0%8F%E5%88%87%E6%8D%A2%E7%9A%84%E7%96%91%E6%83%91%E7%82%B9/">
-                Tab栏切换的疑惑点
-            </a>
-        </div>
-    
-        
-        
-        <div class="archive-item">
-            <span class="archive-date">
-                07-15
-            </span>
-            <a class="archive-title" href="/2026/07/15/hello-world/">
-                Hello World
-            </a>
-        </div>
-    
-    
-            </div>
-        </div>
-    
-</section>
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        Dashboard开发日志-02
+    </span>
 
-<nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/2026/">&lt;</a><a class="page-number" href="/archives/2026/">1</a><span class="page-number current">2</span>
-</nav>
+    <div class="post-meta">
+        2026-08-29
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev-log/" rel="tag">JavaScript Study WebDev log</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h2 id="select里面的option如何选择并调用">select里面的option如何选择并调用</h2>
+<p>一般来说select里面都是option，所以我们该如何选择呢？其实想要选择并调用option很简单，它跟input有不一样的地方，我们要在option里面添加value，这个value可以和option的值是一样的，填写好value后就可以在JS中进行调用工作了</p>
+<h2 id="toFixed-的作用">.toFixed()的作用</h2>
+<p>值.toFixed()让该值显示小数位数，这个括号里面填写数字，一般填写2，即是在值原本的基础上显示后两位<strong>4.00</strong></p>
+<h2 id="DOM-作用域与索引错位">DOM 作用域与索引错位</h2>
+<ul>
+<li>问：为什么在记账系统中，用 <code>document.querySelectorAll('li')</code> 获取索引会导致删除错位？限制在 <code>ul.children</code> 范围查找解决了什么问题？</li>
+<li>答：如果使用<strong>document.querySelector</strong>那么它就会在整个文档中进行查找为li的，问题就在页面如果有多少li标签，那么它寻找的范围就会扩大到整个文档，就会把其它不属于这个范畴的li给添加进来，导致程序出现错误。当使用ul.children时，它的范围就锁定的是ul里面的一个子元素，注意的是，这个ul获取的时候不能和其它功能的ul重合，这里的ul引用是<strong>finance_ul</strong>，名称为ul，这里需要特别注意，所以这个ul是最准确能够找到当前finance的li</li>
+</ul>
+<h2 id="数据类型与-forEach-遍历对象">数据类型与 <code>forEach</code> 遍历对象</h2>
+<ul>
+<li>问：在渲染 <code>localStorage</code> 数据时，为什么不能直接用 DOM 节点去调用 <code>forEach</code>？<code>JSON.parse()</code> 提取出的“真实数组”在这里起到了什么关键作用？</li>
+<li>答：因为forEach是专为数组准备的，直接用DOM节点使用的话，它是不会认的，除非使用All获取全部是可以使用的。<code>JSON.parse()</code>提出的真实数字就是把我在其它地方存储的信息数据从文字型转化成了原数据(数组)给拿了出来，在这里是为forEach提供了一个数组对象</li>
+</ul>
+<h2 id="多生命周期的类名标记（为筛选做准备）">多生命周期的类名标记（为筛选做准备）</h2>
+<ul>
+<li>问：为了后续实现动态筛选，为什么必须在“用户点击添加”和“页面初始化渲染”两处代码里，同步给 <code>li</code> 动态挂载表示类型的 Class 名？</li>
+<li>答：因为我需要在这两个地方判断当前的数据流是<strong>Income还是Expenses</strong>，判断之后我需要给它们打上对应的标签(ClassName)，然后单独制作一个filter函数，在“用户点击添加”和“页面初始化渲染”两处代码后面引用这个函数，就可以实现动态筛选</li>
+</ul>
+<h2 id="数据驱动视图的同步流转">数据驱动视图的同步流转</h2>
+<ul>
+<li>问：在记账系统中，数据数组（Array）、本地存储（<code>localStorage</code>）与页面 DOM 三者是如何保持同步更新与重新渲染的？</li>
+<li>答：首先页面DOM是主体框架，然后就是Array主要是把DOM元素的数据给存储进去，最后在利用localStorage把封闭好的Array给解包出来进行页面渲染。页面元素里面输入内容—数据数组进行相应的存储—本地存储保存数据并渲染</li>
+</ul>
+
+    </div>
+</div>
                 </main>
                 <div class="sidebar-mask" id="sidebar-mask"></div>
             </div>
