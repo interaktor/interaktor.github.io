@@ -148,13 +148,13 @@
         <h2 id="cloud和li的层级问题">cloud和li的层级问题</h2>
 <p>问题：鼠标添加mouseenter正确滑动，但是添加了mouseleave筋斗云过来的时候，碰到了鼠标，鼠标就判定没有在li(文字)上面了，筋斗云就一直往左往右，鬼畜bug<br></p>
 <p>解决：首先我们去看一下cloud(筋斗支)和li(文字)的层级，cloud肯定是有position的，因为它必须有这个才能移动，但是li不一定有，这就导致了li的层级比cloud低，也就会触发筋斗云一碰到鼠标，li就判断没有在它上面了，就会导致这个问题，下方代码解决</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">li &#123;<br>	// 方法一 //<br>	//一般来说添加relative即可解决问题<br>	position:relative;<br>&#125;<br>.cloud &#123;<br>	 // 方法二 //<br>	 //在cloud里面添加c3代码<br>	 pointer-events:none;<br>	 //意思是当鼠标在这个对象上面时，事件为none，不起作用<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">li &#123;<br>	<span class="hljs-comment">// 方法一 //</span><br>	<span class="hljs-comment">//一般来说添加relative即可解决问题</span><br>	<span class="hljs-attr">position</span>:relative;<br>&#125;<br>.<span class="hljs-property">cloud</span> &#123;<br>	 <span class="hljs-comment">// 方法二 //</span><br>	 <span class="hljs-comment">//在cloud里面添加c3代码</span><br>	 pointer-<span class="hljs-attr">events</span>:none;<br>	 <span class="hljs-comment">//意思是当鼠标在这个对象上面时，事件为none，不起作用</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p>原理是absolute和relative它们的层级都是一样的，这里是因为HTML中我的li在cloud的后方，后面的优先，所以li的层级就会把cloud给盖掉</p>
 <p>添加pointer-events:none是新方法，给元素添加这个后，有鼠标在它上方，它不会理添加了这个属性的元素，相当透明化了</p>
 <p><strong>二编：经过再次测试，要么加relative要么加pointer，筋斗云始终在li的上方</strong></p>
 <h2 id="current解决云朵默认位置">current解决云朵默认位置</h2>
 <p>我们筋斗云的初始位置是在一个li上面，我们已经解决了鼠标在li上方时，筋斗云跑到li的上方，鼠标离开就回到第一个li，但我们需要一个新的事件，当鼠标点击当前li时，筋斗云把默认位置改为当前点击的li(可以添加点击后文字颜色的变化)，当鼠标在其它li上面时，一离开也会回到我点击的li的上方</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">//设定一个节流阀 名为current 值默认为0<br>var current = 0<br>//当鼠标经过li时的代码<br>Animate(cloud, this.offsetLeft)<br>//当鼠标离开后的默认位置<br>Animate(cloud,current)<br>//当鼠标点击li的时候<br>current = this.offsetLeft<br>cloud.style.left = current<br>//当鼠标点击后，把当前点击的li的距离左侧的位置给current，然后把cloud的left值改为current，这样cloud它的默认left值就会随着鼠标点击更改了<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//设定一个节流阀 名为current 值默认为0</span><br><span class="hljs-keyword">var</span> current = <span class="hljs-number">0</span><br><span class="hljs-comment">//当鼠标经过li时的代码</span><br><span class="hljs-title class_">Animate</span>(cloud, <span class="hljs-variable language_">this</span>.<span class="hljs-property">offsetLeft</span>)<br><span class="hljs-comment">//当鼠标离开后的默认位置</span><br><span class="hljs-title class_">Animate</span>(cloud,current)<br><span class="hljs-comment">//当鼠标点击li的时候</span><br>current = <span class="hljs-variable language_">this</span>.<span class="hljs-property">offsetLeft</span><br>cloud.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = current<br><span class="hljs-comment">//当鼠标点击后，把当前点击的li的距离左侧的位置给current，然后把cloud的left值改为current，这样cloud它的默认left值就会随着鼠标点击更改了</span><br></code></pre></td></tr></table></figure>
 
     </div>
 </div>
