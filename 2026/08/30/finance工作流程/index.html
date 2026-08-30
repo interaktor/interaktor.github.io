@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        Finance开发流程
+    </span>
+
+    <div class="post-meta">
+        2026-08-30
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev/" rel="tag">JavaScript Study WebDev</a>
+            
+    </div>
+
+    <div class="post-content">
+        <h3 id="这里主要说一下大概的流程，像是和TodoList重合相似的代码这里就不再过多描述了，主要写一些Finance核心的代码和讲解">这里主要说一下大概的流程，像是和TodoList重合相似的代码这里就不再过多描述了，主要写一些Finance核心的代码和讲解</h3>
+<h2 id="一·获取元素和添加列表和删除事件">一·获取元素和添加列表和删除事件</h2>
+<p>首先要获取页面上的元素，这里要把结构和类名给搭建和取好，方便后继的引用，获取完元素后再设定最基础的，输入内容并添加到页面上，还有删除元素，把这些基本的功能添加好后就可以开始finance的核心点了</p>
+<h2 id="二·判断类型与动态更新函数">二·判断类型与动态更新函数</h2>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//1.基础功能完成后，我们来实现核心功能之一的数值统计，在页面上有三个数值</span><br><span class="hljs-comment">//分别是：Income(收入)、Expenses(支出)、Balance(余额)这三个，来进行简单的计数功能，Balance = Income - Expenses</span><br><span class="hljs-comment">//但是我们要先判断当前用户添加的列表是Income还是Expenses，所以要在添加到页面后写出以下代码</span><br><span class="hljs-comment">//2.判断好类型后，我们需要把它给一个全局变量让它存着，这样可以在后继的函数继续使用</span><br><span class="hljs-keyword">var</span> income = <span class="hljs-number">0</span>；<br><span class="hljs-keyword">var</span> expenses = <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">//--- 基础代码 --- //</span><br><span class="hljs-keyword">var</span> trim_ItemName = <span class="hljs-title class_">Item</span>_Name.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();<br><span class="hljs-keyword">var</span> trim_Amount = <span class="hljs-title class_">Amount</span>.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>();<br><span class="hljs-keyword">if</span> (trim_ItemName.<span class="hljs-property">length</span> &gt;= <span class="hljs-number">1</span> &amp;&amp; trim_Amount &gt;= <span class="hljs-number">1</span>) &#123;<br><span class="hljs-keyword">var</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>);<br>li.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;history_item&#x27;</span>);<br>li.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">` &lt;div class=&quot;history_item_left&quot;&gt;</span><br><span class="hljs-string">    &lt;span class=&quot;history-item_name&quot;&gt;<span class="hljs-subst">$&#123;Item_Name.value&#125;</span>&lt;/span&gt;</span><br><span class="hljs-string">    &lt;span class=&quot;history-item_type&quot;&gt;[<span class="hljs-subst">$&#123;transaction_type.value&#125;</span>]&lt;/span&gt;</span><br><span class="hljs-string">&lt;/div&gt;</span><br><span class="hljs-string">&lt;div class=&quot;history_item_right&quot;&gt;</span><br><span class="hljs-string">    &lt;span class=&quot;history-item_amount&quot;&gt;<span class="hljs-subst">$&#123;Amount.value&#125;</span>&lt;/span&gt;</span><br><span class="hljs-string">    &lt;button class=&quot;history-item_del&quot;&gt;del&lt;/button&gt;</span><br><span class="hljs-string">&lt;/div&gt;`</span><br><span class="hljs-comment">//--- 基础代码 --- //</span><br>            <br>            <span class="hljs-comment">//3.判断用户是支出还是收入,也就是判断它的类型</span><br>            <span class="hljs-comment">//！这里的值要用parseFloat，不然无法显示小数！</span><br>            <span class="hljs-keyword">if</span>(transaction_type.<span class="hljs-property">value</span> === <span class="hljs-string">&#x27;Income&#x27;</span>) &#123;<br>              <span class="hljs-comment">//用户添加的是Income那么就把当前的值，累加给income这个变量，后继输出到页面</span><br>              income += <span class="hljs-built_in">parseFloat</span>(<span class="hljs-title class_">Amount</span>.<span class="hljs-property">value</span>);<br>						&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(transaction_type.<span class="hljs-property">value</span> === <span class="hljs-string">&#x27;Expenses&#x27;</span>) &#123;<br>              <span class="hljs-comment">//相反，用户添加的类型是Expenses，就把值累加给expenses这个变量，后继输出到页面</span><br>              expenses += <span class="hljs-built_in">parseFloat</span>(<span class="hljs-title class_">Amount</span>.<span class="hljs-property">value</span>);<br>            &#125;<br>        		<br>        		<span class="hljs-comment">//5.函数做好之后，我们在列表输出到页面的后面调用此函数，就可以实现用户输入数据并实时更新三大值</span><br>       			ul.<span class="hljs-title function_">appendChildren</span>(li);<br>        		 <span class="hljs-title function_">updateSummary</span>();<br>        <br><span class="hljs-comment">//4.这里判断完之后，我们想要让用户添加列表的时候就显示当前的收入和支出以及余额，那就需要动态的方法</span><br><span class="hljs-comment">//也就是创建一个函数，这样后继有其它地方会改变数值的也可以直接调用</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">updateSummary</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">//balance的值就会以收入 - 支出</span><br>  	<span class="hljs-keyword">var</span> balance = income - expenses;<br>  <span class="hljs-comment">//获取页面上的这三个，然后再输出到页面上</span><br> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.Income&#x27;</span>).<span class="hljs-property">innerHTMl</span> = icome.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">//这个income是全局变量</span><br> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.Expenses&#x27;</span>).<span class="hljs-property">innerHTML</span> = expenses.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>);<br> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.Balance&#x27;</span>).<span class="hljs-property">innerHTML</span> = balance.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>);<br> <span class="hljs-comment">//为了让页面显示的更好看，我们可以让数值强制显示小数点后n位 （.toFixed()）</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="三·删除列表并更新相应的数值">三·删除列表并更新相应的数值</h2>
+<p>我们现在的功能已经可以添加数值并实时更新了，但是基础的删除功能只能删除，数值并没有因为列表的消失而减少，所以我们要删除列表时候并且删除<code>对应这条列表它里面的值</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//删除事件</span><br> ul.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) &#123;<br>        <span class="hljs-comment">//判断当前点击的是不是删除按钮</span><br>        <span class="hljs-keyword">if</span> (e.<span class="hljs-property">target</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">contains</span>(<span class="hljs-string">&#x27;history-item_del&#x27;</span>)) &#123;<br>          <span class="hljs-comment">//这里和todolist有相似的地方，我们要找到当前点击的li并且找到它里面的值</span><br>          <span class="hljs-comment">//1.获取当前点击的li</span><br>          <span class="hljs-keyword">var</span> currentList = e.<span class="hljs-property">target</span>.<span class="hljs-property">parentNode</span>.<span class="hljs-property">parentNode</span>;<br>          <span class="hljs-comment">//2.以这个当前点击的li为基础，去找到它里面的Amount和Type的值！</span><br>          <span class="hljs-comment">//也就是当我们点击一个删除按钮时，它会获取最外层的li这个父元素，然后以父元素为基础去里面找到当前点击的li里面的Type和Amount，把它们的值拿出来，然后进行对应的减少</span><br>          <span class="hljs-keyword">var</span> currentAmount = currentList.<span class="hljs-title function_">querSelector</span>(<span class="hljs-string">&#x27;.Amount&#x27;</span>).<span class="hljs-property">innerHTML</span>;<br>        	<span class="hljs-comment">//这里的.innerHTML就是获取当前页面里面的值，这里是直接获取的意思，给前面这个变量。如果加上 = 就是赋值的意思</span><br>          <span class="hljs-keyword">var</span> currentType = currentList.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.Type&#x27;</span>).<span class="hljs-property">innerHTML</span>;<br>          <span class="hljs-comment">//3.得到类型和值后，要进行和添加【一样】的判断</span><br>          <span class="hljs-keyword">if</span>(currentType === <span class="hljs-string">&#x27;[Income]&#x27;</span>)&#123; <span class="hljs-comment">//这里是值，不是value，值里面是什么样就填什么</span><br>            <span class="hljs-comment">//如果删除的这个列表它的类型是Income那么就让全局变量income 减去我当前点击的这个列表里面的Amount</span><br>            income -= <span class="hljs-built_in">parseFloat</span>(currentAmount);<br>          &#125;  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(currentType === <span class="hljs-string">&#x27;[Expenses]&#x27;</span>) &#123;<br>            <span class="hljs-comment">//删除的类型是Expense就让全局变量expense 减去点击的这个list(列表)里面的Amount</span><br>            expenses -= <span class="hljs-built_in">parseFloat</span>(currentAmount);<br>          &#125;<br>          <br>          <span class="hljs-comment">//5.最后删除</span><br>          ul.<span class="hljs-title function_">removeChildren</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">parentNode</span>.<span class="hljs-property">parentNode</span>);<br>          <span class="hljs-comment">//6.不要忘了实时更新三大数值</span><br>          <span class="hljs-title function_">upateSummary</span>();<br>        &#125;<br>    &#125;)<br></code></pre></td></tr></table></figure>
+<h2 id="四·localStorage">四·localStorage</h2>
+<p>本地存储还是和todolist相似，大部分代码思路都是差不多，我们主要看一下不同的细节地方</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">编号是按照写代码的顺序来写的<br><span class="hljs-comment">//2.刷新时||进入网页</span><br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>)) &#123;<br>  			<span class="hljs-comment">//把添加的数据解包出来</span><br>        <span class="hljs-keyword">var</span> item_box = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>));<br>  			<span class="hljs-comment">//使用forEach循环来遍历数组（解包出来的数据就是Array）</span><br>        item_box.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">item, i</span>) &#123;<br>            <span class="hljs-keyword">var</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>);<br>            li.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;history_item&#x27;</span>);<br>            li.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">` &lt;div class=&quot;history_item_left&quot;&gt;</span><br><span class="hljs-string">                            &lt;span class=&quot;history-item_name&quot;&gt;<span class="hljs-subst">$&#123;item.name&#125;</span>&lt;/span&gt;</span><br><span class="hljs-string">                            &lt;span class=&quot;history-item_type&quot;&gt;[<span class="hljs-subst">$&#123;item.type&#125;</span>]&lt;/span&gt;</span><br><span class="hljs-string">                        &lt;/div&gt;</span><br><span class="hljs-string">                        &lt;div class=&quot;history_item_right&quot;&gt;</span><br><span class="hljs-string">                            &lt;span class=&quot;history-item_amount&quot;&gt;<span class="hljs-subst">$&#123;item.amount&#125;</span>&lt;/span&gt;</span><br><span class="hljs-string">                            &lt;button class=&quot;history-item_del&quot;&gt;del&lt;/button&gt;</span><br><span class="hljs-string">                        &lt;/div&gt;`</span><br>            <span class="hljs-comment">//判断用户是支出还是收入</span><br>            <span class="hljs-keyword">if</span> (item.<span class="hljs-property">type</span> === <span class="hljs-string">&#x27;Income&#x27;</span>) &#123;<br>                count_income += <span class="hljs-built_in">parseFloat</span>(item.<span class="hljs-property">amount</span>);<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (item.<span class="hljs-property">type</span> === <span class="hljs-string">&#x27;Expenses&#x27;</span>) &#123;<br>                count_expenses += <span class="hljs-built_in">parseFloat</span>(item.<span class="hljs-property">amount</span>);<br>            &#125;<br>            ul.<span class="hljs-title function_">appendChild</span>(li);<br>        &#125;)<br>  			<span class="hljs-comment">//循环结束后更新三大数值</span><br>        <span class="hljs-title function_">updateSummary</span>();<br>    &#125;<br><br><br><span class="hljs-comment">//1.添加时的判断和封装</span><br><span class="hljs-comment">//在添加代码（if判断之后）写即可</span><br><span class="hljs-keyword">var</span> arr; <span class="hljs-comment">//创建变量（局部）</span><br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>)) &#123;  <span class="hljs-comment">//首先判断有没有这个localStorage</span><br>    arr = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>)); <span class="hljs-comment">//有就把以前的数据先拿出来</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    arr = []; <span class="hljs-comment">//没有就把这个变量定义为数组</span><br>&#125;<br><span class="hljs-comment">//无论是哪一个它们都会添加一条新对象进去，push是放在数组最后</span><br>arr.<span class="hljs-title function_">push</span>(&#123; <span class="hljs-attr">name</span>: <span class="hljs-title class_">Item</span>_Name.<span class="hljs-property">value</span>, <span class="hljs-attr">type</span>: transaction_type.<span class="hljs-property">value</span>, <span class="hljs-attr">amount</span>: <span class="hljs-title class_">Amount</span>.<span class="hljs-property">value</span> &#125;)<br><span class="hljs-comment">//最后进行封闭</span><br><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(arr));<br><br><br><br><span class="hljs-comment">//3.删除时的判断与封装</span><br><span class="hljs-comment">//在删除代码里面写即可</span><br><span class="hljs-comment">//3-1.获取所有的li，注意！！！这个li必须是finance里面的，不要把document里面所有的li都获取了！！！</span><br><span class="hljs-comment">//3-2.直接拿到finance_ul，然后直接在它的里面找它的子元素，也就是li，由于ul.children里面可能有很多li，所以它默认是伪数组形式，直接转化并查找当前点击的li位于第几个</span><br><span class="hljs-keyword">var</span> ul = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;.finance_ul&#x27;</span>);<br><span class="hljs-keyword">var</span> currList = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(ul.<span class="hljs-property">children</span>).<span class="hljs-title function_">indexOf</span>(currentLis);<br><span class="hljs-comment">//3-3.把数据解包出来</span><br><span class="hljs-keyword">var</span> item_data = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>));<br><span class="hljs-comment">//3-4.删除当前点击的那一个li</span><br>item_data.<span class="hljs-title function_">splice</span>(currList, <span class="hljs-number">1</span>);<br><span class="hljs-comment">//3-5.最后封装回去</span><br><span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;item&#x27;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(item_data));<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
