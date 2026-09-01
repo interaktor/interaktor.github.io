@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        forEach执行原理讲解
+    </span>
+
+    <div class="post-meta">
+        2026-09-01
+        
+            | <a class="tag-none-link" href="/tags/JavaScript-Study/" rel="tag">JavaScript Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <p>今天主要讲一下forEach以及里面的新方法，因为这个东西让我苦恼了二次，所以今天打算把这个讲清楚，主要拿「电梯案例」来讲一下forEach</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript">   <span class="hljs-comment">// 1. 获取所有的内容模块和导航模块</span><br>    <span class="hljs-keyword">const</span> sections = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;.section&#x27;</span>);<br>    <span class="hljs-keyword">const</span> navItems = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;.elevator-item&#x27;</span>);<br>  <br>    <span class="hljs-comment">// 功能一：点击导航按钮，页面平滑滚动到对应板块</span><br><span class="hljs-comment">//遍历并绑定所有的navItems</span><br>    navItems.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;<br>        item.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>          	<span class="hljs-comment">//用变量把当前的「内容模块」获取过来</span><br>          	<span class="hljs-comment">//因为「内容模块」和「导航模块」数量都是相同的，所以当我们当前了第二个navItem，它就会获取当前navItem的位置（数字），也就是1，然后sections[1]也就对应的内容模块的第1个，因为它们数量和位置都是对齐的，所以当前navItem的位置就是sections的位置</span><br>            <span class="hljs-keyword">const</span> targetSection = sections[index];<br>          <br>            <span class="hljs-comment">// 新方法：scrollIntoView()意思就是「滚动直到显示页面」</span><br>            targetSection.<span class="hljs-title function_">scrollIntoView</span>(&#123; <span class="hljs-attr">behavior</span>: <span class="hljs-string">&#x27;smooth&#x27;</span> &#125;);<br>        &#125;);<br>    &#125;);<br><br> <br>    <span class="hljs-comment">// 功能二：页面滚动时，自动计算当前在哪个板块，并高亮对应按钮</span><br>    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;scroll&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-comment">//获取页面被滚动的高度（兼容写法）</span><br>        <span class="hljs-keyword">const</span> currentScrollTop = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span> || <span class="hljs-variable language_">window</span>.<span class="hljs-property">pageYOffset</span>;<br>        <span class="hljs-comment">//遍历所有的「内容模块」</span><br>        sections.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">section, index</span>) =&gt;</span> &#123;<br>            <span class="hljs-comment">//1.获取当前 section 距离顶部的距离</span><br>          	<span class="hljs-comment">//2.这里window的的监听事件是scroll，所以只要有一点点滚动都会触发这个循环（一次循环会把数组的每个值都遍历一次）</span><br>          	<span class="hljs-comment">//3.也就是一次循环就会把这三个sections都会使用一遍，只要有滚动就会触发，每次都是从第0个sections开始，滚动一次就会循环数组中所有的值</span><br>            <span class="hljs-keyword">const</span> sectionTop = section.<span class="hljs-property">offsetTop</span>;<br>          <br>          <br>            <span class="hljs-comment">// 如果【卷去的高度】达到了【当前板块的高度】（为了提升体验，减去 200px 作为缓冲触发线）</span><br>          	<span class="hljs-comment">//！！！！！！重点！！！！！！！</span><br>          	<span class="hljs-comment">//每次循环每个sections都会判断一次，第一个肯定是满足的，逻辑是这这样的，当第二个条件也满足时，第一个仍然满足，第一个会先启用，但是每次循环都会把这三个section都调试一次，就会出现第一个满足但是在一瞬间，第二个也满足，优先级原理第二个会启用，第一个就没有了，因为数组循环是从0，1，2依次开始的，如果第三个也满足了的话，前面两个还是满足的状态，0和1会分别在一瞬间都会被启用一次(太快肉眼看不见的)，到第三个后，前两个就不显示启用了，因为下方判断里用到了排他思想，每次有满足的都会清除所有，然后只显示最后一个满足条件的，也就是说当currentScollTop超过了所有的sectionTop那么三个条件都满足，但是排他思想只允许有一个显示，只能是所有满足数组值中最后一个满足的才会启用（前面的数值还是满足状态）</span><br>            <span class="hljs-keyword">if</span> (currentScrollTop &gt;= sectionTop - <span class="hljs-number">200</span>) &#123;<br>                <span class="hljs-comment">// 先移除所有按钮的高亮类名</span><br>                navItems.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">nav</span> =&gt;</span> nav.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;active&#x27;</span>));<br>                <span class="hljs-comment">// 给当前索引对应的按钮加上高亮</span><br>                navItems[index].<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;active&#x27;</span>);<br>            &#125;<br>        &#125;);<br>    &#125;);<br></code></pre></td></tr></table></figure>
+<h2 id="关于scrollIntoView的一些知识点">关于scrollIntoView的一些知识点</h2>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//里面主要有两个属性（也可以不填&#123;...&#125;，只不过是默认没有动画跳转）</span><br><span class="hljs-title function_">scrollIntoView</span>(&#123;<br>  <span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;&#x27;</span>,<br>  <span class="hljs-attr">block</span>:<span class="hljs-string">&#x27;&#x27;</span><br>&#125;)<br><span class="hljs-comment">//behavior属性</span><br><span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;smooth&#x27;</span> 平滑的，带动画效果的移动（最常用）<br><span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;auto&#x27;</span> 瞬间移动<br><span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;instant&#x27;</span> 瞬间移动<br><span class="hljs-comment">//block属性</span><br><span class="hljs-attr">block</span>: <span class="hljs-string">&#x27;start&#x27;</span>：元素的顶部对齐屏幕顶部（最常用）<br><span class="hljs-attr">block</span>: <span class="hljs-string">&#x27;center&#x27;</span>：让元素停在屏幕的正中间<br><span class="hljs-attr">block</span>: <span class="hljs-string">&#x27;end&#x27;</span>：元素的底部对齐屏幕底部<br></code></pre></td></tr></table></figure>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
