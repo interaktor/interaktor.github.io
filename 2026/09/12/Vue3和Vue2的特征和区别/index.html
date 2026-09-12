@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>
+        Lyra&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+            <link rel="icon" href="/image/icon/vista_messenger.jpg">
+        
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <div class="header" id="pjax-header">
+    <header class="card">
+        <p class="blog-title">
+            Think Different.
+        </p>
+    </header>
+    <nav class="button-bar">
+        <ul class="nav-links">
+            <li>
+                <a href="/" class="button link-home ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
+                        <span>Home</span>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="/about" class="button ">
+                    <span class="nav-text">
+                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
+                    </span>
+                </a>
+            </li>
+            
+        </ul>
+
+    </nav>
+</div>
+
+        <div class="button mobile-menu-btn" id="mobile-menu-btn">
+            <span class="menu-icon ri-menu-fill"></span>
+        </div>
+
+            <div class="main-layout">
+                <aside id="sidebar">
+                    <div class="widget avatar-widget">
+    <div class="avatar-bg">
+        <a href="/">
+            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
+        </a>
+    </div>
+</div>
+<div class="widget card profile-widget">
+    <div class="profile">
+        <div>Lyra</div>
+        <div>
+            
+            
+                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
+                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
+                </a>
+            
+                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
+                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
+                </a>
+            
+        
+        </div>
+    </div>
+    <div class="about">
+        
+    </div>
+</div>
+
+
+<div class="widget music-widget">
+    <div class="player-content">
+        <div class="song-info">
+            <div class="info-bg album-art" id="albumArt"></div>
+            <div class="info-bg title-bar">
+                <span class="song-title" id="songTitle">Loading...</span>
+            </div>
+        </div>
+
+        <div class="info-bg progress-container" id="progressContainer">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="controls">
+            <button class="button play-btn" id="playBtn">
+                <span id="playIcon" class="ri-play-large-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="prevBtn">
+                <span class="ri-skip-back-fill"></span>
+            </button>
+            <button class="button ctrl-btn" id="nextBtn">
+                <span class="ri-skip-forward-fill"></span>
+            </button>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+</div>
+
+<script>
+    var musicConfig = {
+        autoplay: false,
+        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
+    };
+</script>
+                </aside>
+                <main id="pjax-container">
+                    <div class="card post-full">
+    <span class="post-title article-title">
+        Vue3和Vue2的特征和区别
+    </span>
+
+    <div class="post-meta">
+        2026-09-12
+        
+            | <a class="tag-none-link" href="/tags/Vue3-Study/" rel="tag">Vue3 Study</a>
+            
+    </div>
+
+    <div class="post-content">
+        <p>这次主要讲一下Vue2和Vue3，当然我并没有学过Vue2，主要是来和3对比一下它们之间的区别，有哪些不一样，以及一些知识点，然后顺便讲一下Vue的文件结构</p>
+<h2 id="关于Vue的文件">关于Vue的文件</h2>
+<p>当我们把Vue下载下来后，会发现有诸多文件，当然我们不必担心要记太多，因为实际我们用到的只有一个文件夹</p>
+<p><img src="https://i.ibb.co/QFdg2VXH/Screenshot-2026-09-12-at-10-47-37.png" alt="vue"></p>
+<p>我们重点看src这个文件夹内，里面就是我们后继写的所有组件和入口，有main.ts和App.vue，可以理解为main.ts就是启动器，它不负责写东西，只做初始化配置。App.vue就是所有组件的根，也就是后继所有的组件都要在这里组装起来，简单说的话main.ts负责把应用启动，而App.vue负责应用长什么样，两者缺一不可，在后继写组件我们会单独创建一个文件夹在src里面，叫components里面专门存放页面中的各种模块</p>
+<h2 id="Vue2（选择-属性式API）">Vue2（选择/属性式API）</h2>
+<p>这里讲Vue2是很有必要的，因为我们需要要了解它，在后继遇到Vue2的代码时，也能看懂，先说一下Vue的框架</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>		//这里是写HTML<br>&lt;/template&gt;<br>  <br>&lt;script lang = ts&gt;<br>  	//这里为什么要加 lang = ts 是因为Vue推荐我用TypeScript写代码，当然也可以写JS代码<br>  	//这里是写JavaScript和TypeScript<br>&lt;/script&gt;<br>  <br>&lt;style&gt;<br>  	//这里是写CSS<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>上面的代码就是project.vue中的代码格式，在所有的.vue文件里都是这样写的，当然你可以不要其中一些东西，只要你不使用即可，下面讲一下Vue2中的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>		&lt;p&gt;&#123;&#123; a &#125;&#125;&lt;/p&gt; //&#123;&#123;&#125;&#125;是Vue中的文本插值语法，可以写定义的变量，还可以写一些简单的表达式<br>		&lt;button @click=&quot;changeA&quot;&gt;点击修改a&lt;/button&gt; //@click是Vue的事件绑定语法糖 和JS中的click事件是一样的<br>&lt;/template&gt;<br>  <br>&lt;script lang = ts&gt;<br>  export default &#123; //Vue2中单文件组件实现模块化复用的核心基础，它是ES6中模块系统的默认导出机制<br>  	name:&#x27;Person&#x27;‌  //这个是该模块项目的名称，可以和文件名一样，也可以修改<br>    <br>  	data() &#123; //数据：专门来定义响应式数据，页面中所有要用的变量都写在这里<br>       return &#123;<br>         	a:10 //这里是键和值<br>       &#125;<br>    &#125;<br>  	<br>  <br>  	methods: &#123; //方法：专门来定义函数的，所有的方法和业务逻辑都写在这里<br>      	changeA() &#123; //methods中不带function关键字<br>          	this.a = 20 //在Vue2中的this是访问组件能力的核心，它指向的是当前组件的实例化对象<br>          	//可以说在Vue2中你想要调用都需要使用this<br>        &#125;<br>    &#125;<br> &#125;<br>&lt;/script&gt;<br>  <br>&lt;style&gt;<br>  	<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>上面大概讲了一下Vue2的代码格式，以及它的一些用法，因为后继不到万不得已的时候，我们最好只写Vue3，千万不要两者混写，上面主要是大概了解一下2代的特征，后面讲到3代就有很明显的区别</p>
+<h2 id="Vue3（组合式API）">Vue3（组合式API）</h2>
+<p>来到正题，Vue3和Vue2最大的区别就是采用了Composition API，核心在于不用像Vue2中，我要设定一个数据，然后我还要在methods中设定它的方法，以及其它的computed或watch，这样算下来要写4遍，如果有多个数据那就重复上面的操作，这样会导致冗余很大，在Vue3中我们所有的代码都只在setup() {}里面写，核心优势是在它不像Vue2要写data和methods，只需要一个setup即可，而且它弱化了this，使得所有数据和方法更方便调用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>			&lt;p&gt;我是&#123;&#123;a&#125;&#125;&lt;/p&gt;<br>      &lt;p&gt;我是&#123;&#123;b&#125;&#125;&lt;/p&gt;<br>      &lt;p&gt;我是&#123;&#123;c&#125;&#125;&lt;/p&gt;<br>			&lt;button @click=&quot;getA&quot;&gt;A&lt;/button&gt;<br>      &lt;button @click=&quot;getB&quot;&gt;B&lt;/button&gt;<br>      &lt;button @click=&quot;getC&quot;&gt;C&lt;/button&gt;<br>&lt;/template&gt;<br><br><br>&lt;script lang = ts&gt;<br>export default &#123;<br>	setup() &#123; //setup是一个函数<br>    // console.log(this); //setup中的this是undefined，Vue3中弱化了this<br>  	//数据：这里数据现在都不是响应式的<br>  	let a = 10;<br>  	let b = 20;<br>  	let c = 30;<br>  <br>  	//方法：现在还没用到ref/reactive所有这里的方法是不能修改页面数据的，它不是响应式的<br>  	function getA() &#123; <br>      	a += 1<br>    &#125;<br>  	function getB() &#123;<br>      	b -= 1<br>    &#125;<br>  	function getC() &#123;<br>      	c = a + b<br>    &#125;<br>  	<br>  	//这里要将需要使用的数据导出,才能使用<br>    //这里的one:a,two:b是key，可以改成任意名称，那我们把它直接改成a:a,b:b<br>    //那就会直接触发简写行式，直接写a,b<br>    return &#123;a,b,c&#125;<br>&#125;<br>&#125;<br>&lt;/script&gt;<br><br><br>&lt;style&gt;<br>&lt;/style&gt;<br><br>  <br></code></pre></td></tr></table></figure>
+<p>可以看到这里setup还是有一个问题的，那就是每当我们创建了新数据或是方法，那我们就需要在return写一下，这也是最麻烦的点，或许有没有更方便的方法呢？答案是有的，我们只需要在script中添加setup就变成setup语法糖，它的好处是帮我们省去了写setup(){}，最重要的是它自带了return，不需要我们手动去写返回值，下面简单看一下代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>			&lt;p&gt;我是&#123;&#123;a&#125;&#125;&lt;/p&gt;<br>      &lt;p&gt;我是&#123;&#123;b&#125;&#125;&lt;/p&gt;<br>      &lt;p&gt;我是&#123;&#123;c&#125;&#125;&lt;/p&gt;<br>			&lt;button @click=&quot;getA&quot;&gt;A&lt;/button&gt;<br>      &lt;button @click=&quot;getB&quot;&gt;B&lt;/button&gt;<br>      &lt;button @click=&quot;getC&quot;&gt;C&lt;/button&gt;<br>&lt;/template&gt;<br><br><br>&lt;script setup lang = ts&gt;<br>  	//数据<br>  	let a = 10;<br>  	let b = 20;<br>  	let c = 30;<br>  <br>  	//方法<br>  	function getA() &#123;<br>      	a += 1<br>    &#125;<br>  	function getB() &#123;<br>      	b -= 1<br>    &#125;<br>  	function getC() &#123;<br>      	c = a + b<br>    &#125;<br>&lt;/script&gt;<br><br><br>&lt;style&gt;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+<p>这次主要是讲了一些最基础的格式以及2和3的区别，3的响应式并没有讲到，只是大概写一下，太久没写Blog，主要想记录一下学Vue3的一些知识点，里面有些东西或许讲的并不详细，但大部分都讲到了，后继也会记录的更加详细的</p>
+
+    </div>
+</div>
+                </main>
+                <div class="sidebar-mask" id="sidebar-mask"></div>
+            </div>
+            <!-- footer -->
+            <footer class="card">
+    <div class="copyright">
+        <p>Copyright © 2026
+                Lyra
+        </p>
+        <p>Powered by Hexo</p>
+    </div>
+</footer>
+    </div>
+
+    <script src="/js/responsive.js"></script>
+    <script src="/js/music.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new Pjax({
+                elements: 'a[href]:not([target]):not([data-no-pjax])',
+                selectors: [
+                    'title',
+                    '#pjax-container',
+                    '#pjax-header'
+                ]
+            })
+        })
+    </script>
+    
+</body>
+
+</html>
