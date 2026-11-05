@@ -1,151 +1,123 @@
+
+
 <!DOCTYPE html>
-<html>
-
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>
-        Lyra&#39;s Blog
-    </title>
-    
-<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>组件通信</title>
+
+    <meta name="author" content="interaktor">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+    <link rel="canonical" href="http://interaktor.github.io/2026/11/01/组件通信/">
 
     
-        
-            <link rel="icon" href="/image/icon/vista_messenger.jpg">
-        
+        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+
+    
+
+    
+<script src="/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/js/jquery-1.9.1.js"></script>
+
+
+    
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+
+    
+    <link rel="me" href="https://twitter.com/your_twitter">
+    
+
+
+
+    
+<script src="/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
+
 <meta name="generator" content="Hexo 8.1.2"></head>
-
 <body>
-    <div class="container">
-        <!-- header -->
-        <div class="header" id="pjax-header">
-    <header class="card">
-        <p class="blog-title">
-            Think Different.
-        </p>
-    </header>
-    <nav class="button-bar">
-        <ul class="nav-links">
-            <li>
-                <a href="/" class="button link-home ">
-                    <span class="nav-text">
-                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
-                        <span>Home</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/archives" class="button ">
-                    <span class="nav-text">
-                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/about" class="button ">
-                    <span class="nav-text">
-                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
-                    </span>
-                </a>
-            </li>
-            
+
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">Lyra&#39;s Blog</a></h1>
+        
+    </hgroup>
+</header>
+
+<nav role="navigation">
+    
+        <ul class="subscription" data-subscription="rss">
+            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
         </ul>
+    
 
-    </nav>
-</div>
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:http://interaktor.github.io/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
 
-        <div class="button mobile-menu-btn" id="mobile-menu-btn">
-            <span class="menu-icon ri-menu-fill"></span>
-        </div>
+    <ul class="main-navigation">
+        
+            <li><a href="/">Blog</a></li>
+        
+            <li><a href="/archives">Archives</a></li>
+        
+    </ul>
+</nav>
 
-            <div class="main-layout">
-                <aside id="sidebar">
-                    <div class="widget avatar-widget">
-    <div class="avatar-bg">
-        <a href="/">
-            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
-        </a>
-    </div>
-</div>
-<div class="widget card profile-widget">
-    <div class="profile">
-        <div>interaktor</div>
+
+<div id="main">
+    <div id="content">
         <div>
-            
-            
-                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
-                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
-                </a>
-            
-                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
-                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
-                </a>
-            
-        
-        </div>
-    </div>
-    <div class="about">
-        
-    </div>
-</div>
-
-
-<div class="widget music-widget">
-    <div class="player-content">
-        <div class="song-info">
-            <div class="info-bg album-art" id="albumArt"></div>
-            <div class="info-bg title-bar">
-                <span class="song-title" id="songTitle">Loading...</span>
-            </div>
-        </div>
-
-        <div class="info-bg progress-container" id="progressContainer">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div class="controls">
-            <button class="button play-btn" id="playBtn">
-                <span id="playIcon" class="ri-play-large-fill"></span>
-            </button>
-            <button class="button ctrl-btn" id="prevBtn">
-                <span class="ri-skip-back-fill"></span>
-            </button>
-            <button class="button ctrl-btn" id="nextBtn">
-                <span class="ri-skip-forward-fill"></span>
-            </button>
-        </div>
-    </div>
-
-    <audio id="audioPlayer"></audio>
-</div>
-
-<script>
-    var musicConfig = {
-        autoplay: false,
-        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
-    };
-</script>
-                </aside>
-                <main id="pjax-container">
-                    <div class="card post-full">
-    <span class="post-title article-title">
-        组件通信
-    </span>
-
-    <div class="post-meta">
-        2026-11-01
-        
-            | <a class="tag-none-link" href="/tags/Vue3-Study/" rel="tag">Vue3 Study</a>
-            
-    </div>
-
-    <div class="post-content">
-        <h2 id="前言">前言</h2>
+    <article class="hentry" role="article">
+        <header>
+            <h1 class="entry-title">组件通信</h1>
+            <p class="meta">
+                <time datetime="2026-11-01T12:30:00.000Z" data-updated="true">Sun Nov 01 2026</time>
+            </p>
+        </header>
+        <div class="entry-content">
+            <h2 id="前言">前言</h2>
 <p>许久没有更新Blog了，最近感冒加上学习Vue的过程大部分都没有很大的问题需要写，这次主要把组件通信相关的知识给过一下，梳理一遍，方便后继学习更高阶的课程，组件通信对我来说最容易错的是‘搞混’简单来说就是 <b>组件的传输方式</b> 和 <b>是否为内置API</b>  或 <b>或第三方库</b>，接下来就一个一个梳理组件通信的相关知识</p>
 <p>组件通信只有两条轴：<strong>方向</strong>（谁给谁）和 <strong>方式</strong>（传值 / 通知 / 硬访问 / 共享）</p>
 <table>
@@ -246,7 +218,7 @@
 <h3 id="parent（子组件访问父组件实例）">$parent（子组件访问父组件实例）</h3>
 <p>子组件通过 <code>$parent</code> 直接拿到父实例，读取 / 修改父的数据。<strong>耦合极强，层级一变直接失效，官方不推荐</strong>，优先改用自定义事件 emit</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs vue">//子组件 <br>&lt;template&gt;<br>  &lt;h1&gt;子组件&lt;/h1&gt;<br>	&lt;!-- ！这里很危险，子这边不需要引入什么，父那边也不需要写什么，但子就可以随便控制父里面的数据，所以不推荐使用--&gt;<br>	&lt;!-- 重申：这里看补充--&gt;<br>  &lt;button @click=&quot;$parent.num++&quot;&gt;直接修改父的数据（不推荐）&lt;/button&gt; <br>&lt;/template&gt;<br>&lt;script setup lang=&quot;ts&quot;&gt;<br>// 不需要导入，模板内直接使用 $parent<br>&lt;/script&gt;<br><br><br>//父组件<br>&lt;template&gt;<br>  &lt;h1&gt;父组件数据：&#123;&#123; num &#125;&#125;&lt;/h1&gt;<br>  &lt;Child /&gt;<br>&lt;/template&gt;<br>&lt;script setup lang=&quot;ts&quot;&gt;<br>import &#123; ref &#125; from &#x27;vue&#x27;<br>import Child from &#x27;./Child.vue&#x27;<br>const num = ref(100)<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
-<p><strong>补充</strong>：默认全封闭。父想拿子的东西，子必须 defineExpose。子想拿父的东西，父也必须有暴露（而 <script setup> 做不到），所以 $parent 在 script setup 组件之间基本是死的。</p>
+<p><strong>补充</strong>：默认全封闭。父想拿子的东西，子必须 <code>defineExpose</code>。子想拿父的东西，父也必须有暴露（而 <code>&lt;script setup&gt;</code> 做不到），所以 <code>$parent</code> 在 <code>&lt;script setup&gt;</code> 组件之间基本是死的。</p>
 <h2 id="07-provide-inject">07 provide / inject</h2>
 <p>接下来这个与之前的$attrs有一点点相似之处，provide/inject 它们的作用就是让 <code>父组件可以直接传数据给孙数据，且不需要子组件的参与</code></p>
 <p>而$attrs它是需要子组件作为中转的，而且子组件还要引入和写东西，孙组件才能使用，provide/inject就完美解决了这个问题，它不需要子组件过多的参与就可以让 ‘爷孙’ 直接进行数据的传输（但是我们还是需要要它）</p>
@@ -271,38 +243,109 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs vue">//父组件<br>&lt;template&gt;<br>    &lt;div class=&quot;father&quot;&gt;<br>      &lt;!-- v-slot: 是具名插槽   v-slot=&quot;&quot; 是默认作用域插槽 --&gt;<br>      &lt;h1&gt;父组件&lt;/h1&gt;<br>      &lt;div class=&quot;box&quot;&gt;<br>           &lt;Game&gt;<br>            &lt;!-- 这个params就是插槽传过来的数据，名称随便，数据是对象形式存储在里面的，key:value形式 --&gt;<br>              &lt;template v-slot:s1=&quot;params&quot;&gt;<br>               &lt;ul&gt;<br>            &lt;li v-for=&quot;value in params.gamelist&quot; :key=&quot;value.id&quot;&gt;&#123;&#123; value.name &#125;&#125;&lt;/li&gt;<br>              &lt;/ul&gt;<br>              &lt;/template&gt;<br>           &lt;/Game&gt;<br><br>           &lt;Game &gt;<br>              &lt;template v-slot:s1=&quot;params&quot;&gt;<br>               &lt;ol&gt;<br>            &lt;li v-for=&quot;item in params.gamelist&quot; :key=&quot;item.id&quot;&gt;&#123;&#123; item.name &#125;&#125;&lt;/li&gt;<br>              &lt;/ol&gt;<br>              &lt;/template&gt;<br>           &lt;/Game&gt;<br><br>           &lt;Game&gt;<br>            &lt;!-- 这里会一直用到「params.gamelist」可以用解构，这样就不需要params会更方便 --&gt;<br>              &lt;template v-slot:default=&quot;&#123;gamelist&#125;&quot;&gt;<br>                &lt;h3 v-for=&quot;val in gamelist&quot; :key=&quot;val.id&quot;&gt;&#123;&#123; val.name &#125;&#125;&lt;/h3&gt;<br>              &lt;/template&gt;<br>           &lt;/Game&gt;<br>      &lt;/div&gt;<br>    &lt;/div&gt;<br>   <br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot; name=&quot;Father&quot;&gt;<br>  import Game from &#x27;./Game.vue&#x27;;<br>&lt;/script&gt;<br><br><br><br>&lt;!---------------------------------------------------------------------------------------&gt;<br><br><br><br>//子组件<br>&lt;template&gt;<br>    &lt;div class=&quot;Game&quot;&gt;<br>        &lt;h2&gt;游戏列表&lt;/h2&gt;<br>        &lt;!-- 这里用 「slot props」 把数据传给插槽使用者，不是整个父组件！ --&gt;<br>         &lt;!-- 作用域插槽可以有名称，但是父结构那里就要指定名称 --&gt;<br>          &lt;!-- 提示：插槽的默念名称是default --&gt;<br>        &lt;slot name=&quot;s1&quot; :gamelist=&quot;GameList&quot; x=&quot;200&quot; y=&quot;44&quot;&gt;&lt;/slot&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br><br>&lt;script lang=&quot;ts&quot; setup name=&quot;Game&quot;&gt;<br>import &#123;reactive&#125; from &#x27;vue&#x27;<br>let GameList = reactive([<br>    &#123;id:&#x27;fjskdfksd01&#x27;,name:&#x27;MH:RICE&#x27;&#125;,<br>    &#123;id:&#x27;fjskdfksd02&#x27;,name:&#x27;LOL&#x27;&#125;,<br>    &#123;id:&#x27;fjskdfksd03&#x27;,name:&#x27;issa&#x27;&#125;<br>])<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 <p>好了，这里就已经把组件通信的基本概念和要点给讲完了，这个blog也花了二天的时间，不仅仅是帮助了我自己，让我理清楚这些通信组件的关系，也让看blog的新人了解这些知识，在忘记这些组件该怎么使用的时候，可以来看看</p>
 
+        </div>
+        <footer>
+            <p class="meta">
+                <span class="byline author vcard">Posted by <span class="fn">interaktor</span></span>
+                <time datetime="2026-11-01T12:30:00.000Z" data-updated="true">Sun Nov 01 2026</time>
+                
+    <span class="categories">
+    
+        <a class="category" href="/tags/Vue3-Study/">Vue3 Study</a>
+    
+    </span>
+
+            </p>
+            <div class="sharing">
+    
+        <a class="twitter-share-button"
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1">
+            Tweet
+        </a>
+    
+</div>
+
+            <p class="meta">
+                
+
+                
+                <a class="basic-alignment right" href="/" title="Previous Post: 关于JS中校验的问题">关于JS中校验的问题 »</a>
+                
+            </p>
+        </footer>
+    </article>
+
+    
+
+</div>
+
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2026/11/01/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/09/16/%E5%85%B3%E4%BA%8EJS%E4%B8%AD%E6%A0%A1%E9%AA%8C%E7%9A%84%E9%97%AE%E9%A2%98/">关于JS中校验的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/09/12/Vue3%E5%92%8CVue2%E7%9A%84%E7%89%B9%E5%BE%81%E5%92%8C%E5%8C%BA%E5%88%AB/">Vue3和Vue2的特征和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/09/01/forEach%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/">forEach执行原理讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/30/finance%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">Finance开发流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/29/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-02/">Dashboard开发日志-02</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/18/localStorage%E5%92%8CDOM%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">ToDoList（localStorage + DOM的底层逻辑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/14/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-01/">Dashboard开发日志-01</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/13/updateCount()%E5%92%8Clabel%E6%A0%87%E7%AD%BE/">updateConut()和label标签</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/11/Dashboard%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB%E5%92%8C%E5%B1%82%E7%BA%A7%E9%97%AE%E9%A2%98/">Dashboard点击事件和层级问题</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
+
+    <a target="_blank" rel="noopener" href="https://github.com/your_github">@your_github</a> on GitHub
+
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'your_github',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
+
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
+
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
+
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
+
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
+</section>
+</aside>
+
     </div>
 </div>
-                </main>
-                <div class="sidebar-mask" id="sidebar-mask"></div>
-            </div>
-            <!-- footer -->
-            <footer class="card">
-    <div class="copyright">
-        <p>Copyright © 2026
-                interaktor
-        </p>
-        <p>Powered by Hexo</p>
-    </div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2026 - interaktor -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
 </footer>
-    </div>
 
-    <script src="/js/responsive.js"></script>
-    <script src="/js/music.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            new Pjax({
-                elements: 'a[href]:not([target]):not([data-no-pjax])',
-                selectors: [
-                    'title',
-                    '#pjax-container',
-                    '#pjax-header'
-                ]
-            })
-        })
-    </script>
-    
+
+
 </body>
-
 </html>

@@ -1,151 +1,123 @@
+
+
 <!DOCTYPE html>
-<html>
-
+<!--[if IEMobile 7 ]><html class="no-js iem7" lang="zh"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8" lang="zh"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="zh"><!--<![endif]-->
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>
-        Lyra&#39;s Blog
-    </title>
-    
-<link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <title>Dashboard开发日志-01</title>
+
+    <meta name="author" content="interaktor">
+
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+    <link rel="canonical" href="http://interaktor.github.io/2026/08/14/Dashboard开发日志-01/">
 
     
-        
-            <link rel="icon" href="/image/icon/vista_messenger.jpg">
-        
+        <link rel="alternate" href="/atom.xml" type="application/atom+xml">
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
+
+    
+
+    
+<script src="/js/modernizr-2.0.js"></script>
+
+
+    
+<script src="/js/jquery-1.9.1.js"></script>
+
+
+    
+    <script>window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+
+            return t;
+        }(document, "script", "twitter-wjs"));</script>
+
+    
+    <link rel="me" href="https://twitter.com/your_twitter">
+    
+
+
+
+    
+<script src="/js/octo.js"></script>
+
+
+    
+<link rel="stylesheet" href="/css/octo.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet"
+          type="text/css">
+
+    
+
 <meta name="generator" content="Hexo 8.1.2"></head>
-
 <body>
-    <div class="container">
-        <!-- header -->
-        <div class="header" id="pjax-header">
-    <header class="card">
-        <p class="blog-title">
-            Think Different.
-        </p>
-    </header>
-    <nav class="button-bar">
-        <ul class="nav-links">
-            <li>
-                <a href="/" class="button link-home ">
-                    <span class="nav-text">
-                        <img src="/image/icon/vista_messenger.jpg" alt="home" class="icon">
-                        <span>Home</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/archives" class="button ">
-                    <span class="nav-text">
-                        <img src="/image/icon/vista_book_1.jpg" alt="posts" class="icon">Archives    
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="/about" class="button ">
-                    <span class="nav-text">
-                        <img src="/image/icon/vista_pc_1.jpg" alt="about" class="icon">About
-                    </span>
-                </a>
-            </li>
-            
+
+<header role="banner">
+    <hgroup>
+        <h1><a href="/">Lyra&#39;s Blog</a></h1>
+        
+    </hgroup>
+</header>
+
+<nav role="navigation">
+    
+        <ul class="subscription" data-subscription="rss">
+            <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
         </ul>
+    
 
-    </nav>
-</div>
+    <form action="https://google.com/search" method="get">
+        <fieldset role="search">
+            <input type="hidden" name="q" value="site:http://interaktor.github.io/">
+            <input class="search" type="text" name="q" results="0" placeholder="Search">
+        </fieldset>
+    </form>
 
-        <div class="button mobile-menu-btn" id="mobile-menu-btn">
-            <span class="menu-icon ri-menu-fill"></span>
-        </div>
+    <ul class="main-navigation">
+        
+            <li><a href="/">Blog</a></li>
+        
+            <li><a href="/archives">Archives</a></li>
+        
+    </ul>
+</nav>
 
-            <div class="main-layout">
-                <aside id="sidebar">
-                    <div class="widget avatar-widget">
-    <div class="avatar-bg">
-        <a href="/">
-            <img src="https://avatars.githubusercontent.com/u/122592239?v=4" class="profile-img">
-        </a>
-    </div>
-</div>
-<div class="widget card profile-widget">
-    <div class="profile">
-        <div>interaktor</div>
+
+<div id="main">
+    <div id="content">
         <div>
-            
-            
-                <a href="https://github.com/interaktor" class="button profile-link" target="_blank" title="Github">
-                    <img src="/image/icon/github.png" class="profile-icon" alt="Github">
-                </a>
-            
-                <a href="/" class="button profile-link" target="_blank" title="Bilibili">
-                    <img src="/image/icon/bilibili.png" class="profile-icon" alt="Bilibili">
-                </a>
-            
-        
-        </div>
-    </div>
-    <div class="about">
-        
-    </div>
-</div>
-
-
-<div class="widget music-widget">
-    <div class="player-content">
-        <div class="song-info">
-            <div class="info-bg album-art" id="albumArt"></div>
-            <div class="info-bg title-bar">
-                <span class="song-title" id="songTitle">Loading...</span>
-            </div>
-        </div>
-
-        <div class="info-bg progress-container" id="progressContainer">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div class="controls">
-            <button class="button play-btn" id="playBtn">
-                <span id="playIcon" class="ri-play-large-fill"></span>
-            </button>
-            <button class="button ctrl-btn" id="prevBtn">
-                <span class="ri-skip-back-fill"></span>
-            </button>
-            <button class="button ctrl-btn" id="nextBtn">
-                <span class="ri-skip-forward-fill"></span>
-            </button>
-        </div>
-    </div>
-
-    <audio id="audioPlayer"></audio>
-</div>
-
-<script>
-    var musicConfig = {
-        autoplay: false,
-        playlist: [{"title":"Gymnopodie No.1","artist":"Erik Satie","cover":"","url":"music/Gymnop.mp3"}]
-    };
-</script>
-                </aside>
-                <main id="pjax-container">
-                    <div class="card post-full">
-    <span class="post-title article-title">
-        Dashboard开发日志-01
-    </span>
-
-    <div class="post-meta">
-        2026-08-14
-        
-            | <a class="tag-none-link" href="/tags/JavaScript-Study-WebDev-log/" rel="tag">JavaScript Study WebDev log</a>
-            
-    </div>
-
-    <div class="post-content">
-        <h2 id="2026-8-13开发复盘">2026-8-13开发复盘</h2>
+    <article class="hentry" role="article">
+        <header>
+            <h1 class="entry-title">Dashboard开发日志-01</h1>
+            <p class="meta">
+                <time datetime="2026-08-14T13:07:10.000Z" data-updated="true">Fri Aug 14 2026</time>
+            </p>
+        </header>
+        <div class="entry-content">
+            <h2 id="2026-8-13开发复盘">2026-8-13开发复盘</h2>
 <p>问题排查：主要是在DOM获取时，拼写漏了一个s，(‘’.filters’)，在浏览器控制台调试的时候发现的</p>
 <p>核心概念：学会了给input:radio加上标识，也就是value，通过value来检测是哪一个input。学习了新的方法foreach()，专为数组列表打造的for循环</p>
 <p>重构框架：学会把代码封闭在函数filters()中，使用时即可调用，删除在事件点击里的多余if条件，大量节省了代码的量和可读性</p>
@@ -164,38 +136,111 @@
 <p>它的代码格式如下，主要功能就是清除文本左右的空格</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Element</span>.<span class="hljs-title function_">trim</span>() <span class="hljs-comment">//代表把当前元素「首尾的空格」清除了（夹在文字中间的空格会保留）</span><br><span class="hljs-comment">//下面是具体使用场景之一</span><br><span class="hljs-keyword">var</span> trims = input.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>(); <span class="hljs-comment">//获取没有空格的input</span><br><span class="hljs-comment">//这个input的value现在不能输入空格而且还必须输入1个以上的字符</span><br><span class="hljs-keyword">if</span>(trims.<span class="hljs-property">length</span> &gt;= <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello World&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
+        </div>
+        <footer>
+            <p class="meta">
+                <span class="byline author vcard">Posted by <span class="fn">interaktor</span></span>
+                <time datetime="2026-08-14T13:07:10.000Z" data-updated="true">Fri Aug 14 2026</time>
+                
+    <span class="categories">
+    
+        <a class="category" href="/tags/JavaScript-Study-WebDev-log/">JavaScript Study WebDev log</a>
+    
+    </span>
+
+            </p>
+            <div class="sharing">
+    
+        <a class="twitter-share-button"
+           target="_blank" rel="noopener" href="https://twitter.com/intent/tweet?text=Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-01">
+            Tweet
+        </a>
+    
+</div>
+
+            <p class="meta">
+                
+                <a class="basic-alignment left" href="/" title="Previous Post: ToDoList（localStorage + DOM的底层逻辑）">« ToDoList（localStorage + DOM的底层逻辑）</a>
+                
+
+                
+                <a class="basic-alignment right" href="/" title="Previous Post: updateConut()和label标签">updateConut()和label标签 »</a>
+                
+            </p>
+        </footer>
+    </article>
+
+    
+
+</div>
+
+<aside class="sidebar">
+    <section class="odd">
+    <h1>Recent Posts</h1>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2026/11/01/%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1/">组件通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/09/16/%E5%85%B3%E4%BA%8EJS%E4%B8%AD%E6%A0%A1%E9%AA%8C%E7%9A%84%E9%97%AE%E9%A2%98/">关于JS中校验的问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/09/12/Vue3%E5%92%8CVue2%E7%9A%84%E7%89%B9%E5%BE%81%E5%92%8C%E5%8C%BA%E5%88%AB/">Vue3和Vue2的特征和区别</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/09/01/forEach%E5%8E%9F%E7%90%86%E8%AE%B2%E8%A7%A3/">forEach执行原理讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/30/finance%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">Finance开发流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/29/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-02/">Dashboard开发日志-02</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/18/localStorage%E5%92%8CDOM%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">ToDoList（localStorage + DOM的底层逻辑）</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/14/Dashboard%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97-01/">Dashboard开发日志-01</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/13/updateCount()%E5%92%8Clabel%E6%A0%87%E7%AD%BE/">updateConut()和label标签</a></li><li class="post-list-item"><a class="post-list-link" href="/2026/08/11/Dashboard%E5%BC%80%E5%8F%91%E4%B8%AD%E4%BA%8B%E4%BB%B6%E7%82%B9%E5%87%BB%E5%92%8C%E5%B1%82%E7%BA%A7%E9%97%AE%E9%A2%98/">Dashboard点击事件和层级问题</a></li></ul>
+</section><section class="even">
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+        <li class="loading">Status updating&#8230;</li>
+    </ul>
+
+    <a target="_blank" rel="noopener" href="https://github.com/your_github">@your_github</a> on GitHub
+
+    <script>
+        $(document).ready(function(){
+            const options = {
+                user: 'your_github',
+                count: 0,
+                skip_forks: true,
+                target: '#gh_repos'
+            }
+
+            function escapeHtml(str) {
+                return $('<div/>').text(str).html();
+            }
+
+            function render(target, repos){
+                let i, fragment = '', t = $(target)[0];
+
+                for(i = 0; i < repos.length; i++) {
+                    fragment += '<li><a href="'+repos[i].html_url+'">'+repos[i].name+'</a><p>'+escapeHtml(repos[i].description||'')+'</p></li>';
+                }
+                t.innerHTML = fragment;
+            }
+
+            $.ajax({
+                url: "https://api.github.com/users/"+options.user+"/repos?sort=pushed&callback=?",
+                dataType: 'jsonp',
+                error: function (err) {
+                    $(options.target + ' li.loading').addClass('error').text("Error loading feed");
+                },
+                success: function(data) {
+                    var repos = [];
+                    if (!data || !data.data) { return; }
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (options.skip_forks && data.data[i].fork) { continue; }
+                        repos.push(data.data[i]);
+                    }
+                    if (options.count) { repos.splice(options.count); }
+                    render(options.target, repos);
+                }
+            });
+        });
+    </script>
+</section>
+</aside>
+
     </div>
 </div>
-                </main>
-                <div class="sidebar-mask" id="sidebar-mask"></div>
-            </div>
-            <!-- footer -->
-            <footer class="card">
-    <div class="copyright">
-        <p>Copyright © 2026
-                interaktor
-        </p>
-        <p>Powered by Hexo</p>
-    </div>
+
+<footer role="contentinfo">
+    <p>
+        Copyright © 2026 - interaktor -
+        <span class="credit">Generated using <a target="_blank" rel="noopener" href="https://github.com/jbreckmckye/hexo-theme-octo">Octo theme</a> for <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a></span>
+    </p>
 </footer>
-    </div>
 
-    <script src="/js/responsive.js"></script>
-    <script src="/js/music.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            new Pjax({
-                elements: 'a[href]:not([target]):not([data-no-pjax])',
-                selectors: [
-                    'title',
-                    '#pjax-container',
-                    '#pjax-header'
-                ]
-            })
-        })
-    </script>
-    
+
+
 </body>
-
 </html>
