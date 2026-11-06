@@ -436,6 +436,9 @@ hr {
 .post-list-symbol {
   width: 3rem;
   flex-shrink: 0;
+  color: var(--spColor);
+  font-size: 1.2rem;
+  line-height: 2.16rem;
 }
 .post-list-child a {
   text-decoration: none;

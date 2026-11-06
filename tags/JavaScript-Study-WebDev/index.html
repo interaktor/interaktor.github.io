@@ -53,11 +53,11 @@
     let isNight = getIsNight()
     if (isNight === 'false') {
       document.documentElement.className = 'dark'
-      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
       setIsNight('true')
     } else {
       document.documentElement.className = 'light'
-      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '☀️'
       setIsNight('false')
     }
   }
@@ -94,12 +94,12 @@
       <a href="/collection">收藏</a>
     </li>
   </ul>
-  <div class="theme-switcher" onclick="switchTheme()">😳</div>
+  <div class="theme-switcher" onclick="switchTheme()">☀️</div>
   <script>
     if (isNight === 'false') {
-      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '☀️'
     } else {
-      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '🌙'
     }
   </script>
 </header>
@@ -109,7 +109,7 @@
   
   <li class="post-list-child">
     <div class="post-list-left">
-      <div class="post-list-symbol">🚩</div>
+      <div class="post-list-symbol">✦</div>
       <a href="/2026/08/30/finance工作流程/">Finance开发流程</a>
     </div>
     <span class="post-list-date">
@@ -119,7 +119,7 @@
   
   <li class="post-list-child">
     <div class="post-list-left">
-      <div class="post-list-symbol">🚩</div>
+      <div class="post-list-symbol">✦</div>
       <a href="/2026/08/18/localStorage和DOM的底层原理/">ToDoList（localStorage + DOM的底层逻辑）</a>
     </div>
     <span class="post-list-date">
@@ -129,7 +129,7 @@
   
   <li class="post-list-child">
     <div class="post-list-left">
-      <div class="post-list-symbol">🚩</div>
+      <div class="post-list-symbol">✦</div>
       <a href="/2026/08/13/updateCount()和label标签/">updateConut()和label标签</a>
     </div>
     <span class="post-list-date">
@@ -139,7 +139,7 @@
   
   <li class="post-list-child">
     <div class="post-list-left">
-      <div class="post-list-symbol">🚩</div>
+      <div class="post-list-symbol">✦</div>
       <a href="/2026/08/11/Dashboard开发中事件点击和层级问题/">Dashboard点击事件和层级问题</a>
     </div>
     <span class="post-list-date">
