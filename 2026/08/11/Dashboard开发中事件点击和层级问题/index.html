@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    Dashboard点击事件和层级问题
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="interaktor's Blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">😳</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E6%98%AF%E7%BB%99ul-content%E8%80%8C%E4%B8%8D%E6%98%AFdel"><span class="toc-number">1.</span> <span class="toc-text">为什么点击事件是给ul_content而不是del</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88ul-content%E8%BF%99%E4%B8%AA%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E8%A6%81%E5%9C%A8add%E7%9A%84%E5%A4%96%E9%9D%A2"><span class="toc-number">2.</span> <span class="toc-text">为什么ul_content这个点击事件要在add的外面</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">Dashboard点击事件和层级问题</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2026-08-11</div>
+      <div class="article-tags">
+        
+        <a href="/tags/JavaScript Study WebDev">#JavaScript Study WebDev</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h2 id="为什么点击事件是给ul-content而不是del">为什么点击事件是给ul_content而不是del</h2>
+<p>1.在设定事件点击的时候，把事件给到了del，导致无法正常删除元素</p>
+<p>2.首先我发现获取元素时没有添加All，因为每次点击都会生成一个del，所有del是以伪数组形式存储的，它需要指定一个元素，所以我添加了for循环来解决，但是问题还是没有完全解决，在控制台界面仍会报错，显示<code>NotFoundError: Failed to execute 'removeChild' on</code>，我改变方向，往源头去找，我发现可以利用事件委托来进行删除，不需要把事件点击给del这个子元素，完全可以将事件给到其父父级元素<code>ul_content</code></p>
+<p>3.我把点击事件给<code>ul_content</code>后在里面不需要使用for循环也可以实现点击del删除li，利用事件冒泡和委托可以准确查找到del的父元素li，然后将对应的li删除</p>
+<p>4.一次遇到这类问题，可以优先使用事件委托来解决，找到该元素的父级，利用事件冒泡完成</p>
+<h2 id="为什么ul-content这个点击事件要在add的外面">为什么ul_content这个点击事件要在add的外面</h2>
+<p>1.在给ul_content设定事件时，点击del，仍会报错，无法正常删除</p>
+<p>2.我开始在控制台寻找问题所在，报错仍是<code>NotFoundError: Failed to execute 'removeChild' on</code>我开始找其它问题，我研究代码发现一个层级问题，我当前的<code>ul_content</code>点击事件在add这个添加事件里面，也就是我每次点击一次 add 按钮添加新任务，因为<code>ul_content</code>在add里面，所以就会给 <code>ul_content</code> <strong>多绑一次</strong> <code>click</code> 事件，当加了 2 个任务，<code>ul_content</code> 身上就有 2 个完全相同的监听器</p>
+<p>3.我把<code>ul_content</code>给放在了add的外面与add同级，这样就不会出现问题（因为ul是本来就在HTML布局里面的，所以不在Add里面，如果元素是通过另一个元素生成的，那么它就属于后存在元素，事件可以在该父事件里写）</p>
+<p>4.如果元素是本来就存在的可以分开写，如果元素是通过JS生成的，可以在生成它的那个父元素事件里面添加新事件，本次学习知道了如何区分事件的层级，是在一个事件里面，还是独立在外面，作为同级</p>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info">© 2026 interaktor | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a></div>
+  <div class="footer-info">
+    
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/interaktor"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    
+  </div>
+</footer>
+
+  </div>
+</body>
+
+
+</html>

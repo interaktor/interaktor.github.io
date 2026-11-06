@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    发送短信案例整理
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="interaktor's Blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">😳</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%9A%E5%87%BA%E6%9D%A5%E7%9A%84setTimeout"><span class="toc-number">1.</span> <span class="toc-text">1.多出来的setTimeout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%BF%98%E8%AE%B0%E6%B7%BB%E5%8A%A0%E6%97%B6%E9%97%B4%E5%A4%8D%E5%8E%9F"><span class="toc-number">2.</span> <span class="toc-text">2.忘记添加时间复原</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%85%B3%E4%BA%8Ebtn-disable-false%E6%9C%80%E5%90%8E%E5%86%99%E5%9C%A8%E4%BA%86%E5%93%AA%E9%87%8C"><span class="toc-number">3.</span> <span class="toc-text">3.关于btn.disable &#x3D; false最后写在了哪里</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%82%B9%E5%87%BB%E5%90%8E%E4%BC%9A%E7%AD%89%E4%B8%80%E4%BC%9A%E6%89%8D%E5%BC%80%E5%A7%8B%E5%80%92%E8%AE%A1%E6%97%B6"><span class="toc-number">4.</span> <span class="toc-text">4.为什么点击后会等一会才开始倒计时</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%AE%8C%E6%95%B4JS%E4%BB%A3%E7%A0%81%E5%B1%95%E7%A4%BA"><span class="toc-number">5.</span> <span class="toc-text">5.完整JS代码展示</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">发送短信案例整理</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2026-07-22</div>
+      <div class="article-tags">
+        
+        <a href="/tags/JavaScript Study">#JavaScript Study</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <p>讲一下昨天的一个小案例，就是发送短信验证码的一个小案例，我95%都是我自己做出来的，接下来我来说一下<br>
+剩下5%的问题所在</p>
+<h3 id="1-多出来的setTimeout">1.多出来的setTimeout</h3>
+<p>昨天的代码其实只用setInterval就可以直接做出来，但是我在写的时候觉得要弄一个时间倒计时才可以<br>
+所有多写了一个setTimeout导致步骤多余了，这里面写的也只是一个btn.disable = false，60000 这完全是不用的</p>
+<h3 id="2-忘记添加时间复原">2.忘记添加时间复原</h3>
+<p>昨天的代码到最后到解决的一个问题就是，当我点击了按钮后，时间到了但是呢，当再次点击的时候，按钮只是被禁用了一下，就立马恢复了，后面是看老师的讲解才知道的，当time=0时就把btn的文字和倒计时的时间全部再重置一下就好了</p>
+<h3 id="3-关于btn-disable-false最后写在了哪里">3.关于btn.disable = false最后写在了哪里</h3>
+<p>这句话我最后跟着老师写在了当time=0的那块代码区，很简单，就是当时间为0时把按钮的禁用给解除，按钮的时间也就不用单独写一个时间了，它只需要跟随time就好，当time为0时，它就顺便解除</p>
+<h3 id="4-为什么点击后会等一会才开始倒计时">4.为什么点击后会等一会才开始倒计时</h3>
+<p>因为我们的setInterval的回调时间是1000毫秒，也就是1秒，当点击按钮时，会等待一秒才开始，想要解决也很简单，在else最前面添加</p>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">btn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;<br>btn.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;請等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再試&#x27;</span>; <span class="hljs-comment">// 點擊瞬間立刻更新文字！</span><br>djs--; <span class="hljs-comment">// 預先扣除 1 秒</span><br></code></pre></td></tr></table></div></figure>
+<p>上面是Gemini给我找到的一个小bug，特别感谢:）</p>
+<h3 id="5-完整JS代码展示">5.完整JS代码展示</h3>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//1.获取元素</span><br><span class="hljs-keyword">var</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>);<br><span class="hljs-keyword">var</span> btn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;button&#x27;</span>);<br><span class="hljs-keyword">var</span> djs = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">var</span> loading = <span class="hljs-literal">null</span>;<br><span class="hljs-comment">//2.当按钮按下</span><br>btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">//这里是一个判断条件，如果为空或者超出号码范围，就提示用户修改</span><br>    <span class="hljs-keyword">if</span> (input.<span class="hljs-property">value</span> == <span class="hljs-string">&#x27;&#x27;</span> || input.<span class="hljs-property">value</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">11</span> || input.<span class="hljs-property">value</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">11</span>) &#123;<br>        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请输入正确号码再试&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">//满足条件后会先把按钮禁用，然后在setInterval里面判断</span><br>        btn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;<br>        loading = <span class="hljs-built_in">setInterval</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-comment">//如果倒计时秒数为0的话，就清除这个setInterval, 然后把按钮给复原，把倒计时也复原</span><br>            <span class="hljs-keyword">if</span> (djs == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">clearInterval</span>(loading)<br>                btn.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;获取验证码&#x27;</span>;<br>                btn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">false</span>;<br>                djs = <span class="hljs-number">3</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">//秒数还没等于0时，就一直改变btn里面「倒计时」的文字</span><br>                btn.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;请等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再试&#x27;</span>;<br>                djs--<br>            &#125;<br>        &#125;, <span class="hljs-number">1000</span>) <br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></div></figure>
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info">© 2026 interaktor | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a></div>
+  <div class="footer-info">
+    
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/interaktor"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    
+  </div>
+</footer>
+
+  </div>
+</body>
+
+
+</html>

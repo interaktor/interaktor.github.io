@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    筋斗云案例问题
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="interaktor's Blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">😳</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#cloud%E5%92%8Cli%E7%9A%84%E5%B1%82%E7%BA%A7%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">cloud和li的层级问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#current%E8%A7%A3%E5%86%B3%E4%BA%91%E6%9C%B5%E9%BB%98%E8%AE%A4%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">current解决云朵默认位置</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">筋斗云案例问题</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2026-08-02</div>
+      <div class="article-tags">
+        
+        <a href="/tags/JavaScript Study">#JavaScript Study</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h2 id="cloud和li的层级问题">cloud和li的层级问题</h2>
+<p>问题：鼠标添加mouseenter正确滑动，但是添加了mouseleave筋斗云过来的时候，碰到了鼠标，鼠标就判定没有在li(文字)上面了，筋斗云就一直往左往右，鬼畜bug<br></p>
+<p>解决：首先我们去看一下cloud(筋斗支)和li(文字)的层级，cloud肯定是有position的，因为它必须有这个才能移动，但是li不一定有，这就导致了li的层级比cloud低，也就会触发筋斗云一碰到鼠标，li就判断没有在它上面了，就会导致这个问题，下方代码解决</p>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">li &#123;<br>	<span class="hljs-comment">// 方法一 //</span><br>	<span class="hljs-comment">//一般来说添加relative即可解决问题</span><br>	<span class="hljs-attr">position</span>:relative;<br>&#125;<br>.<span class="hljs-property">cloud</span> &#123;<br>	 <span class="hljs-comment">// 方法二 //</span><br>	 <span class="hljs-comment">//在cloud里面添加c3代码</span><br>	 pointer-<span class="hljs-attr">events</span>:none;<br>	 <span class="hljs-comment">//意思是当鼠标在这个对象上面时，事件为none，不起作用</span><br>&#125;<br></code></pre></td></tr></table></div></figure>
+<p>原理是absolute和relative它们的层级都是一样的，这里是因为HTML中我的li在cloud的后方，后面的优先，所以li的层级就会把cloud给盖掉</p>
+<p>添加pointer-events:none是新方法，给元素添加这个后，有鼠标在它上方，它不会理添加了这个属性的元素，相当透明化了</p>
+<p><strong>二编：经过再次测试，要么加relative要么加pointer，筋斗云始终在li的上方</strong></p>
+<h2 id="current解决云朵默认位置">current解决云朵默认位置</h2>
+<p>我们筋斗云的初始位置是在一个li上面，我们已经解决了鼠标在li上方时，筋斗云跑到li的上方，鼠标离开就回到第一个li，但我们需要一个新的事件，当鼠标点击当前li时，筋斗云把默认位置改为当前点击的li(可以添加点击后文字颜色的变化)，当鼠标在其它li上面时，一离开也会回到我点击的li的上方</p>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//设定一个节流阀 名为current 值默认为0</span><br><span class="hljs-keyword">var</span> current = <span class="hljs-number">0</span><br><span class="hljs-comment">//当鼠标经过li时的代码</span><br><span class="hljs-title class_">Animate</span>(cloud, <span class="hljs-variable language_">this</span>.<span class="hljs-property">offsetLeft</span>)<br><span class="hljs-comment">//当鼠标离开后的默认位置</span><br><span class="hljs-title class_">Animate</span>(cloud,current)<br><span class="hljs-comment">//当鼠标点击li的时候</span><br>current = <span class="hljs-variable language_">this</span>.<span class="hljs-property">offsetLeft</span><br>cloud.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = current<br><span class="hljs-comment">//当鼠标点击后，把当前点击的li的距离左侧的位置给current，然后把cloud的left值改为current，这样cloud它的默认left值就会随着鼠标点击更改了</span><br></code></pre></td></tr></table></div></figure>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info">© 2026 interaktor | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a></div>
+  <div class="footer-info">
+    
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/interaktor"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    
+  </div>
+</footer>
+
+  </div>
+</body>
+
+
+</html>

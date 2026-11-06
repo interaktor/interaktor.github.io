@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    节流阀（轮播图案例）
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="interaktor's Blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">😳</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%B5%81%E9%98%80%EF%BC%88%E8%BD%AE%E6%92%AD%E5%9B%BE%E6%A1%88%E4%BE%8B%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">节流阀（轮播图案例）</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">节流阀（轮播图案例）</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2026-08-03</div>
+      <div class="article-tags">
+        
+        <a href="/tags/JavaScript Study">#JavaScript Study</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <h2 id="节流阀（轮播图案例）">节流阀（轮播图案例）</h2>
+<p>这里主要讲一下节流阀的原理是怎么实现的，主要用到轮播图里的左/右箭头</p>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">right.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                flag = <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">//箭头判断</span><br>                <span class="hljs-keyword">if</span> (num &gt; ul.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">2</span>) &#123;<br>                    num = <span class="hljs-number">0</span><br>                    ul.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = <span class="hljs-number">0</span>;<br>                &#125;<br><br>                num++<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;箭头&#x27;</span> + num);<br>                <span class="hljs-title class_">Animate</span>(ul, - num * box.<span class="hljs-property">offsetWidth</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;);<br>                circle++<br><br>                <span class="hljs-comment">// 圆圈判断</span><br>                <span class="hljs-keyword">if</span> (circle &gt; ol.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>) &#123;<br>                    circle = <span class="hljs-number">0</span><br>                &#125;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;圆圈&#x27;</span> + circle);<br>                <span class="hljs-title function_">circleClean</span>()<br><br>            &#125;<br><br><br>        &#125;)<br>        <span class="hljs-comment">//9.左箭头点击，图片移动</span><br>        left .<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                flag = <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">//箭头判断</span><br>                <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span>) &#123;<br>                    num = ul.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span><br>                    ul.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = -num * box.<span class="hljs-property">offsetWidth</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>                &#125;<br><br><br>                num--<br>                <span class="hljs-title class_">Animate</span>(ul, -num * box.<span class="hljs-property">offsetWidth</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;);<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(circle);<br><br>                circle--<br><br>                <span class="hljs-comment">// 圆圈判断</span><br>                <span class="hljs-keyword">if</span> (circle &lt; <span class="hljs-number">0</span>) &#123;<br>                    circle = ol.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br>                &#125;<br><br><br>                <span class="hljs-title function_">circleClean</span>()<br>            &#125;<br></code></pre></td></tr></table></div></figure>
+<p>首先声明一个全局变量flag作为节流阀，然后我们在动画执行完后才能执行下一个动画，也就是在click外层直接套一个判断，判断没通过，直接不执行所有代码</p>
+<figure class="highlight sqf"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs sqf">(<span class="hljs-number">1</span>)<span class="hljs-built_in">flag</span>默认为<span class="hljs-literal">true</span>，当我们点击的时候，<span class="hljs-built_in">flag</span>变为<span class="hljs-literal">false</span>，此时它没法执行左箭头或者右箭头。当动画结束后，才会执行<span class="hljs-built_in">Animate</span>的回调函数<span class="hljs-built_in">flag</span>这时候才会变成<span class="hljs-literal">true</span>，因为加了判断条件，<span class="hljs-built_in">flag</span>为<span class="hljs-literal">true</span>的时候才能进入左/右箭头的代码<br>(<span class="hljs-number">2</span>)也就是当我们进入<span class="hljs-keyword">if</span>的一瞬间，先把<span class="hljs-built_in">flag</span>改为<span class="hljs-literal">false</span>，让其他箭头没法进入代码(<span class="hljs-built_in">flag</span>为<span class="hljs-literal">true</span>才能进入click里面的所有代码)，等动画执行完毕后才会执行回调函数，这个时候<span class="hljs-built_in">flag</span>再改为<span class="hljs-literal">true</span><br></code></pre></td></tr></table></div></figure>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info">© 2026 interaktor | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a></div>
+  <div class="footer-info">
+    
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/interaktor"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    
+  </div>
+</footer>
+
+  </div>
+</body>
+
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8">
+  
+  <title>
+    
+    forEach执行原理讲解
+    
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="me" href="https://mas.uniiem.com/@mizore" />
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
+
+  
+<link rel="stylesheet" href="/css/prism/material-light.css">
+
+  
+<link rel="stylesheet" href="/css/prism/material-dark.css">
+
+  
+<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+  
+<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&family=Noto+Sans+SC:wght@300&display=swap.css">
+
+  
+<link rel="stylesheet" href="/iconfont/iconfont.css">
+
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="interaktor's Blog" type="application/atom+xml">
+</head>
+<script>
+  function setIsNight(isNight) {
+    localStorage.setItem('isNight', isNight)
+  }
+
+  function getIsNight() {
+    return localStorage.getItem('isNight')
+  }
+
+  function switchTheme() {
+    let isNight = getIsNight()
+    if (isNight === 'false') {
+      document.documentElement.className = 'dark'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+      setIsNight('true')
+    } else {
+      document.documentElement.className = 'light'
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+      setIsNight('false')
+    }
+  }
+
+  let isNight = getIsNight()
+  if (isNight == null) {
+    isNight = 'false'
+    setIsNight('false')
+  }
+  if (isNight === 'false') {
+    document.documentElement.className = 'light'
+  } else {
+    document.documentElement.className = 'dark'
+  }
+</script>
+
+<body>
+  <div class="show-area">
+    <header>
+  <ul class="nav">
+    <li class="nav-child">
+      <a href="/">首页</a>
+    </li>
+    <li class="nav-child">
+      <a href="/categories">分类</a>
+    </li>
+    <li class="nav-child">
+      <a href="/tags">标签</a>
+    </li>
+    <li class="nav-child">
+      <a href="/about">关于</a>
+    </li>
+    <li class="nav-child">
+      <a href="/collection">收藏</a>
+    </li>
+    <li class="nav-child">
+      <a href="/board">留言</a>
+    </li>
+  </ul>
+  <div class="theme-switcher" onclick="switchTheme()">😳</div>
+  <script>
+    if (isNight === 'false') {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😳'
+    } else {
+      document.getElementsByClassName('theme-switcher')[0].textContent = '😴'
+    }
+  </script>
+</header>
+    <main class="main-body">
+  <div class="toc-container">
+    <div class="toc-toggle">
+      <i id="toc-b-icon" class="iconfont icon-liebiao-01" onclick="toggleShow()"></i>
+    </div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EscrollIntoView%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">关于scrollIntoView的一些知识点</span></a></li></ol>
+  </div>
+  
+  <script>
+    var show = false
+    function toggleShow() {
+      if (show) {
+        document.getElementsByClassName('toc')[0].className = 'toc'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-liebiao-01'
+      } else {
+        document.getElementsByClassName('toc')[0].className = 'toc show'
+        document.getElementById('toc-b-icon').className = 'iconfont icon-quxiao-01'
+      }
+      show = !show
+    }
+    document.getElementsByClassName('toc')[0].onclick = toggleShow
+  </script>
+  
+  <div class="article-header">
+    <h1 class="article-title">forEach执行原理讲解</h1>
+    <div class="article-details">
+      <div class="article-post-date"><span>Posted at </span> 2026-09-01</div>
+      <div class="article-tags">
+        
+        <a href="/tags/JavaScript Study">#JavaScript Study</a>
+        
+      </div>
+    </div>
+  </div>
+  <div class="article">
+  
+  <p>今天主要讲一下forEach以及里面的新方法，因为这个东西让我苦恼了二次，所以今天打算把这个讲清楚，主要拿「电梯案例」来讲一下forEach</p>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">   <span class="hljs-comment">// 1. 获取所有的内容模块和导航模块</span><br>    <span class="hljs-keyword">const</span> sections = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;.section&#x27;</span>);<br>    <span class="hljs-keyword">const</span> navItems = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;.elevator-item&#x27;</span>);<br>  <br>    <span class="hljs-comment">// 功能一：点击导航按钮，页面平滑滚动到对应板块</span><br><span class="hljs-comment">//遍历并绑定所有的navItems</span><br>    navItems.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;<br>        item.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>          	<span class="hljs-comment">//用变量把当前的「内容模块」获取过来</span><br>          	<span class="hljs-comment">//因为「内容模块」和「导航模块」数量都是相同的，所以当我们当前了第二个navItem，它就会获取当前navItem的位置（数字），也就是1，然后sections[1]也就对应的内容模块的第1个，因为它们数量和位置都是对齐的，所以当前navItem的位置就是sections的位置</span><br>            <span class="hljs-keyword">const</span> targetSection = sections[index];<br>          <br>            <span class="hljs-comment">// 新方法：scrollIntoView()意思就是「滚动直到显示页面」</span><br>            targetSection.<span class="hljs-title function_">scrollIntoView</span>(&#123; <span class="hljs-attr">behavior</span>: <span class="hljs-string">&#x27;smooth&#x27;</span> &#125;);<br>        &#125;);<br>    &#125;);<br><br> <br>    <span class="hljs-comment">// 功能二：页面滚动时，自动计算当前在哪个板块，并高亮对应按钮</span><br>    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;scroll&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-comment">//获取页面被滚动的高度（兼容写法）</span><br>        <span class="hljs-keyword">const</span> currentScrollTop = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollTop</span> || <span class="hljs-variable language_">window</span>.<span class="hljs-property">pageYOffset</span>;<br>        <span class="hljs-comment">//遍历所有的「内容模块」</span><br>        sections.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">section, index</span>) =&gt;</span> &#123;<br>            <span class="hljs-comment">//1.获取当前 section 距离顶部的距离</span><br>          	<span class="hljs-comment">//2.这里window的的监听事件是scroll，所以只要有一点点滚动都会触发这个循环（一次循环会把数组的每个值都遍历一次）</span><br>          	<span class="hljs-comment">//3.也就是一次循环就会把这三个sections都会使用一遍，只要有滚动就会触发，每次都是从第0个sections开始，滚动一次就会循环数组中所有的值</span><br>            <span class="hljs-keyword">const</span> sectionTop = section.<span class="hljs-property">offsetTop</span>; <span class="hljs-comment">//注意是section,是forEach里面第一个参数</span><br>          <br>          <br>            <span class="hljs-comment">// 如果【卷去的高度】达到了【当前板块的高度】（为了提升体验，减去 200px 作为缓冲触发线）</span><br>          	<span class="hljs-comment">//！！！！！！重点！！！！！！！</span><br>          	<span class="hljs-comment">//每次循环每个sections都会判断一次，第一个肯定是满足的，逻辑是这这样的，当第二个条件也满足时，第一个仍然满足，第一个会先启用，但是每次循环都会把这三个section都调试一次，就会出现第一个满足但是在一瞬间，第二个也满足，优先级原理第二个会启用，第一个就没有了，因为数组循环是从0，1，2依次开始的，如果第三个也满足了的话，前面两个还是满足的状态，0和1会分别在一瞬间都会被启用一次(太快肉眼看不见的)，到第三个后，前两个就不显示启用了，因为下方判断里用到了排他思想，每次有满足的都会清除所有，然后只显示最后一个满足条件的，也就是说当currentScollTop超过了所有的sectionTop那么三个条件都满足，但是排他思想只允许有一个显示，只能是所有满足数组值中最后一个满足的才会启用（前面的数值还是满足状态）</span><br>            <span class="hljs-keyword">if</span> (currentScrollTop &gt;= sectionTop - <span class="hljs-number">200</span>) &#123;<br>                <span class="hljs-comment">// 先移除所有按钮的高亮类名</span><br>                navItems.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">nav</span> =&gt;</span> nav.<span class="hljs-property">classList</span>.<span class="hljs-title function_">remove</span>(<span class="hljs-string">&#x27;active&#x27;</span>));<br>                <span class="hljs-comment">// 给当前索引对应的按钮加上高亮</span><br>                navItems[index].<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;active&#x27;</span>);<br>            &#125;<br>        &#125;);<br>    &#125;);<br></code></pre></td></tr></table></div></figure>
+<h2 id="关于scrollIntoView的一些知识点">关于scrollIntoView的一些知识点</h2>
+<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//里面主要有两个属性（也可以不填&#123;...&#125;，只不过是默认没有动画跳转）</span><br><span class="hljs-title function_">scrollIntoView</span>(&#123;<br>  <span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;&#x27;</span>,<br>  <span class="hljs-attr">block</span>:<span class="hljs-string">&#x27;&#x27;</span><br>&#125;)<br><span class="hljs-comment">//behavior属性</span><br><span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;smooth&#x27;</span> 平滑的，带动画效果的移动（最常用）<br><span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;auto&#x27;</span> 瞬间移动<br><span class="hljs-attr">behavior</span>:<span class="hljs-string">&#x27;instant&#x27;</span> 瞬间移动<br><span class="hljs-comment">//block属性</span><br><span class="hljs-attr">block</span>: <span class="hljs-string">&#x27;start&#x27;</span>：元素的顶部对齐屏幕顶部（最常用）<br><span class="hljs-attr">block</span>: <span class="hljs-string">&#x27;center&#x27;</span>：让元素停在屏幕的正中间<br><span class="hljs-attr">block</span>: <span class="hljs-string">&#x27;end&#x27;</span>：元素的底部对齐屏幕底部<br></code></pre></td></tr></table></div></figure>
+
+</div>
+  <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
+  
+<script src="/o3o/o3o.js"></script>
+
+  
+<link rel="stylesheet" href="/css/o3o.css">
+
+</main>
+    <footer>
+  <div class="footer-info">© 2026 interaktor | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> | Theme <a
+      target="_blank" rel="noopener" href="https://github.com/mizoreyo/hexo-theme-insnow">Insnow</a></div>
+  <div class="footer-info">
+    
+    <a class="footer-i" target="_blank" rel="noopener" href="https://github.com/interaktor"><i class="iconfont icon-github-fill"></i></a>
+    <a class="footer-i" href="/atom.xml"><i class="iconfont icon-rss"></i></a>
+    
+  </div>
+</footer>
+
+  </div>
+</body>
+
+
+</html>
