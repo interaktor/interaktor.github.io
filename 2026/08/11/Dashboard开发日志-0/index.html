@@ -12,22 +12,10 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="me" href="https://mas.uniiem.com/@mizore" />
   
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
 <link rel="stylesheet" href="/css/prism/material-light.css">
 
   
 <link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -148,13 +136,32 @@
   <p>这个日志主要说一下我开发中学习到的新方法</p>
 <h2 id="在-里面嵌入变量元素等">在``里面嵌入变量元素等</h2>
 <p>在使用「反斜号」中，里面可能需要插入一些变量等，这个时候如果你直接在里面写变量的话，是不会起作用的，因为在「反斜号」里面无法直接调用或者使用单双引号来调用，要用到一个JavaScript 样板字串</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//使用方法</span><br><span class="hljs-keyword">var</span> num = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">var</span> content = <span class="hljs-string">`数字实时数据是<span class="hljs-subst">$&#123;num&#125;</span>`</span><br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//使用方法</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> content <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">数字实时数据是</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>num<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span></code></pre>
 <h2 id="classList-contains检测">classList.contains检测</h2>
 <p>在现代开发中，如果还在使用className来进行判断元素，这方法是有风险且不推荐的，在最新的开发中你想要判断点击的元素是不是你想找的，我们可以用一个新的方法</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//旧方法className</span><br><span class="hljs-keyword">if</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">className</span> === <span class="hljs-string">&#x27;focus&#x27;</span>) &#123;<br>	<span class="hljs-comment">//旧方法问题很多，不推荐使用了</span><br>&#125;<br><span class="hljs-comment">//新方法classList.contains()</span><br>box.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<br>	<span class="hljs-keyword">if</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">classList</span>.<span class="hljs-title function_">contains</span>(<span class="hljs-string">&#x27;focus&#x27;</span>)) &#123;<br>	<span class="hljs-comment">//它可以找你当前点击的这个元素的类名是不是focus如果是就返回true,不是则返回false</span><br>	&#125;<br>&#125;)<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//旧方法className</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>className <span class="token operator">===</span> <span class="token string">'focus'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//旧方法问题很多，不推荐使用了</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">//新方法classList.contains()</span>
+box<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">'focus'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//它可以找你当前点击的这个元素的类名是不是focus如果是就返回true,不是则返回false</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code></pre>
 <h2 id="flex弹性布局学习">flex弹性布局学习</h2>
 <p>第一次学flex，之前并没有学过，今天大概讲一下自己学到的知识点</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">1.</span><span class="hljs-attr">display</span>:flex的作用是让<span class="hljs-variable constant_">HTML</span>元素变成一个弹性容器，可以让里面的子元素自动排列，对齐和分配剩余空间<br><br><span class="hljs-number">2.</span>justify-<span class="hljs-attr">content</span>:space-between可以让元素分为两端对齐<br><br><span class="hljs-number">3.</span>align-<span class="hljs-attr">items</span>:center可以让元素动态垂直居中<br><br><span class="hljs-number">4.</span>flex-<span class="hljs-attr">direction</span>:column使该元素布局变成纵向的（row横向布局）<br><br><span class="hljs-number">5.</span><span class="hljs-attr">gap</span>:10px它会让设定了flex里面的元素从缝隙之间开始算，给它们之间加一个10px的「空气墙」，增强版的margin<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token number">1</span><span class="token punctuation">.</span>display<span class="token operator">:</span>flex的作用是让<span class="token constant">HTML</span>元素变成一个弹性容器，可以让里面的子元素自动排列，对齐和分配剩余空间
+
+<span class="token number">2</span><span class="token punctuation">.</span>justify<span class="token operator">-</span>content<span class="token operator">:</span>space<span class="token operator">-</span>between可以让元素分为两端对齐
+
+<span class="token number">3</span><span class="token punctuation">.</span>align<span class="token operator">-</span>items<span class="token operator">:</span>center可以让元素动态垂直居中
+
+<span class="token number">4</span><span class="token punctuation">.</span>flex<span class="token operator">-</span>direction<span class="token operator">:</span>column使该元素布局变成纵向的（row横向布局）
+
+<span class="token number">5</span><span class="token punctuation">.</span>gap<span class="token operator">:</span>10px它会让设定了flex里面的元素从缝隙之间开始算，给它们之间加一个10px的「空气墙」，增强版的margin</code></pre>
 
 </div>
   <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>

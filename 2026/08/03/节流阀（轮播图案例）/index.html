@@ -12,22 +12,10 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="me" href="https://mas.uniiem.com/@mizore" />
   
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
 <link rel="stylesheet" href="/css/prism/material-light.css">
 
   
 <link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -143,9 +131,63 @@
   
   <h2 id="节流阀（轮播图案例）">节流阀（轮播图案例）</h2>
 <p>这里主要讲一下节流阀的原理是怎么实现的，主要用到轮播图里的左/右箭头</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">right.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                flag = <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">//箭头判断</span><br>                <span class="hljs-keyword">if</span> (num &gt; ul.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">2</span>) &#123;<br>                    num = <span class="hljs-number">0</span><br>                    ul.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = <span class="hljs-number">0</span>;<br>                &#125;<br><br>                num++<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;箭头&#x27;</span> + num);<br>                <span class="hljs-title class_">Animate</span>(ul, - num * box.<span class="hljs-property">offsetWidth</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;);<br>                circle++<br><br>                <span class="hljs-comment">// 圆圈判断</span><br>                <span class="hljs-keyword">if</span> (circle &gt; ol.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>) &#123;<br>                    circle = <span class="hljs-number">0</span><br>                &#125;<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;圆圈&#x27;</span> + circle);<br>                <span class="hljs-title function_">circleClean</span>()<br><br>            &#125;<br><br><br>        &#125;)<br>        <span class="hljs-comment">//9.左箭头点击，图片移动</span><br>        left .<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-keyword">if</span> (flag) &#123;<br>                flag = <span class="hljs-literal">false</span>;<br>                <span class="hljs-comment">//箭头判断</span><br>                <span class="hljs-keyword">if</span> (num == <span class="hljs-number">0</span>) &#123;<br>                    num = ul.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span><br>                    ul.<span class="hljs-property">style</span>.<span class="hljs-property">left</span> = -num * box.<span class="hljs-property">offsetWidth</span> + <span class="hljs-string">&#x27;px&#x27;</span>;<br>                &#125;<br><br><br>                num--<br>                <span class="hljs-title class_">Animate</span>(ul, -num * box.<span class="hljs-property">offsetWidth</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>                    flag = <span class="hljs-literal">true</span>;<br>                &#125;);<br>                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(circle);<br><br>                circle--<br><br>                <span class="hljs-comment">// 圆圈判断</span><br>                <span class="hljs-keyword">if</span> (circle &lt; <span class="hljs-number">0</span>) &#123;<br>                    circle = ol.<span class="hljs-property">children</span>.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>;<br>                &#125;<br><br><br>                <span class="hljs-title function_">circleClean</span>()<br>            &#125;<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">right<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                <span class="token comment">//箭头判断</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">></span> ul<span class="token punctuation">.</span>children<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    num <span class="token operator">=</span> <span class="token number">0</span>
+                    ul<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+
+                num<span class="token operator">++</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'箭头'</span> <span class="token operator">+</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">Animate</span><span class="token punctuation">(</span>ul<span class="token punctuation">,</span> <span class="token operator">-</span> num <span class="token operator">*</span> box<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                circle<span class="token operator">++</span>
+
+                <span class="token comment">// 圆圈判断</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>circle <span class="token operator">></span> ol<span class="token punctuation">.</span>children<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    circle <span class="token operator">=</span> <span class="token number">0</span>
+                <span class="token punctuation">&#125;</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'圆圈'</span> <span class="token operator">+</span> circle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token function">circleClean</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+            <span class="token punctuation">&#125;</span>
+
+
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token comment">//9.左箭头点击，图片移动</span>
+        left <span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>flag<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                flag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                <span class="token comment">//箭头判断</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    num <span class="token operator">=</span> ul<span class="token punctuation">.</span>children<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span>
+                    ul<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> <span class="token operator">-</span>num <span class="token operator">*</span> box<span class="token punctuation">.</span>offsetWidth <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+
+
+                num<span class="token operator">--</span>
+                <span class="token function">Animate</span><span class="token punctuation">(</span>ul<span class="token punctuation">,</span> <span class="token operator">-</span>num <span class="token operator">*</span> box<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    flag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>circle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                circle<span class="token operator">--</span>
+
+                <span class="token comment">// 圆圈判断</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>circle <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    circle <span class="token operator">=</span> ol<span class="token punctuation">.</span>children<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+
+
+                <span class="token function">circleClean</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#125;</span></code></pre>
 <p>首先声明一个全局变量flag作为节流阀，然后我们在动画执行完后才能执行下一个动画，也就是在click外层直接套一个判断，判断没通过，直接不执行所有代码</p>
-<figure class="highlight sqf"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs sqf">(<span class="hljs-number">1</span>)<span class="hljs-built_in">flag</span>默认为<span class="hljs-literal">true</span>，当我们点击的时候，<span class="hljs-built_in">flag</span>变为<span class="hljs-literal">false</span>，此时它没法执行左箭头或者右箭头。当动画结束后，才会执行<span class="hljs-built_in">Animate</span>的回调函数<span class="hljs-built_in">flag</span>这时候才会变成<span class="hljs-literal">true</span>，因为加了判断条件，<span class="hljs-built_in">flag</span>为<span class="hljs-literal">true</span>的时候才能进入左/右箭头的代码<br>(<span class="hljs-number">2</span>)也就是当我们进入<span class="hljs-keyword">if</span>的一瞬间，先把<span class="hljs-built_in">flag</span>改为<span class="hljs-literal">false</span>，让其他箭头没法进入代码(<span class="hljs-built_in">flag</span>为<span class="hljs-literal">true</span>才能进入click里面的所有代码)，等动画执行完毕后才会执行回调函数，这个时候<span class="hljs-built_in">flag</span>再改为<span class="hljs-literal">true</span><br></code></pre></td></tr></table></div></figure>
+<pre class="language-none"><code class="language-none">(1)flag默认为true，当我们点击的时候，flag变为false，此时它没法执行左箭头或者右箭头。当动画结束后，才会执行Animate的回调函数flag这时候才会变成true，因为加了判断条件，flag为true的时候才能进入左&#x2F;右箭头的代码
+(2)也就是当我们进入if的一瞬间，先把flag改为false，让其他箭头没法进入代码(flag为true才能进入click里面的所有代码)，等动画执行完毕后才会执行回调函数，这个时候flag再改为true</code></pre>
 
 </div>
   <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>

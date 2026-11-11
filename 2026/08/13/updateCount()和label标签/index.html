@@ -12,22 +12,10 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="me" href="https://mas.uniiem.com/@mizore" />
   
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
 <link rel="stylesheet" href="/css/prism/material-light.css">
 
   
 <link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -145,10 +133,41 @@
   
   <h2 id="核心统计函数：updateCount">核心统计函数：updateCount()</h2>
 <p>想要在TodoList里面实现「active」「completed」这两个状态的计数系统的话，一般来说有两种选择，第一个就是声明一个变量，然后在增加，删除，选择时进行加减的操作，但是这样会有一个很致命的问题，就是在增加或减少时，你必须记得它的位置和逻辑，每添加一个你就要会思考一次，一旦增减变多，事件就会变得很乱，脑子也容易宕机<br>所以这里有一个新方法，就是在JS中创建一个函数，名称updateCount，原理就是每次有增减等操作时List会发生改变的时候，就让这个函数执行一次，函数内是动态获取的，每次执行都会获取最新的数量</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//updateCount函数讲解</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">updateCount</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-comment">//1.先获取所有的list</span><br>	<span class="hljs-keyword">var</span> listAll = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;li&#x27;</span>);<br>	<span class="hljs-comment">//2.再获取所有带completed的list（带完成类名的list）</span><br>	<span class="hljs-keyword">var</span> completed = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;.completed&#x27;</span>);<br>	<span class="hljs-comment">//3.算出当前没完成的list数量，注意！因为它是获取过来的是一个列表（有多个）我们要让它们相减，必须是数字相减才行，所以要让这两个元素的长度相减才正确，这样才是一个具体的数字，而不是模糊的概念！</span><br>	<span class="hljs-keyword">var</span> active = listAll.<span class="hljs-property">length</span> - completed.<span class="hljs-property">length</span>;<br>	<br>	<span class="hljs-comment">//4.把值实时给 active 和 completed </span><br>	<span class="hljs-comment">//在这里如果你没有获取过active和completed，直接在querySelector()后面接innerHTML</span><br>	<span class="hljs-comment">//如果你已经在函数外获取过active和completed，直接输入获取的名称接innerHTML即可</span><br>	active_conut.<span class="hljs-property">innerHTML</span> = active;<br>	completed_conut.<span class="hljs-property">innerHTML</span> = completed;<br>&#125;<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//updateCount函数讲解</span>
+<span class="token keyword">function</span> <span class="token function">updateCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//1.先获取所有的list</span>
+	<span class="token keyword">var</span> listAll <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//2.再获取所有带completed的list（带完成类名的list）</span>
+	<span class="token keyword">var</span> completed <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'.completed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//3.算出当前没完成的list数量，注意！因为它是获取过来的是一个列表（有多个）我们要让它们相减，必须是数字相减才行，所以要让这两个元素的长度相减才正确，这样才是一个具体的数字，而不是模糊的概念！</span>
+	<span class="token keyword">var</span> active <span class="token operator">=</span> listAll<span class="token punctuation">.</span>length <span class="token operator">-</span> completed<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+	
+	<span class="token comment">//4.把值实时给 active 和 completed </span>
+	<span class="token comment">//在这里如果你没有获取过active和completed，直接在querySelector()后面接innerHTML</span>
+	<span class="token comment">//如果你已经在函数外获取过active和completed，直接输入获取的名称接innerHTML即可</span>
+	active_conut<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> active<span class="token punctuation">;</span>
+	completed_conut<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> completed<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 <h2 id="HTML-label-标签的绑定机制">HTML <code>&lt;label&gt;</code> 标签的绑定机制</h2>
 <p>label这个标签在基础HTML中就学过的，它的原理是让两个元素「绑定」在一起，最常用的是让input和内容进行绑定，「当点击内容的时候，这个input也会触发，当前点击input，文字也可以进行相应的处理」，它可以让两个元素绑定之后，我们只需要处理其中一个关键的元素就可以控制另一个元素</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">&lt;label&gt;<br>	<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&#x27;checkbox&#x27;</span>&gt;</span></span><br><span class="language-xml">	<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>我是内容<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span><br><br><span class="hljs-comment">//1.用JS来处理，当我点击了当前input后，我就让旁边这个p，把它的样式之类的进行改变</span><br><span class="hljs-keyword">if</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">tagName</span> === <span class="hljs-string">&#x27;INPUT&#x27;</span>) &#123;<br>	<span class="hljs-comment">//2.把这个p先拿过来，存在一个变量里</span><br>	<span class="hljs-keyword">let</span> current_p = e.<span class="hljs-property">target</span>.<span class="hljs-property">nextElementSibling</span>;<br>	<span class="hljs-comment">//3.然后再判断，这里再判断我点击的这个input它的状态是什么，根据input的不同来写</span><br>	<span class="hljs-keyword">if</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">checked</span> == <span class="hljs-literal">true</span>) &#123;<br>	<span class="hljs-comment">//4.如果当前input被选中或打开之类的，我们就让文字也跟随变化</span><br>		current_p.<span class="hljs-property">className</span> = <span class="hljs-string">&#x27;lis style&#x27;</span>;<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>	<span class="hljs-comment">//当前状态被取消之类的，我们就让文字回归默认状态</span><br>		current_className = <span class="hljs-string">&#x27;lis&#x27;</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>label<span class="token operator">></span>
+	<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">'checkbox'</span><span class="token operator">></span>
+	<span class="token operator">&lt;</span>p<span class="token operator">></span>我是内容<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>label<span class="token operator">></span>
+
+<span class="token comment">//1.用JS来处理，当我点击了当前input后，我就让旁边这个p，把它的样式之类的进行改变</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>tagName <span class="token operator">===</span> <span class="token string">'INPUT'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//2.把这个p先拿过来，存在一个变量里</span>
+	<span class="token keyword">let</span> current_p <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>nextElementSibling<span class="token punctuation">;</span>
+	<span class="token comment">//3.然后再判断，这里再判断我点击的这个input它的状态是什么，根据input的不同来写</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>checked <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//4.如果当前input被选中或打开之类的，我们就让文字也跟随变化</span>
+		current_p<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'lis style'</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//当前状态被取消之类的，我们就让文字回归默认状态</span>
+		current_className <span class="token operator">=</span> <span class="token string">'lis'</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
 </div>
   <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>

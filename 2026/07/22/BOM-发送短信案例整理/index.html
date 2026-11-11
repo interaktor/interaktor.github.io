@@ -12,22 +12,10 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="me" href="https://mas.uniiem.com/@mizore" />
   
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
 <link rel="stylesheet" href="/css/prism/material-light.css">
 
   
 <link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -152,10 +140,39 @@
 <p>这句话我最后跟着老师写在了当time=0的那块代码区，很简单，就是当时间为0时把按钮的禁用给解除，按钮的时间也就不用单独写一个时间了，它只需要跟随time就好，当time为0时，它就顺便解除</p>
 <h3 id="4-为什么点击后会等一会才开始倒计时">4.为什么点击后会等一会才开始倒计时</h3>
 <p>因为我们的setInterval的回调时间是1000毫秒，也就是1秒，当点击按钮时，会等待一秒才开始，想要解决也很简单，在else最前面添加</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript">btn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;<br>btn.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;請等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再試&#x27;</span>; <span class="hljs-comment">// 點擊瞬間立刻更新文字！</span><br>djs--; <span class="hljs-comment">// 預先扣除 1 秒</span><br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">btn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+btn<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'請等待'</span> <span class="token operator">+</span> djs <span class="token operator">+</span> <span class="token string">'秒再試'</span><span class="token punctuation">;</span> <span class="token comment">// 點擊瞬間立刻更新文字！</span>
+djs<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token comment">// 預先扣除 1 秒</span></code></pre>
 <p>上面是Gemini给我找到的一个小bug，特别感谢:）</p>
 <h3 id="5-完整JS代码展示">5.完整JS代码展示</h3>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//1.获取元素</span><br><span class="hljs-keyword">var</span> input = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;input&#x27;</span>);<br><span class="hljs-keyword">var</span> btn = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;button&#x27;</span>);<br><span class="hljs-keyword">var</span> djs = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">var</span> loading = <span class="hljs-literal">null</span>;<br><span class="hljs-comment">//2.当按钮按下</span><br>btn.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">//这里是一个判断条件，如果为空或者超出号码范围，就提示用户修改</span><br>    <span class="hljs-keyword">if</span> (input.<span class="hljs-property">value</span> == <span class="hljs-string">&#x27;&#x27;</span> || input.<span class="hljs-property">value</span>.<span class="hljs-property">length</span> &lt; <span class="hljs-number">11</span> || input.<span class="hljs-property">value</span>.<span class="hljs-property">length</span> &gt; <span class="hljs-number">11</span>) &#123;<br>        <span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;请输入正确号码再试&#x27;</span>)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">//满足条件后会先把按钮禁用，然后在setInterval里面判断</span><br>        btn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">true</span>;<br>        loading = <span class="hljs-built_in">setInterval</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-comment">//如果倒计时秒数为0的话，就清除这个setInterval, 然后把按钮给复原，把倒计时也复原</span><br>            <span class="hljs-keyword">if</span> (djs == <span class="hljs-number">0</span>) &#123;<br>                <span class="hljs-built_in">clearInterval</span>(loading)<br>                btn.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;获取验证码&#x27;</span>;<br>                btn.<span class="hljs-property">disabled</span> = <span class="hljs-literal">false</span>;<br>                djs = <span class="hljs-number">3</span>;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">//秒数还没等于0时，就一直改变btn里面「倒计时」的文字</span><br>                btn.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;请等待&#x27;</span> + djs + <span class="hljs-string">&#x27;秒再试&#x27;</span>;<br>                djs--<br>            &#125;<br>        &#125;, <span class="hljs-number">1000</span>) <br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//1.获取元素</span>
+<span class="token keyword">var</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> btn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> djs <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> loading <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token comment">//2.当按钮按下</span>
+btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//这里是一个判断条件，如果为空或者超出号码范围，就提示用户修改</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>input<span class="token punctuation">.</span>value <span class="token operator">==</span> <span class="token string">''</span> <span class="token operator">||</span> input<span class="token punctuation">.</span>value<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">11</span> <span class="token operator">||</span> input<span class="token punctuation">.</span>value<span class="token punctuation">.</span>length <span class="token operator">></span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'请输入正确号码再试'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">//满足条件后会先把按钮禁用，然后在setInterval里面判断</span>
+        btn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        loading <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">//如果倒计时秒数为0的话，就清除这个setInterval, 然后把按钮给复原，把倒计时也复原</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>djs <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">clearInterval</span><span class="token punctuation">(</span>loading<span class="token punctuation">)</span>
+                btn<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'获取验证码'</span><span class="token punctuation">;</span>
+                btn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                djs <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">//秒数还没等于0时，就一直改变btn里面「倒计时」的文字</span>
+                btn<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'请等待'</span> <span class="token operator">+</span> djs <span class="token operator">+</span> <span class="token string">'秒再试'</span><span class="token punctuation">;</span>
+                djs<span class="token operator">--</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code></pre>
 </div>
   <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
   

@@ -12,22 +12,10 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="me" href="https://mas.uniiem.com/@mizore" />
   
-<script src="https://cdn.staticfile.org/prism/1.17.1/prism.min.js"></script>
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/autoloader/prism-autoloader.min.js"></script>
-
-  
 <link rel="stylesheet" href="/css/prism/material-light.css">
 
   
 <link rel="stylesheet" href="/css/prism/material-dark.css">
-
-  
-<script src="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
-
-  
-<link rel="stylesheet" href="https://cdn.staticfile.org/prism/1.17.1/plugins/line-numbers/prism-line-numbers.min.css">
 
   
 <link rel="stylesheet" href="/css/style.css">
@@ -156,13 +144,47 @@
 <p>将页面的类名进行更细致的分类，相比之前更简洁，添加了更多的注释</p>
 <h2 id="foreach-的使用方法">foreach()的使用方法</h2>
 <p>这个方法可以理解为「专为数组/列表而生的for循环」组成如下代码，以及普通for循环的区别和它不一样的地方</p>
-<figure class="highlight bash"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs bash">Elements.forEach(<span class="hljs-keyword">function</span>(formal-parameter)&#123;<br>	1.Element：是你要循环的列表/数组，这个循环对象它必须是多个，而不能是一个<br>	2.<span class="hljs-keyword">function</span>：每一轮都会创建一个独立的局部作用域(列表/数组有多个值就会有多少轮，每轮创建后到下一个会进行销毁，也就是数组中每一个小元素都有专属的局部作用域，上一个执行完后就销毁然后创建下一个，互不干扰)<br>	3.formal-parameter：这个是形参，里面可以填三个形参，名称随便，但是每个的功能不一样，这里主要讲第一个，它主权用来存储Elements的值，类似于<span class="hljs-keyword">for</span>循环中的Elements[i].onclick给每个元素绑定事件，或者给每个Elements的元素修改样式等等（详细见下方代码）<br>&#125;)<br></code></pre></td></tr></table></div></figure>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ❌ 舊式 for 循環的災難</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i); <span class="hljs-comment">// 你以為會輸出 0, 1, 2？</span><br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;<br><span class="hljs-comment">// 實際輸出：3, 3, 3！ </span><br><span class="hljs-comment">// 因為它們共用了同一個空間，等 1 秒後，i 已經變成 3 了。</span><br></code></pre></td></tr></table></div></figure>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// ✅ 使用 forEach 的獨立空間</span><br>[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>].<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">i</span>) &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i); <br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;);<br><span class="hljs-comment">// 實際輸出：0, 1, 2！</span><br><span class="hljs-comment">// 因為每一輪循環都有一個獨立的 function 空間，把當時的 i 牢牢鎖在了自己的房間裡！</span><br></code></pre></td></tr></table></div></figure>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//function()括号内形参的使用</span><br><span class="hljs-comment">//一般第三个很少使用</span><br><span class="hljs-comment">//总结：第一个类似Element[i]，第二个类似i(代表具体的值)</span><br>elements.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">element, index</span>) &#123;<br>    <span class="hljs-comment">// 1. 用第一個形參改樣式（它代表元素）</span><br>    element.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&#x27;blue&#x27;</span>; <br>    <br>    <span class="hljs-comment">// 2. 用第二個形參做算術（它代表數字 0, 1, 2...）</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;當前算到第 &quot;</span> + index + <span class="hljs-string">&quot; 個元素了&quot;</span>); <br>&#125;);<br><br></code></pre></td></tr></table></div></figure>
+<pre class="language-bash" data-language="bash"><code class="language-bash">Elements.forEach<span class="token punctuation">(</span>function<span class="token punctuation">(</span>formal-parameter<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+	<span class="token number">1</span>.Element：是你要循环的列表/数组，这个循环对象它必须是多个，而不能是一个
+	<span class="token number">2</span>.function：每一轮都会创建一个独立的局部作用域<span class="token punctuation">(</span>列表/数组有多个值就会有多少轮，每轮创建后到下一个会进行销毁，也就是数组中每一个小元素都有专属的局部作用域，上一个执行完后就销毁然后创建下一个，互不干扰<span class="token punctuation">)</span>
+	<span class="token number">3</span>.formal-parameter：这个是形参，里面可以填三个形参，名称随便，但是每个的功能不一样，这里主要讲第一个，它主权用来存储Elements的值，类似于for循环中的Elements<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.onclick给每个元素绑定事件，或者给每个Elements的元素修改样式等等（详细见下方代码）
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// ❌ 舊式 for 循環的災難</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 你以為會輸出 0, 1, 2？</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment">// 實際輸出：3, 3, 3！ </span>
+<span class="token comment">// 因為它們共用了同一個空間，等 1 秒後，i 已經變成 3 了。</span></code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// ✅ 使用 forEach 的獨立空間</span>
+<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">i</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 實際輸出：0, 1, 2！</span>
+<span class="token comment">// 因為每一輪循環都有一個獨立的 function 空間，把當時的 i 牢牢鎖在了自己的房間裡！</span></code></pre>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//function()括号内形参的使用</span>
+<span class="token comment">//一般第三个很少使用</span>
+<span class="token comment">//总结：第一个类似Element[i]，第二个类似i(代表具体的值)</span>
+elements<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 1. 用第一個形參改樣式（它代表元素）</span>
+    element<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'blue'</span><span class="token punctuation">;</span> 
+    
+    <span class="token comment">// 2. 用第二個形參做算術（它代表數字 0, 1, 2...）</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"當前算到第 "</span> <span class="token operator">+</span> index <span class="token operator">+</span> <span class="token string">" 個元素了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h2 id="trim-的使用方法">trim()的使用方法</h2>
 <p>它的代码格式如下，主要功能就是清除文本左右的空格</p>
-<figure class="highlight javascript"><div class="article-table"><table><tr><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Element</span>.<span class="hljs-title function_">trim</span>() <span class="hljs-comment">//代表把当前元素「首尾的空格」清除了（夹在文字中间的空格会保留）</span><br><span class="hljs-comment">//下面是具体使用场景之一</span><br><span class="hljs-keyword">var</span> trims = input.<span class="hljs-property">value</span>.<span class="hljs-title function_">trim</span>(); <span class="hljs-comment">//获取没有空格的input</span><br><span class="hljs-comment">//这个input的value现在不能输入空格而且还必须输入1个以上的字符</span><br><span class="hljs-keyword">if</span>(trims.<span class="hljs-property">length</span> &gt;= <span class="hljs-number">1</span>) &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello World&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></div></figure>
+<pre class="language-javascript" data-language="javascript"><code class="language-javascript">Element<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">//代表把当前元素「首尾的空格」清除了（夹在文字中间的空格会保留）</span>
+<span class="token comment">//下面是具体使用场景之一</span>
+<span class="token keyword">var</span> trims <span class="token operator">=</span> input<span class="token punctuation">.</span>value<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//获取没有空格的input</span>
+<span class="token comment">//这个input的value现在不能输入空格而且还必须输入1个以上的字符</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>trims<span class="token punctuation">.</span>length <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Hello World'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span></code></pre>
 
 </div>
   <o3o key="mizore" api="https://o3o.mizore.site:2333"></o3o>
